@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<iati-activities generated-datetime="2012-06-12 06:06:12">
+    <iati-activity xml:lang="en" default-currency="GBP" hierarchy="1" last-updated-datetime="2012-06-12 06:06:17">
+        <reporting-org xml:lang="en" ref="GB-CHC-298316" type="21">Build Africa</reporting-org>
+        <iati-identifier>GB-CHC-298316-READUG</iati-identifier>
+        <title xml:lang="en">Increasing Retention and Completion at 40 Ugandan Schools</title>
+        <description xml:lang="en" type="2">The project aims to increase retention and completion rates amongst 13,981
+            pupils at 40 rural Ugandan schools. This will be achieved by providing training for 8,841 parents, 520
+            School Management Committee members and 283 teachers to ensure that parents actively participate in school
+            development and that the schools are well managed and governed. In particular the project will focus on
+            ensuring that the specific needs of the 7,072 female pupils are addressed.
+        </description>
+        <activity-status xml:lang="en" code="2">The project began in January 2012 and is scheduled to finish in December
+            2014.
+        </activity-status>
+        <activity-date type="start-actual" iso-date="2012-01-01" xml:lang="en"/>
+        <activity-date type="end-planned" iso-date="2014-12-31" xml:lang="en"/>
+        <participating-org xml:lang="en" type="22" role="Implementing">Build Africa Uganda</participating-org>
+        <participating-org xml:lang="en" ref="GB-1" type="10" role="Funding">DFID</participating-org>
+        <recipient-country xml:lang="en" code="UG">Uganda</recipient-country>
+        <sector xml:lang="en" vocabulary="DAC" code="11220"/>
+        <budget type="2">
+            <period-end iso-date="2014-12-31"/>
+            <period-start iso-date="2012-01-01"/>
+            <value value-date="2011-05-11" currency="GBP">456864</value>
+        </budget>
+        <transaction>
+            <transaction-type code="IF"/>
+            <provider-org ref="GB-1" provider-activity-id="GB-1-202035-101"/>
+            <receiver-org ref="GB-CHC-298316"/>
+            <value value-date="2012-03-29" currency="GBP">29679.75</value>
+            <description xml:lang="en">Funds received from DFID for activities undertaken between January and March
+                2012
+            </description>
+            <transaction-date iso-date="2012-05-15">When funding received from Dfid.</transaction-date>
+        </transaction>
+        <transaction>
+            <transaction-type code="E">Expenditure incurred directly by Build Africa between January and March 2012.
+            </transaction-type>
+            <provider-org ref="GB-CHC-298316"/>
+            <receiver-org ref="GB-CHC-298316"/>
+            <value value-date="2012-03-31" currency="GBP">3,802</value>
+        </transaction>
+        <transaction>
+            <transaction-type code="D">Funds transferred to Build Africa Uganda for implementation of project activities
+                and transfer to other local partners between January and March 2012.
+            </transaction-type>
+            <provider-org ref="GB-CHC-298316"/>
+            <receiver-org>Build Africa Uganda</receiver-org>
+            <value value-date="2012-03-31" currency="GBP">40,544</value>
+        </transaction>
+        <activity-website>http://www.build-africa.org/pages/read.html</activity-website>
+    </iati-activity>
+</iati-activities>

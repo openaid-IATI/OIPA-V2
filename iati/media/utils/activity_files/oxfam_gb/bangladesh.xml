@@ -1,0 +1,829 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<iati-activities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" generated-datetime="2011-11-23T21:30:55+00:00" version="1.00">
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDA87</iati-identifier>
+    <title xml:lang="en">Community Mobilisation to End Violence Against Women in Bangladesh-01</title>
+    <description xml:lang="en">Study shows in Bangladesh 47% of women experiencing physical violence at home by  close relationship but society is silent. As domestic violence (DV) is one of the cornerstones of gender inequality, this project seeks a fundamental shift in PPIB by challenging existing patriarchal system, execution of laws &amp; policies and integration of gender issue within the organisation also at social institutions. Fund will be spent as partner's grant to implement the designed activities to make people aware on DV, mobilise individual for action to end DV, organise event to deliver message and develop informal social security for survivors of VAW.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2007-05-01"/>
+    <activity-date type="end-planned" iso-date="2011-06-30"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description> 23 Districts of 5 divisions in Bangladesh </description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim5" percentage="100">Right to equity</sector>
+    <budget type="2">
+      <period-start iso-date="2011-04-01"/>
+      <period-end iso-date="2011-06-30"/>
+      <value value-date="2011-04-01">18448</value>
+    </budget>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2007-05-01">683587</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2007-05-01"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2010-03-31">458026</value>
+      <description>Expenditure between 2007-05-01 and 2010-03-31</description>
+      <transaction-date iso-date="2010-03-31"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">207113</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDA89</iati-identifier>
+    <title xml:lang="en">Community Mobilisation Project to End Violence Against Women</title>
+    <description xml:lang="en">Violence Against Women is the corner-stone to control women self-esteem and devalued women in different aspects. Studies show that 47% of women in Bangladesh experience physical violence from their marital partner, even higher if mental violence is considered. The project aiming about fundamental shift in people's idea, belief, attitude and practice which provoke and legetimite unacceptable behaviour. The partners Polli Sree, SDS, BITA implement the project by mobilisation individual, community also integration of gender issues in social institution and strengthen the services delivery system of responsive institution.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2007-05-01"/>
+    <activity-date type="end-planned" iso-date="2010-06-30"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description> 10 districts of Bangladesh </description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim5" percentage="100">Right to equity</sector>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2007-05-01">393647</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2007-05-01"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2010-03-31">331859</value>
+      <description>Expenditure between 2007-05-01 and 2010-03-31</description>
+      <transaction-date iso-date="2010-03-31"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">61789</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDA93</iati-identifier>
+    <title xml:lang="en">Diversity- Indigenous People's Capacity Building programme management</title>
+    <description xml:lang="en">This project is working with plain land adibashi  to enhange the situation to enjoy equal rights through mobilisation and capacity building. To manage numbers of project under the PIP P00105 a team comprising of 3 Project and 1 Programme Officer are working directly. PC north will supervised and  PM will provide strategic support, guidence of this project.  This project covers the salary of staff, programme management, logistics, transport, monitoring cost of the Dhaka based IPCBP team where DANIDA will contribute 65% of total grant till 31st december 2010.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2007-04-18"/>
+    <activity-date type="end-planned" iso-date="2011-03-31"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description>Dhaka, Rajshahi Division, Greater Mymensingh and Greater Sylhet</description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim2" percentage="25">Right to essential services</sector>
+    <sector vocabulary="oxfamgb" code="Aim4" percentage="10">Right to be heard</sector>
+    <sector vocabulary="oxfamgb" code="Aim5" percentage="65">Right to equity</sector>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2007-04-18">213747</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2007-04-18"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2010-03-31">188909</value>
+      <description>Expenditure between 2007-04-18 and 2010-03-31</description>
+      <transaction-date iso-date="2010-03-31"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">24837</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDA94</iati-identifier>
+    <title xml:lang="en">WE CAN Campaign in Bangladesh 2010 -2011</title>
+    <description xml:lang="en">This Project is an independent alliance led campaign to end domestic violence in Bangladesh titled WE CAN campaign. Challenge &amp; change patriarchal values, attitude &amp; practices that perpetuate VAW, specifically Domestic Violence and break the cultural of silence is the objectives.  Thousand of mobilised change makers will take pladge not to accept or involved in any act of VAW and take visible stand. The campaign will turn in to social movement &amp; ensure strategic link with policy &amp; media. It's includs communication materials, organising events through allies and partners at grassroots to national level.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2007-05-01"/>
+    <activity-date type="end-planned" iso-date="2011-03-31"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description>15 districts under 4 divisions in Bangaldesh</description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim5" percentage="100">Right to equity</sector>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2007-05-01">748666</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2007-05-01"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2010-03-31">487704</value>
+      <description>Expenditure between 2007-05-01 and 2010-03-31</description>
+      <transaction-date iso-date="2010-03-31"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">260962</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDB06</iati-identifier>
+    <title xml:lang="en">Anogrosor Gono Unnayan Project-AGUP (Indigenous Peoples Development Project)</title>
+    <description xml:lang="en">This project aims to improve life of the plain land adibashi  through enhancing capacity of organizations to assert rights, consolidation of land rights and promotion of bilingual education at pre-primary level. Community organizations and their leaders, introduced with policies, laws, constitution and covenants favouring adibashi (especially ILO 107) and claim to the state representatives and sensitise to enhance access and participation in the decision making process. Project activities will follow rights based approach. Funded by DANIDA, OCAA and as well as managed by OGB under PIP P00105.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2007-09-17"/>
+    <activity-date type="end-planned" iso-date="2011-03-31"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description>North west, Greater Sylhet and Greater Mymensingh</description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim2" percentage="25">Right to essential services</sector>
+    <sector vocabulary="oxfamgb" code="Aim4" percentage="10">Right to be heard</sector>
+    <sector vocabulary="oxfamgb" code="Aim5" percentage="65">Right to equity</sector>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2007-09-17">849403</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2007-09-17"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2010-03-31">690164</value>
+      <description>Expenditure between 2007-09-17 and 2010-03-31</description>
+      <transaction-date iso-date="2010-03-31"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">159239</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDB25</iati-identifier>
+    <title xml:lang="en">Economic Justice Campaign Project</title>
+    <description xml:lang="en">This Project is designed under the Policy and Advocacy PIP for 5 years. Agriculture is at the centre of OIEJ Operational Plan. Comprehensive Agrarian Reform Programme (CARP) would be developed slowly giving an over-arching focus in agriculture campaign and giving lesser priority to climate change campaign for 2010-2011 where trade campaign would be purely reactive.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2008-09-01"/>
+    <activity-date type="end-planned" iso-date="2013-03-31"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description> -   </description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim1" percentage="60">Right to sustainable livelihoods</sector>
+    <sector vocabulary="oxfamgb" code="Aim3" percentage="20">Right to life and security</sector>
+    <sector vocabulary="oxfamgb" code="Aim5" percentage="20">Right to equity</sector>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2008-09-01">681119</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2008-09-01"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2010-03-31">211770</value>
+      <description>Expenditure between 2008-09-01 and 2010-03-31</description>
+      <transaction-date iso-date="2010-03-31"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">469349</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDB32</iati-identifier>
+    <title xml:lang="en">WE CAN Campaign in Bangladesh : Alliance &amp; Secretariat Management</title>
+    <description xml:lang="en">This Project is an independent alliance led campaign to end Violence Against Women (VAW) titled WE CAN campaign in Bangladesh. Challenge &amp; change patriarchal values, attitude &amp; practices that perpetuate VAW, specifically Domestic Violence and break the culture of silence are the objectives.  The campaign will turn in to social movement &amp; ensure strategic link with policy &amp; media. It's includes WE CAN Campaign secretariat and alliance management costs, communication materials development, organising events through allies and partners at grassroots to national level.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2008-05-01"/>
+    <activity-date type="end-planned" iso-date="2011-04-30"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description> 61 districts throughout 6 divisions under the country </description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim5" percentage="100">Right to equity</sector>
+    <budget type="2">
+      <period-start iso-date="2011-04-01"/>
+      <period-end iso-date="2011-04-30"/>
+      <value value-date="2011-04-01">8020</value>
+    </budget>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2008-05-01">174775</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2008-05-01"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2010-03-31">110636</value>
+      <description>Expenditure between 2008-05-01 and 2010-03-31</description>
+      <transaction-date iso-date="2010-03-31"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">56119</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDB36</iati-identifier>
+    <title xml:lang="en">Empowerment of "Untouchables" living in urban slums in Bangladesh</title>
+    <description xml:lang="en">This project aims to improve the rights situation of the so called untouchable communities ( dalits)  through  education, increase access to the govt school and services, improve leadership specially for women to assert their rights. This project also working to reduce social exclusion, untouchablity, discrimination and enhance voice and participation to claim their rights to the state and society. This is a pilot project and extended up to September 2010 funded by CDS and Klub-Christmas appeal managed by OGB under PIP P00105.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2009-04-02"/>
+    <activity-date type="end-planned" iso-date="2011-03-31"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description>Dhaka, Manikganj, Mymensingh, Naogaon, Dinajpur,</description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim2" percentage="25">Right to essential services</sector>
+    <sector vocabulary="oxfamgb" code="Aim4" percentage="10">Right to be heard</sector>
+    <sector vocabulary="oxfamgb" code="Aim5" percentage="65">Right to equity</sector>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2009-04-02">92742</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2009-04-02"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2010-03-31">56454</value>
+      <description>Expenditure between 2009-04-02 and 2010-03-31</description>
+      <transaction-date iso-date="2010-03-31"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">36288</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDB37</iati-identifier>
+    <title xml:lang="en">WASH Inovation fund 2009</title>
+    <description xml:lang="en">Project intends a. preservation of rainwater through protected pond; b. point of use water safety solution by Chulli; c. piloting urine diversion latrine and modified ECOSAN. a and b - will focus on lining technology of pond and social/ technical efficacy of chulli. c - will be carried out over two different weather conditions (dry and wet), rate of sludge accumulation and local production of appropriate urine diversion plastic slab. Funded by Mariposa Fund; Location Satkhira, Bagerhat, Sirajgonj, Kurigram and Gaibanda; Rupantar, MMS, SSUS and Zibika are the partners. Direct beneficiaries 7,000 and indirect 28,000.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2009-06-01"/>
+    <activity-date type="end-planned" iso-date="2010-06-30"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description>Satkhira, Bagerhat, Sirajgonj, Gaibandha and Kurigram districts</description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim2" percentage="80">Right to essential services</sector>
+    <sector vocabulary="oxfamgb" code="Aim3" percentage="20">Right to life and security</sector>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2009-06-01">107444</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2009-06-01"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2010-03-31">79341</value>
+      <description>Expenditure between 2009-06-01 and 2010-03-31</description>
+      <transaction-date iso-date="2010-03-31"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">28103</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDB41</iati-identifier>
+    <title xml:lang="en">Capacity Building of Indigenous Peoples Development programme partners</title>
+    <description xml:lang="en">This project aims to strengthen the capacity of different level organizations and staffs (OGB, Partner and community volunteers/ teachers/ leaders) involved with the IPCBP project through organizing  workshops, training, cross visit, short term assignments, monitoring &amp; evaluation, documentation and coordination meeting. Project activities will follow rights based approach. Funded by DANIDA, OCAA  as well as managed by OGB under PIP P00105.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2009-06-10"/>
+    <activity-date type="end-planned" iso-date="2011-03-31"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description> Northern, western and central region of Bangladesh </description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim2" percentage="25">Right to essential services</sector>
+    <sector vocabulary="oxfamgb" code="Aim4" percentage="10">Right to be heard</sector>
+    <sector vocabulary="oxfamgb" code="Aim5" percentage="65">Right to equity</sector>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2009-06-10">47758</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2009-06-10"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2010-03-31">29295</value>
+      <description>Expenditure between 2009-06-10 and 2010-03-31</description>
+      <transaction-date iso-date="2010-03-31"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">18463</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDB42</iati-identifier>
+    <title xml:lang="en">Advocacy for indigenous peoples capacity building programme</title>
+    <description xml:lang="en">This project aims to review the current policies and acts link with indigenous commuity and identify the gaps at policy and execution level. For that purpose make the indigenous commuity more capable to influence policy makers, make the policies sensitive towards indigenous community. Also mobilise and create the opinion of civil society, media and greater communities in favour of inidigenous peoples through several initiatives. The fund will be spent to organise popular mobilisation, dialogue, workshop, seminar, lobbying with concerning authority, research, publication through direct or strategic partners.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2009-08-02"/>
+    <activity-date type="end-planned" iso-date="2010-12-31"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description>all over the country mainly focused on adibashi existence in the plain land</description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim2" percentage="10">Right to essential services</sector>
+    <sector vocabulary="oxfamgb" code="Aim4" percentage="20">Right to be heard</sector>
+    <sector vocabulary="oxfamgb" code="Aim5" percentage="70">Right to equity</sector>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2009-08-02">139850</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2009-08-02"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2010-03-31">32794</value>
+      <description>Expenditure between 2009-08-02 and 2010-03-31</description>
+      <transaction-date iso-date="2010-03-31"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">107056</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDB46</iati-identifier>
+    <title xml:lang="en">Building community resilience to floods in central region of Bangladesh</title>
+    <description xml:lang="en">This  project is to build community resilience to floods in central region of Bangladesh under DIPECHO V action plan with the support of ECHO. Also address the issues link women leadership during disaster preparedness phase. The Project will be implemented through 3 local partner NGO namely  AKK, SDS and RPDS at 3 districts of  Faridpur, Shariatpur and Rajbari respectively in Padma Basin. The total value of the project is EURO-398,244.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2009-07-01"/>
+    <activity-date type="end-planned" iso-date="2010-12-31"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description>18 villages of Faridpur, Rajbari and Shariatpur districts</description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim1" percentage="15">Right to sustainable livelihoods</sector>
+    <sector vocabulary="oxfamgb" code="Aim2" percentage="5">Right to essential services</sector>
+    <sector vocabulary="oxfamgb" code="Aim3" percentage="60">Right to life and security</sector>
+    <sector vocabulary="oxfamgb" code="Aim5" percentage="20">Right to equity</sector>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2009-07-01">320346</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2009-07-01"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2010-03-31">204024</value>
+      <description>Expenditure between 2009-07-01 and 2010-03-31</description>
+      <transaction-date iso-date="2010-03-31"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">116321</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDB49</iati-identifier>
+    <title xml:lang="en">"Early Recovery and Rehabilitation for the Cyclone Aila affected communities"</title>
+    <description xml:lang="en">Cyclone "AILA" hit the west border of Bangladesh on 25 May 2009.  AILA affected around 3.39 million people while more than 375,000 people have been displaced and are now living in temporary shelters. 290 deaths were recorded. Oxfam has received Euro 650 k from ECHO for initial response which has been ended 31 Dec'09. Euro 514 k has been granted for further 12 months period by ECHO for early recovery and rehabilitation which will contribute to the Livelihoods recovery of the adult and adolescent women, men and children in âAila' cyclone affected communities in Khulna and Shatkhira Districts.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2009-07-01"/>
+    <activity-date type="end-planned" iso-date="2011-03-31"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description> -   </description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim3" percentage="100">Right to life and security</sector>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2009-07-01">1022682</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2009-07-01"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2010-03-31">558662</value>
+      <description>Expenditure between 2009-07-01 and 2010-03-31</description>
+      <transaction-date iso-date="2010-03-31"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">464021</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDB50</iati-identifier>
+    <title xml:lang="en">Amar Odhikar Campaign-Bangladesh (AOC-B)</title>
+    <description xml:lang="en">This project aims to support Amar Odhikar Campaign,AOC ( My rights campaign) to raise citizen's voices to access in quality education for geographically and socially excluded areas including essential services. Addressing specically 1:40 teacher children ratio, provision mid-day meals and recognition of education as constitutional rights. The activities will implement by AOC  and fund will use for secretariat and organising campaign managed by OGB and ON in line with OI global campaign.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2009-06-01"/>
+    <activity-date type="end-planned" iso-date="2011-04-30"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description> All over the Bangladesh </description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim2" percentage="100">Right to essential services</sector>
+    <budget type="2">
+      <period-start iso-date="2011-04-01"/>
+      <period-end iso-date="2011-04-30"/>
+      <value value-date="2011-04-01">5000</value>
+    </budget>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2009-06-01">100667</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2009-06-01"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2010-03-31">29151</value>
+      <description>Expenditure between 2009-06-01 and 2010-03-31</description>
+      <transaction-date iso-date="2010-03-31"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">66516</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDB51</iati-identifier>
+    <title xml:lang="en">Emergency Capacity Building Project</title>
+    <description xml:lang="en">This project aim to increase Oxfam and partners emergency preparedness to disasters, and to provide timely and appropriate integrated community-based emergency responses and initiate recovery.
+The cost of the project is GBP 141,551 under PIP P00632. Funding is secure from Oxfam Novib, OHK, OAus and OGB.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2009-10-13"/>
+    <activity-date type="end-planned" iso-date="2011-03-31"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description> -   </description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim3" percentage="100">Right to life and security</sector>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2009-10-13">158163</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2009-10-13"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2010-03-31">5759</value>
+      <description>Expenditure between 2009-10-13 and 2010-03-31</description>
+      <transaction-date iso-date="2010-03-31"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">152404</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDB52</iati-identifier>
+    <title xml:lang="en">Strengthening NSAs to claim rights and services for extreme marginalized</title>
+    <description xml:lang="en">Under the national and local government frameworks in Bangladesh, approx. 20 different state level services are deliverable and should be available for all citizens. In addition NGOs, development agencies and independent institutions provide numerous services. However most of services are not accessible for poor and marginalised communities because of lack of voice and accountability of service providers. The project is increasing the accountability and obligation of service providers towards community people, particularly poor marginalized, excluded women and men through strengthening Non State Actors.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2010-09-01"/>
+    <activity-date type="end-planned" iso-date="2013-08-31"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description>Dinajpur, Naogaon,Kurigram, Shariatpur, Chittagong, Noakhali, Laxmipur</description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim1" percentage="30">Right to sustainable livelihoods</sector>
+    <sector vocabulary="oxfamgb" code="Aim2" percentage="20">Right to essential services</sector>
+    <sector vocabulary="oxfamgb" code="Aim5" percentage="50">Right to equity</sector>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2010-09-01">169215</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2010-09-01"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">169215</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDB53</iati-identifier>
+    <title xml:lang="en">Humanitarian programme management project</title>
+    <description xml:lang="en">Humanitarian Programme, that will be led by a Humanitarian Programme Manager (HPM), has been restructured recently following directions provided through the national change strategy (NCS) document . Main purpose of this programme is: duty bearers, women, men and communities vulnerable to disasters in Bangladesh will be prepared to cope with current and future emergency hazards and hazards associated with climate change. This management project will support management cost sand contribute to activities with OI affiliates for emergency capacity building initiatives. 71K is secured for FY 2009-10 from Unretricted source.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2010-01-11"/>
+    <activity-date type="end-planned" iso-date="2011-03-31"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description> -   </description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim3" percentage="100">Right to life and security</sector>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2010-01-11">149408</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2010-01-11"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2010-03-31">72174</value>
+      <description>Expenditure between 2010-01-11 and 2010-03-31</description>
+      <transaction-date iso-date="2010-03-31"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">77234</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDB54</iati-identifier>
+    <title xml:lang="en">Improved Access to WASH in the River Basin and Coastal Regions of Bangladesh</title>
+    <description xml:lang="en">Project aim to enhance the health and quality of life of the poor and vulnerable in the river basin and coastal regions through increased access to improved WASH assets while building the capacity of the enabling environment to support and sustain the improvements. The project will implement through partnership with 2 local organizations. The cost of the project is GBP 308,755 which will contributes to the PIP P00632. Funded by AusAid through Oxfam Australia; Location Hatia upazila of Noakhali district and Dewangonj Upazila of Jamalpur district. Direct beneficiaries 10,000 and indirect 50,000.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2010-06-01"/>
+    <activity-date type="end-planned" iso-date="2011-12-31"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description>Noakhali (coastal area) and Jamalpur (river basin area)</description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim3" percentage="100">Right to life and security</sector>
+    <budget type="2">
+      <period-start iso-date="2011-04-01"/>
+      <period-end iso-date="2011-12-31"/>
+      <value value-date="2011-04-01">206346</value>
+    </budget>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2010-06-01">386207</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2010-06-01"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">179861</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDB55</iati-identifier>
+    <title xml:lang="en">Bringing Solar Power and Renewable Energy to Remote Communities in Bangladesh</title>
+    <description xml:lang="en">Govt and NGOs have been implementing PSFs to treat surface water. Water from surface water is pumped through sand filters that work on the principal of "slow sand filter" on a constant flow, which creates biological film on sand layers, formed through a constant flow that removes harmful bacteria. Without constant flow of water bacteria remains and causes water borne disease. Using 6-solar powered pond sand filters we will provide safe clean drinking water to 8,000 people. Project is funded by GDS Services International and will be implemented by Progoti in Satkhira and Banchte Shekha in Jessore district.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2010-01-15"/>
+    <activity-date type="end-planned" iso-date="2011-06-30"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description>Coastal district Satkhira and Arsenic affected district Jessore</description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim2" percentage="80">Right to essential services</sector>
+    <sector vocabulary="oxfamgb" code="Aim3" percentage="20">Right to life and security</sector>
+    <budget type="2">
+      <period-start iso-date="2011-04-01"/>
+      <period-end iso-date="2011-06-30"/>
+      <value value-date="2011-04-01">18741</value>
+    </budget>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2010-01-15">101614</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2010-01-15"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2010-03-31">30491</value>
+      <description>Expenditure between 2010-01-15 and 2010-03-31</description>
+      <transaction-date iso-date="2010-03-31"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">52382</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDB59</iati-identifier>
+    <title xml:lang="en">WASH innovation fund project 2010 - UDL and monitoring</title>
+    <description xml:lang="en">Project intends (a) Search for adaptable model of Urine Diversion Latrine (UDL) in emergencies. This will focus on develop and pilot adaptable model of UDL including modified pan, slab and super structure and (b) "Mission to sustainability of WASH Innovation Fund Project 2009"- through systematic monitoring, follow-up, documentation, and advocacy of pond lining, Chulli Water Purifier (CWP), UDL and Ecosan latrine implemented in WASH Innovation Fund Project 2009. Funded by WASH Innovation Project 2010; Location Khulna, Satkhira, Bagerhat, Sirajgonj, Kurigram and Gaibanda districts.  Direct beneficiaries 8,500 and indirect 25,000.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2010-05-01"/>
+    <activity-date type="end-planned" iso-date="2011-10-31"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description>Khulna, Satkhira, Bagerhat, Sirajgonj, Gaibandha and Kurigram districts</description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim3" percentage="80">Right to life and security</sector>
+    <sector vocabulary="oxfamgb" code="Aim5" percentage="20">Right to equity</sector>
+    <budget type="2">
+      <period-start iso-date="2011-04-01"/>
+      <period-end iso-date="2011-10-31"/>
+      <value value-date="2011-04-01">8703</value>
+    </budget>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2010-05-01">82500</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2010-05-01"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">73797</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDB63</iati-identifier>
+    <title xml:lang="en">Resilience through Economic Empowerment Climate Adaptation Leadership &amp; Learning</title>
+    <description xml:lang="en">The REE_CALL project is aims to develop resilient communities through enhanced leadership, creating livelihoods options and equipped to face the impact of climate change and disasters. The project will implement by 12 local partners in 12 districts of Char, Haor and Coastal region in Bangladesh. It wil directly benefit approximately 40,000 people.  The proposed project is an experimental initiatives for incorporating practices on climate change adaptation, will generate valuable lessons economic empowerment &amp; livelihood also ensuring access of poor women and men in the resources. Fund will utilise for partner's grant and programme management.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2010-04-01"/>
+    <activity-date type="end-planned" iso-date="2014-03-31"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description>Char, Haor and Coastal areas of Bangladesh</description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim1" percentage="40">Right to sustainable livelihoods</sector>
+    <sector vocabulary="oxfamgb" code="Aim3" percentage="40">Right to life and security</sector>
+    <sector vocabulary="oxfamgb" code="Aim4" percentage="10">Right to be heard</sector>
+    <sector vocabulary="oxfamgb" code="Aim5" percentage="10">Right to equity</sector>
+    <budget type="2">
+      <period-start iso-date="2011-04-01"/>
+      <period-end iso-date="2014-03-31"/>
+      <value value-date="2011-04-01">749143</value>
+    </budget>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2010-04-01">1368484</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2010-04-01"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">619341</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDB65</iati-identifier>
+    <title xml:lang="en">WASH component of cyclone Aila joint UN Multi-Sector response</title>
+    <description xml:lang="en">More than 1 year after devastating cyclone AILA, affected people is still suffering and in life risk. After a joint assessment the UN agencies come to a consensus to continue response is needed. UNICEF was delegated responsibility for the WASH. UNICEF allocated the task to Oxfam. GBP 272,092 has been secured from UNICEF to implement the project which aims to reduce Water, Sanitation and Hygiene (WASH) related health risk and improves the quality of life of most affected 43,890 women, children and men through improved basic WASH assistance and disaster resilient WASH services. This is 10 months project started from 07 November 2010.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2010-10-15"/>
+    <activity-date type="end-planned" iso-date="2012-03-31"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description>Dacope Upazila of Khulna District</description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim3" percentage="100">Right to life and security</sector>
+    <budget type="2">
+      <period-start iso-date="2011-04-01"/>
+      <period-end iso-date="2012-03-31"/>
+      <value value-date="2011-04-01">110105</value>
+    </budget>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2010-10-15">234572</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2010-10-15"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">124467</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDB70</iati-identifier>
+    <title xml:lang="en">Early Recovery and Rehabilitation for the Cyclone Aila affected communities-Ext</title>
+    <description xml:lang="en">Cyclone "AILA" hit the west border of Bangladesh on 25 May 2009.  AILA affected around 3.39 million people while 1.5 years after Aila more than 100,000 people are still living in temporary shelters as embankment reconstruction yet to be completed. Oxfam has received Euro 650 k  and 514 k from ECHO for initial response and early recovery and rehabilitation respectively which going to be ended by mid of Jan'11. As situation still not improved much project got amedment and extended for further 03 months period.  Total amendment value is Euro 327 k. which is already got approval from ECHO.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2010-12-23"/>
+    <activity-date type="end-planned" iso-date="2011-06-30"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description>Khulna and Shatkhira District</description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim3" percentage="100">Right to life and security</sector>
+    <budget type="2">
+      <period-start iso-date="2011-04-01"/>
+      <period-end iso-date="2011-06-30"/>
+      <value value-date="2011-04-01">3510</value>
+    </budget>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2010-12-23">196296</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2010-12-23"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">192786</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+  <iati-activity xml:lang="en" default-currency="GBP" hierarchy="2" last-updated-datetime="2011-11-22T00:00:00">
+    <reporting-org type="21" ref="GB-CHC-202918">Oxfam GB</reporting-org>
+    <iati-identifier>GB-CHC-202918-BGDB73</iati-identifier>
+    <title xml:lang="en">Strengthening NSAs to claim rights and services for extreme marginalized</title>
+    <description xml:lang="en">Under the national and local government frameworks in Bangladesh, approx. 20 different state level services are deliverable and should be available for all citizens. In addition NGOs, development agencies and independent institutions provide numerous services. However most of services are not accessible for poor and marginalised communities because of lack of voice and accountability of service providers. The project is increasing the accountability and obligation of service providers towards community people, particularly poor marginalized, excluded women and men through strengthening Non State Actors.</description>
+    <activity-status code="2">Implementation</activity-status>
+    <activity-date type="start-planned" iso-date="2010-09-01"/>
+    <activity-date type="end-planned" iso-date="2013-08-31"/>
+    <participating-org role="funding" type="21" ref="GB-CHC-202918">Oxfam GB</participating-org>
+    <recipient-country code="BD">Bangladesh</recipient-country>
+    <location>
+      <description>Dinajpur, Naogaon,Kurigram, Shariatpur, Chittagong, Noakhali, Laxmipur</description>
+    </location>
+    <sector vocabulary="oxfamgb" code="Aim1" percentage="30">Right to sustainable livelihoods</sector>
+    <sector vocabulary="oxfamgb" code="Aim2" percentage="20">Right to essential services</sector>
+    <sector vocabulary="oxfamgb" code="Aim5" percentage="50">Right to equity</sector>
+    <budget type="2">
+      <period-start iso-date="2011-04-01"/>
+      <period-end iso-date="2013-08-31"/>
+      <value value-date="2011-04-01">876639</value>
+    </budget>
+    <transaction>
+      <transaction-type code="C">Commitment</transaction-type>
+      <value value-date="2010-09-01">879929</value>
+      <description>Total Project Value (Past Expenditure + Current and Future Budget)</description>
+      <transaction-date iso-date="2010-09-01"/>
+    </transaction>
+    <transaction>
+      <transaction-type code="E">Expenditure</transaction-type>
+      <value value-date="2011-03-31">3290</value>
+      <description>Expenditure between 2010-04-01 and 2011-03-31</description>
+      <transaction-date iso-date="2011-03-31"/>
+    </transaction>
+  </iati-activity>
+</iati-activities>
