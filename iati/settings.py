@@ -79,6 +79,7 @@ TEMPLATE_DIRS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.core.context_processors.static",
     "django.contrib.auth.context_processors.auth",
     "api.context_processor.version",
 )
@@ -90,6 +91,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
+    'django.contrib.staticfiles',
     'data',
     'api',
     'tastypie',
