@@ -84,6 +84,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'iati.urls'
+WSGI_APPLICATION = 'iati.wsgi.application'
 
 TEMPLATE_DIRS = (
     rel('../templates'),
