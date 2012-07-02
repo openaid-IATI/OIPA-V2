@@ -111,4 +111,4 @@ INSTALLED_APPS = (
 )
 
 API_VERSION = 'v2.0.1'
-API_URL = 'http://127.0.0.1/api/'
+API_URL = 'http://127.0.0.1/api/v2/'
