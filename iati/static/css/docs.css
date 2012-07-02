@@ -12,7 +12,7 @@ body {
     position: relative;
     padding-top: 90px;
     background-color: #fff;
-    background-image: url(/media/img/base_bg_pattern.png);
+    background-image: url(/static/img/base_bg_pattern.png);
     background-repeat: repeat-x;
 }
 
