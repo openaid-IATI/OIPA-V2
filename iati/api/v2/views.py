@@ -1,5 +1,8 @@
 # Django specific
+from django.conf import settings
 from django.template.response import TemplateResponse
+
+# Api specific
 from api.v2.resources.model_resources import ActivityResource
 from api.v2.resources.model_resources import OrganisationResource
 
