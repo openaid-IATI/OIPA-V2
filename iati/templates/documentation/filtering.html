@@ -11,7 +11,7 @@
             <div class="span12">
                 <h3 class="push_10px_top">Search</h3>
                 <p>The current API implements a combined search query on the <span class="label label-info">title</span> and <span class="label label-info">description</span> fields of the ActivityResource.</p>
-                <pre><code>http://127.0.0.1:8080/api/v2/activities/?format=json<strong>&query=Food</strong></code></pre>
+                <pre><code>{{ api_url }}/activities/?format=json<strong>&query=Food</strong></code></pre>
                 <div class="alert alert-info">
                     <strong>Note:</strong> The search is case insensitive.
                 </div>
@@ -19,12 +19,12 @@
             <div class="span12">
                 <h3 class="push_10px_top">Countries</h3>
                 <p>The current API implements a countries filter</p>
-                <pre><code>http://127.0.0.1:8080/api/v2/activities/?format=json<strong>&countries=BB|AO|FR</strong></code></pre>
+                <pre><code>{{ api_url }}/api/v2/activities/?format=json<strong>&countries=BB|AO|FR</strong></code></pre>
             </div>
             <div class="span12">
                 <h3 class="push_10px_top">Joining calls</h3>
                 <p>Calls to the API can be joined</p>
-                <pre><code>http://127.0.0.1:8080/api/v2/activities/?format=json<strong>&query=Food</strong>&countries=BB|AO|FR</code></pre>
+                <pre><code>{{ api_url }}/v2/activities/?format=json<strong>&query=Food</strong>&countries=BB|AO|FR</code></pre>
             </div>
         </div>
     </section>
