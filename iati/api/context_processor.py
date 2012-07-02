@@ -6,4 +6,4 @@ def version(request):
     """
     Latest stable API version
     """
-    return dict(version=settings.API_VERSION)
+    return dict(version=settings.API_VERSION, api=settings.API_URL)
