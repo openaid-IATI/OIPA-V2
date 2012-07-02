@@ -1,9 +1,9 @@
-from settings import rel
+from iati.settings import rel
 
 import dateutil.parser as dtparser
 
 from datetime import datetime
-from lxml import etree, objectify
+from lxml import  objectify
 from optparse import make_option
 from utils.helpers import fix_whitespaces
 
@@ -694,7 +694,7 @@ class Command(BaseCommand):
         for item in args:
             print '=====', item, '====='
             try:
-                f = open(rel(item))
+                f = open(rel("../"+item))
                 tree = objectify.parse(f)
                 self.save(tree, force_update, verbosity)
                 f.close()

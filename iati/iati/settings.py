@@ -42,8 +42,8 @@ USE_L10N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = rel('media')
-STATIC_ROOT = rel('static-root')
+MEDIA_ROOT = rel('../media')
+STATIC_ROOT = rel('../static-root')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -52,7 +52,7 @@ MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    rel('static'),
+    rel('../static'),
 )
 
 # List of finder classes that know how to find static files in
@@ -70,7 +70,7 @@ SECRET_KEY = '1xrw3xlzdyu_s$qxdr84a6aen&lr$lai59txex$#&b4v5&1*lf'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-    #    'django.template.loaders.eggs.Loader',
+#    'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -86,7 +86,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'iati.urls'
 
 TEMPLATE_DIRS = (
-    rel('templates'),
+    rel('../templates'),
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
