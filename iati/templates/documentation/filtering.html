@@ -13,7 +13,7 @@
                 <p>The current API implements a combined search query on the <span class="label label-info">title</span> and <span class="label label-info">description</span> fields of the ActivityResource.</p>
                 <pre><code>{{ api_url }}/activities/?format=json<strong>&query=Food</strong></code></pre>
                 <div class="alert alert-info">
-                    <strong>Note:</strong> The search is case insensitive.
+                    <strong>Note:</strong> Search is case insensitive.
                 </div>
             </div>
             <div class="span12">
@@ -22,8 +22,13 @@
                 <pre><code>{{ api_url }}/activities/?format=json<strong>&countries=BB|AO|FR</strong></code></pre>
             </div>
             <div class="span12">
+                <h3 class="push_10px_top">Organisations</h3>
+                <p>The current API implements an organisations filter</p>
+                <pre><code>{{ api_url }}/activities/?format=json<strong>&countries=44000|NL-1</strong></code></pre>
+            </div>
+            <div class="span12">
                 <h3 class="push_10px_top">Joining calls</h3>
-                <p>Calls to the API can be joined</p>
+                <p>Calls to the API can be joined, for example:</p>
                 <pre><code>{{ api_url }}/activities/?format=json<strong>&query=Food</strong>&countries=BB|AO|FR</code></pre>
             </div>
         </div>
