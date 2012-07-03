@@ -10,7 +10,10 @@ sys.path.insert(0, rel('..','lib'))
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-from local_settings import ADMINS, DATABASES
+from local_settings import ADMINS, DATABASES, SERVER_EMAIL
+
+SERVER_EMAIL = SERVER_EMAIL
+
 ADMINS = ADMINS
 
 MANAGERS = ADMINS
