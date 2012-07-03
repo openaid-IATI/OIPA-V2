@@ -9,13 +9,13 @@
         </div>
         <div class="row">
             <div class="span12">
-                <p>The OIPA API currently implements two resources:</p>
+                <p>The OIPA API currently implements two public resources:</p>
                 <ul>
-                    <li>OrganisationResource</li>
+                    <li>OrganisationResource *</li>
                     <li>ActivityResource</li>
                 </ul>
                 <div class="alert alert-info">
-                    <strong>Note:</strong> The current API implementation ({{ version }}) nests basic OrganisationResource fields within the ActivityResource..
+                    <strong>*</strong> The current API implementation ({{ version }}) nests basic OrganisationResource fields within the ActivityResource.
                 </div>
             </div>
         </div>
@@ -36,35 +36,38 @@
                         <tr>
                             <td><span class="label label-info">date_updated</span></td>
                             <td>last-updated-datetime</td>
-                            <td>"24-09-2011"</td>
+                            <td>"24-09-2011" **</td>
                         </tr>
                         <tr>
                             <td><span class="label label-info">org_name</span></td>
-                            <td></td>
-                            <td></td>
+                            <td>reporting-org</td>
+                            <td>"World Bank Group"</td>
                         </tr>
                         <tr>
                             <td><span class="label label-info">org_name_lang</span></td>
-                            <td></td>
-                            <td></td>
+                            <td>xml:lang</td>
+                            <td>"en"</td>
                         </tr>
                         <tr>
                             <td><span class="label label-info">ref</span></td>
-                            <td></td>
-                            <td></td>
+                            <td>ref</td>
+                            <td>"44000"</td>
                         </tr>
                         <tr>
                             <td><span class="label label-info">resource_uri</span></td>
                             <td></td>
-                            <td></td>
+                            <td>"/api/v2/organisations/44000/"</td>
                         </tr>
                         <tr>
                             <td><span class="label label-info">type</span></td>
-                            <td></td>
-                            <td></td>
+                            <td>type</td>
+                            <td>"Multilateral"</td>
                         </tr>
                     </tbody>
                 </table>
+                <div class="alert alert-info">
+                    <strong>**</strong> Time is stripped.<br/>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -82,12 +85,115 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td><span class="label label-info">...</span></td>
+                        <td><span class="label label-info">activity_budgets</span></td>
+                        <td>budget</td>
+                        <td>BudgetResource</td>
+                    </tr>
+                    <tr>
+                        <td><span class="label label-info">activity_status</span></td>
+                        <td>activity-status</td>
+                        <td>StatusResource</td>
+                    </tr>
+                    <tr>
+                        <td><span class="label label-info">activity_transactions</span></td>
+                        <td>transaction</td>
+                        <td>TransactionResource</td>
+                    <tr>
+                        <td><span class="label label-info">collaboration_type</span></td>
+                        <td>collaboration-type</td>
+                        <td>CollaborationTypeResource</td>
+                    </tr>
+                    <tr>
+                        <td><span class="label label-info">date_updated</span></td>
+                        <td>last-updated-datetime</td>
+                        <td>"2011-11-11" **</td>
+                    </tr>
+                    <tr>
+                        <td><span class="label label-info">default_aid_type</span></td>
+                        <td>default-aid-type</td>
+                        <td>AidTypeResource</td>
+                    </tr>
+                    <tr>
+                        <td><span class="label label-info">default_finance_type</span></td>
+                        <td>default-finance-type</td>
+                        <td>FinanceTypeResource</td>
+                    </tr>
+                    <tr>
+                        <td><span class="label label-info">default_flow_type</span></td>
+                        <td>default-flow-type</td>
+                        <td>FlowTypeResource</td>
+                    </tr>
+                    <tr>
+                        <td><span class="label label-info">default_tied_status_type</span></td>
+                        <td>default-tied-status</td>
+                        <td>TiedAidStatusTypeResource</td>
+                    </tr>
+                    <tr>
+                        <td><span class="label label-info">description</span></td>
+                        <td>description</td>
+                        <td>"en" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit." ***</td>
+                    </tr>
+                    <tr>
+                        <td><span class="label label-info">end_actual</span></td>
+                        <td>end-actual</td>
+                        <td>"2011-11-16" **</td>
+                    </tr>
+                    <tr>
+                        <td><span class="label label-info">end_planned</span></td>
+                        <td>end-planned</td>
+                        <td>"2011-11-16" **</td>
+                    </tr>
+                    <tr>
+                        <td><span class="label label-info">iati_identifier</span></td>
+                        <td>iati-identifier</td>
+                        <td>"NL-1-PPR-17014"</td>
+                    </tr>
+                    <tr>
+                        <td><span class="label label-info">recipient_country</span></td>
+                        <td>recipient-country</td>
+                        <td>RecipientCountryResource</td>
+                    </tr>
+                    <tr>
+                        <td><span class="label label-info">recipient_region</span></td>
+                        <td>recipient-region</td>
+                        <td>RecipientRegionResource</td>
+                    </tr>
+                    <tr>
+                        <td><span class="label label-info">reporting_organisation</span></td>
+                        <td>reporting-org</td>
+                        <td>OrganisationResource</td>
+                    </tr>
+                    <tr>
+                        <td><span class="label label-info">resource_uri</span></td>
                         <td></td>
-                        <td></td>
+                        <td>"/api/v2/activities/NL-1-PPR-17014/"</td>
+                    </tr>
+                    <tr>
+                        <td><span class="label label-info">sector</span></td>
+                        <td>sector</td>
+                        <td>SectorResource</td>
+                    </tr>
+                    <tr>
+                        <td><span class="label label-info">start_actual</span></td>
+                        <td>start-actual</td>
+                        <td>"2011-11-16" **</td>
+                    </tr>
+                    <tr>
+                        <td><span class="label label-info">start_planned</span></td>
+                        <td>start-planned</td>
+                        <td>"2011-11-16" **</td>
+                    </tr>
+                    <tr>
+                        <td><span class="label label-info">title</span></td>
+                        <td>title</td>
+                        <td>"en" : "Lorem ipsum" ***</td>
                     </tr>
                     </tbody>
                 </table>
+                <div class="alert alert-info">
+                    <strong>**</strong> Time is stripped.<br/>
+                    <strong>***</strong> Language mapping (unicode), fallback language is "default".
+                </div>
             </div>
         </div>
     </section>

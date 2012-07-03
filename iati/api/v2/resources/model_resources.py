@@ -69,6 +69,7 @@ class ActivityResource(ModelResource):
         queryset = IATIActivity.objects.all()
         resource_name = 'activities'
         serializer = Serializer(formats=['xml', 'json'])
+        excludes = ['date_created']
         filtering = {
             # example to allow field specific filtering.
 #            'iatitransaction': ALL_WITH_RELATIONS,
