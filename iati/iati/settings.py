@@ -112,4 +112,4 @@ INSTALLED_APPS = (
 )
 
 API_VERSION = 'v2.0.1'
-API_URL = 'http://127.0.0.1/api/v2/'
+API_URL = 'http://127.0.0.1:8080/api/v2'
