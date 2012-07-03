@@ -81,11 +81,15 @@ class ActivityResource(ModelResource):
             applicable_filters)
         query = request.GET.get('query', None)
         countries = request.GET.get('countries', None)
+        organisations = request.GET.get('organisations', None)
         filters = {}
         if countries:
             # @todo: implement smart filtering with seperator detection
             countries = countries.replace('|', ' ').replace('-', ' ').split(' ')
             filters.update(dict(iatiactivitycountry__country__iso__in=countries))
+        if organisations:
+            organisations = organisations.replace('|', ' ').split(' ')
+            filters.update(dict(reporting_organisation__ref__in=organisations))
         if query:
             qset = (
                 Q(iatiactivitytitle__title__icontains=query, **filters) |
