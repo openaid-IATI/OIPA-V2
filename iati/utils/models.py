@@ -63,7 +63,7 @@ class IATIXMLSource(models.Model):
         Implement updating, file deleting etc.
         """
         if self.id is None:
-            if not self.ref[4:] == ".xml":
+            if not self.ref[:4] == ".xml":
                 self.ref += ".xml"
             file_url = self.source_url
             try:
