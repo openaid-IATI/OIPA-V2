@@ -43,7 +43,9 @@ class OrganisationResource(ModelResource):
     def dehydrate(self, bundle):
         obj = self.obj_get(ref=bundle.data['ref'])
         bundle.data['type'] = obj.get_type_display()
-        bundle.data['total_activities'] = obj.iatiactivity_set.count()
+        bundle.data['statistics'] = dict(
+            total_activities=obj.iatiactivity_set.count()
+        )
         return super(OrganisationResource, self).dehydrate(bundle)
 
 
@@ -80,10 +82,15 @@ class ActivityResource(ModelResource):
         base_object_list = super(ActivityResource, self).apply_filters(request,
             applicable_filters)
         query = request.GET.get('query', None)
+        sectors = request.GET.get('sectors', None)
         regions = request.GET.get('regions', None)
         countries = request.GET.get('countries', None)
         organisations = request.GET.get('organisations', None)
         filters = {}
+        if sectors:
+            # @todo: implement smart filtering with seperator detection
+            sectors = sectors.replace('|', ' ').replace('-', ' ').split(' ')
+            filters.update(dict(iatiactivitysector__sector__code__in=sectors))
         if regions:
             # @todo: implement smart filtering with seperator detection
             regions = regions.replace('|', ' ').replace('-', ' ').split(' ')
