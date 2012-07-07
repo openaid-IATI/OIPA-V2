@@ -9,13 +9,16 @@
         </div>
         <div class="row">
             <div class="span12">
-                <p>The OIPA API currently implements two public resources:</p>
+                <p>The OIPA API currently implements five public resources:</p>
                 <ul>
                     <li>OrganisationResource *</li>
                     <li>ActivityResource</li>
+                    <li>RegionResource</li>
+                    <li>CountryResource</li>
+                    <li>SectorResource</li>
                 </ul>
                 <div class="alert alert-info">
-                    <strong>*</strong> The current API implementation ({{ version }}) nests basic OrganisationResource fields within the ActivityResource.
+                    <strong>*</strong> The current API implementation ({{ version }}) nests basic OrganisationResource fields within the ActivityResource as well as Region-, Country- and SectorResources.
                 </div>
             </div>
         </div>
@@ -193,6 +196,94 @@
                 <div class="alert alert-info">
                     <strong>**</strong> Time is stripped.<br/>
                     <strong>***</strong> Language mapping (unicode), fallback language is "default".
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span12">
+                <h3 class="push_20px_top">{{ resources.country }}</h3>
+                <p>The CountryResource represents a standard represenation of a Country</p>
+                <p>Available fields:</p>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Example</th>
+                        <th>Bundled field display **</th>
+                        <th>Example</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><span class="label label-info">iso</span></td>
+                        <td>"BB"</td>
+                        <td><span class="label label-warning">name</span></td>
+                        <td>"Barbados"</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="alert alert-info">
+                    <strong>**</strong> Bundled field display retrieves a verbose name constant based on the iso field value<br/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span12">
+                <h3 class="push_20px_top">{{ resources.region }}</h3>
+                <p>The RegionResource represents an standard represenation of a geographical Region</p>
+                <p>Available fields:</p>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Example</th>
+                        <th>Bundled field display **</th>
+                        <th>Example</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><span class="label label-info">iso</span></td>
+                        <td>"380"</td>
+                        <td><span class="label label-warning">name</span></td>
+                        <td>"West Indies, regional"</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="alert alert-info">
+                    <strong>**</strong> Bundled field display retrieves a verbose name constant based on the numeric code field value<br/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span12">
+                <h3 class="push_20px_top">{{ resources.sector }}</h3>
+                <p>The SectorResource represents a standard represenation of a Sector</p>
+                <p>Available fields:</p>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Example</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><span class="label label-info">name</span></td>
+                        <td>"Basic health care"</td>
+                    </tr>
+                    <tr>
+                        <td><span class="label label-info">code</span></td>
+                        <td>"12220"</td>
+                    </tr>
+                    <tr>
+                        <td><span class="label label-info">vocabulary_type</span></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="alert alert-info">
+                    <strong>**</strong> Bundled field display retrieves a verbose name constant based on the numeric code field value<br/>
                 </div>
             </div>
         </div>

@@ -5,6 +5,9 @@ from django.template.response import TemplateResponse
 # Api specific
 from api.v2.resources.model_resources import ActivityResource
 from api.v2.resources.model_resources import OrganisationResource
+from api.v2.resources.common_model_resources import CountryResource
+from api.v2.resources.common_model_resources import RegionResource
+from api.v2.resources.common_model_resources import SectorResource
 
 
 def docs_index(request):
@@ -26,7 +29,13 @@ def docs_resources(request):
         organisation = OrganisationResource.__name__,
         organisation_doc = OrganisationResource.__doc__,
         activity = ActivityResource.__name__,
-        activity_doc = ActivityResource.__doc__
+        activity_doc = ActivityResource.__doc__,
+        country = CountryResource.__name__,
+        country_doc = CountryResource.__doc__,
+        region = RegionResource.__name__,
+        region_doc = RegionResource.__doc__,
+        sector = SectorResource.__name__,
+        sector_doc = SectorResource.__doc__,
     )
     t = TemplateResponse(request, 'documentation/resources.html', context)
     return t.render()
