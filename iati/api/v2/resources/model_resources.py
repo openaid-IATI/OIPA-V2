@@ -63,7 +63,6 @@ class ActivityResource(ModelResource):
     default_tied_status_type = fields.ForeignKey(TiedAidStatusTypeResource, attribute='default_tied_status_type', full=True, null=True)
     activity_budgets = fields.ToManyField(ActivityBudgetResource, 'iatiactivitybudget_set', full=True, null=True)
     activity_transactions = fields.ToManyField(TransactionResource, 'iatitransaction_set', full=True, null=True)
-    #iatitransaction = fields.ToManyField(TransactionResource, 'iatitransaction', full=True, null=True)
 
     class Meta:
         queryset = IATIActivity.objects.all()
@@ -81,9 +80,14 @@ class ActivityResource(ModelResource):
         base_object_list = super(ActivityResource, self).apply_filters(request,
             applicable_filters)
         query = request.GET.get('query', None)
+        regions = request.GET.get('regions', None)
         countries = request.GET.get('countries', None)
         organisations = request.GET.get('organisations', None)
         filters = {}
+        if regions:
+            # @todo: implement smart filtering with seperator detection
+            regions = regions.replace('|', ' ').replace('-', ' ').split(' ')
+            filters.update(dict(iatiactivityregion__region__code__in=regions))
         if countries:
             # @todo: implement smart filtering with seperator detection
             countries = countries.replace('|', ' ').replace('-', ' ').split(' ')

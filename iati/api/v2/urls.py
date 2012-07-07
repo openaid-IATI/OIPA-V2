@@ -8,11 +8,15 @@ from tastypie.api import Api
 # App specific
 from api.v2.resources.model_resources import OrganisationResource
 from api.v2.resources.model_resources import ActivityResource
-
+from api.v2.resources.common_model_resources import CountryResource
+from api.v2.resources.common_model_resources import RegionResource
 
 v2_api = Api(api_name='v2')
 v2_api.register(OrganisationResource())
 v2_api.register(ActivityResource())
+v2_api.register(CountryResource())
+v2_api.register(RegionResource())
+
 
 def api_v2_docs(request):
     return HttpResponseRedirect('/api/v2/docs/')

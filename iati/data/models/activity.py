@@ -106,8 +106,9 @@ class IATIActivityCountry(models.Model):
         app_label = "data"
 
 
-class IATIActivitySector(Sector):
+class IATIActivitySector(models.Model):
     iati_activity = models.ForeignKey(IATIActivity)
+    sector = models.ForeignKey(Sector)
     percentage = models.IntegerField(blank=True, null=True)
 
     class Meta:

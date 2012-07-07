@@ -122,11 +122,12 @@ class ActivityStatusType(models.Model):
 
 
 class Sector(models.Model):
-    code = models.CharField(max_length=55)
+    name = models.CharField(max_length=255, blank=True, null=True)
+    code = models.CharField(max_length=55, primary_key=True)
     vocabulary_type = models.ForeignKey(VocabularyType, blank=True, null=True)
 
     class Meta:
-        abstract = True
+        app_label = "data"
 
 
 class Budget(models.Model):

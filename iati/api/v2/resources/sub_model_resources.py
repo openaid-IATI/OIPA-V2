@@ -1,6 +1,7 @@
 # Tastypie specific
 from tastypie.resources import ModelResource
 from tastypie.constants import ALL, ALL_WITH_RELATIONS
+from tastypie.serializers import Serializer
 
 # Data specific
 from data.models.activity import IATIActivityBudget
@@ -57,8 +58,14 @@ class RecipientRegionResource(ModelResource):
 class SectorResource(ModelResource):
     class Meta:
         queryset = IATIActivitySector.objects.all()
-        fields = ['code']
         include_resource_uri = False
+
+    def dehydrate(self, bundle):
+        obj = self.obj_get(id=bundle.data['id'])
+        bundle.data['code'] = obj.sector.code
+        bundle.data['name'] = obj.sector.name
+        bundle.data.pop('id')
+        return bundle
 
 
 class CollaborationTypeResource(ModelResource):

@@ -39,8 +39,10 @@ from data.models.common import Region
 from data.models.common import SignificanceType
 from data.models.common import TiedAidStatusType
 from data.models.common import VocabularyType
+from data.models.common import Sector
 from data.models.organisation import Organisation
 from data.models.organisation import ParticipatingOrganisation
+from data.models.statistics import ActivityStatistics
 
 
 PARSER_DEBUG = False
@@ -583,24 +585,31 @@ class ActivityParser(Parser):
 
     def _save_sector(self, sector, iati_activity):
         iati_activity_sector_code = sector.get('code')
-        iati_activity_sector_vocabulary_type = unicode(sector.get('vocabulary'))
+        sector_vocabulary_type = unicode(sector.get('vocabulary')).encode('UTF-8')
 
-        activity_sector, created = IATIActivitySector.objects.get_or_create(
-            iati_activity=iati_activity,
-            code=iati_activity_sector_code
-        )
+        if iati_activity_sector_code:
+            iati_sector = Sector.objects.get_or_create(
+                code=iati_activity_sector_code
+            )[0]
+            activity_sector = IATIActivitySector.objects.get_or_create(
+                iati_activity=iati_activity,
+                sector=iati_sector
+            )
 
-        if iati_activity_sector_vocabulary_type in dict(VOCABULARY_CHOICES).keys():
-            activity_sector.vocabulary_type = VocabularyType.objects.get_or_create(
-                                                  code=iati_activity_sector_vocabulary_type
-                                              )[0]
-            activity_sector.save()
-        else:
-            pass
-#            e = "ValueError: Unsupported vocabulary_type '"+str(iati_activity_sector_vocabulary_type)+"' in VOCABULARY_CHOICES_MAP"
-#            raise Exception(e)
+            if sector_vocabulary_type in dict(VOCABULARY_CHOICES).keys():
+                sector.vocabulary_type = VocabularyType.objects.get_or_create(
+                                                      code=sector_vocabulary_type
+                                                  )[0]
+            else:
+                pass
+    #            e = "ValueError: Unsupported vocabulary_type '"+str(iati_activity_sector_vocabulary_type)+"' in VOCABULARY_CHOICES_MAP"
+    #            raise Exception(e)
 
-        return
+            iati_sector.name = unicode(sector).encode('UTF-8')
+            iati_sector.save()
+
+            return
+        pass
 
     def _save_budget(self, budget, iati_activity):
         if hasattr(budget, 'value') and hasattr(budget, 'period-start') and hasattr(budget, 'period-end'):
