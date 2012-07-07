@@ -79,8 +79,7 @@ class ActivityResource(ModelResource):
         }
 
     def apply_filters(self, request, applicable_filters):
-        base_object_list = super(ActivityResource, self).apply_filters(request,
-            applicable_filters)
+        base_object_list = super(ActivityResource, self).apply_filters(request, applicable_filters)
         query = request.GET.get('query', None)
         sectors = request.GET.get('sectors', None)
         regions = request.GET.get('regions', None)

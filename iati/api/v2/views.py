@@ -45,3 +45,9 @@ def docs_filtering(request):
     context['title'] = 'Filtering'
     t = TemplateResponse(request, 'documentation/filtering.html', context)
     return t.render()
+
+def docs_ordering(request):
+    context = dict()
+    context['title'] = 'Ordering'
+    t = TemplateResponse(request, 'documentation/ordering.html', context)
+    return t.render()
