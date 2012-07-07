@@ -1,7 +1,11 @@
+import warnings
+from tastypie.exceptions import NotFound, BadRequest, InvalidFilterError, HydrationError, InvalidSortError, ImmediateHttpResponse
+
 # Django specific
 from django.db.models import Q
 
 # Tastypie specific
+from django.db.models.sql.constants import LOOKUP_SEP
 from tastypie import fields
 from tastypie.resources import ModelResource
 from tastypie.serializers import Serializer
@@ -71,6 +75,7 @@ class ActivityResource(ModelResource):
         resource_name = 'activities'
         serializer = Serializer(formats=['xml', 'json'])
         excludes = ['date_created']
+        ordering = ['start_actual', 'start_planned']
         filtering = {
             # example to allow field specific filtering.
 #            'iatitransaction': ALL_WITH_RELATIONS,
