@@ -1,4 +1,3 @@
-
 """
 WSGI config for OIPA-V2 project.
 
@@ -15,7 +14,6 @@ framework.
 
 """
 import os
-import sys
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "iati.settings_deployment")
 
