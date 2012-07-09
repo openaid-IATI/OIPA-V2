@@ -87,6 +87,9 @@ class OtherIdentifier(models.Model):
     owner_ref = models.CharField(max_length=255)
     owner_name = models.CharField(max_length=255)
 
+    class Meta:
+        app_label = "data"
+
 
 class IATIActivityRegion(models.Model):
     iati_activity = models.ForeignKey(IATIActivity)
