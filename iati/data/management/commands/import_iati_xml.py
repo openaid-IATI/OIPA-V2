@@ -1,3 +1,4 @@
+from decimal import Decimal
 from iati.settings import rel
 
 import dateutil.parser as dtparser
@@ -153,8 +154,8 @@ class ActivityParser(Parser):
         # IATIActivity(models.Model)
         # --------------------------------------------------------------------
 
-        iati_identifier = str(el['iati-identifier'])
-        iati_identifier = fix_whitespaces(iati_identifier)
+        iati_identifier = fix_whitespaces(str(el['iati-identifier']))
+        iati_identifier = ''.join(iati_identifier.split()) # make sure all whitespace is trimmed
         date_updated = self._parse_date(el.get('last-updated-datetime', str(datetime.now().date())))
         iati_activity, created = IATIActivity.objects.get_or_create(
                                      iati_identifier=iati_identifier,
@@ -470,8 +471,19 @@ class ActivityParser(Parser):
             print "setting activity-budgets"
         iati_activity.iatiactivitybudget_set.all().delete()
         if hasattr(el, 'budget'):
+            total_budget = 0
+            iati_statistics, created = ActivityStatistics.objects.get_or_create(
+                                                                      iati_identifier=iati_activity
+                                                                  )
+            iati_statistics.total_budget = Decimal(total_budget)
             for budget in el.budget:
+                if hasattr(budget, 'value'):
+                    value = str(getattr(budget, 'value')).replace(',', '.')
+                    total_budget += int(value)
                 self._save_budget(budget, iati_activity)
+            iati_statistics.total_budget = Decimal(str(total_budget))
+            iati_statistics.save()
+
 
         # ====================================================================
         # TRANSACTION
@@ -619,11 +631,12 @@ class ActivityParser(Parser):
     def _save_budget(self, budget, iati_activity):
         if hasattr(budget, 'value') and hasattr(budget, 'period-start') and hasattr(budget, 'period-end'):
             if budget['period-start'].get('iso-date') and budget['period-end'].get('iso-date'):
+                value = str(getattr(budget, 'value')).replace(',', '.')
                 period_start = self._parse_date(budget['period-start'].get('iso-date'))
                 period_end = self._parse_date(budget['period-end'].get('iso-date'))
                 IATIActivityBudget.objects.create(
                     iati_activity=iati_activity,
-                    value=str(getattr(budget, 'value')).replace(',', '.'),
+                    value=value,
                     period_start=period_start,
                     period_end=period_end
                 )
