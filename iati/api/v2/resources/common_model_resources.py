@@ -7,6 +7,7 @@ from tastypie.serializers import Serializer
 from data.models.common import Country
 from data.models.common import Region
 from data.models.common import Sector
+from data.models.statistics import ActivityStatistics
 
 
 class CountryResource(ModelResource):
@@ -47,3 +48,13 @@ class SectorResource(ModelResource):
         queryset = Sector.objects.all()
         resource_name = 'sectors'
         serializer = Serializer(formats=['xml', 'json'])
+
+
+class ActivityStatisticResource(ModelResource):
+    """
+    Resource for ActivityStatistics
+    """
+    class Meta:
+        queryset = ActivityStatistics.objects.all()
+        include_resource_uri = False
+        excludes = ['id']

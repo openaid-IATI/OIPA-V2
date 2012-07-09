@@ -1,9 +1,12 @@
 # Django specific
 from django.db import models
 
+# Data specific
+from data.models.activity import IATIActivity
+
 
 class ActivityStatistics(models.Model):
-    iati_identifier = models.CharField(max_length=50, primary_key=True)
+    iati_identifier = models.OneToOneField(IATIActivity)
     total_budget = models.DecimalField(max_digits=20, decimal_places=2, blank=True, null=True)
 
     class Meta:

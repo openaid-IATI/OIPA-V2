@@ -64,6 +64,8 @@ class Parser(object):
         self.verbosity = verbosity
 
     def _parse_date(self, s):
+        if len(s) == 4:
+            return dtparser.parse(s+"-01-01").date()
         if len(s) > 10:
             return dtparser.parse(s[:10]).date()
         try:
@@ -630,10 +632,10 @@ class ActivityParser(Parser):
 
     def _save_budget(self, budget, iati_activity):
         if hasattr(budget, 'value') and hasattr(budget, 'period-start') and hasattr(budget, 'period-end'):
-            if budget['period-start'].get('iso-date') and budget['period-end'].get('iso-date'):
+            if budget['period-start'] and budget['period-end']:
                 value = str(getattr(budget, 'value')).replace(',', '.')
-                period_start = self._parse_date(budget['period-start'].get('iso-date'))
-                period_end = self._parse_date(budget['period-end'].get('iso-date'))
+                period_start = self._parse_date(budget['period-start'].get('iso-date', str(budget['period-start'])))
+                period_end = self._parse_date(budget['period-end'].get('iso-date', str(budget['period-end'])))
                 IATIActivityBudget.objects.create(
                     iati_activity=iati_activity,
                     value=value,

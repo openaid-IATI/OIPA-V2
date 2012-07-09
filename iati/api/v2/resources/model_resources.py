@@ -27,6 +27,7 @@ from api.v2.resources.sub_model_resources import AidTypeResource
 from api.v2.resources.sub_model_resources import TiedAidStatusTypeResource
 from api.v2.resources.sub_model_resources import ActivityBudgetResource
 from api.v2.resources.sub_model_resources import TransactionResource
+from api.v2.resources.common_model_resources import ActivityStatisticResource
 
 
 class OrganisationResource(ModelResource):
@@ -69,6 +70,7 @@ class ActivityResource(ModelResource):
     default_tied_status_type = fields.ForeignKey(TiedAidStatusTypeResource, attribute='default_tied_status_type', full=True, null=True)
     activity_budgets = fields.ToManyField(ActivityBudgetResource, 'iatiactivitybudget_set', full=True, null=True)
     activity_transactions = fields.ToManyField(TransactionResource, 'iatitransaction_set', full=True, null=True)
+    statistics = fields.OneToOneField(ActivityStatisticResource, 'activitystatistics', full=True, null=True)
 
     class Meta:
         queryset = IATIActivity.objects.all()
