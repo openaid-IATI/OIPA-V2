@@ -45,9 +45,9 @@ from data.models.organisation import ParticipatingOrganisation
 from data.models.statistics import ActivityStatistics
 
 
-PARSER_DEBUG = True
+PARSER_DEBUG = False
 # Use either a number or range not both
-PARSER_DEBUG_NUMBER = 21 # example: 1494
+PARSER_DEBUG_NUMBER = None # example: 1494
 PARSER_DEBUG_RANGE = None # range(1440, 1500)
 
 
