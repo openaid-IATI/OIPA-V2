@@ -632,7 +632,7 @@ class ActivityParser(Parser):
 
     def _save_budget(self, budget, iati_activity):
         if hasattr(budget, 'value') and hasattr(budget, 'period-start') and hasattr(budget, 'period-end'):
-            if budget['period-start'] and budget['period-end']:
+            if hasattr(budget, 'period-start') and hasattr(budget, 'period-end'):
                 value = str(getattr(budget, 'value')).replace(',', '.')
                 period_start = self._parse_date(budget['period-start'].get('iso-date', str(budget['period-start'])))
                 period_end = self._parse_date(budget['period-end'].get('iso-date', str(budget['period-end'])))
