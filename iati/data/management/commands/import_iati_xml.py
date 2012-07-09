@@ -45,9 +45,9 @@ from data.models.organisation import ParticipatingOrganisation
 from data.models.statistics import ActivityStatistics
 
 
-PARSER_DEBUG = False
+PARSER_DEBUG = True
 # Use either a number or range not both
-PARSER_DEBUG_NUMBER = None # example: 1494
+PARSER_DEBUG_NUMBER = 21 # example: 1494
 PARSER_DEBUG_RANGE = None # range(1440, 1500)
 
 
@@ -65,8 +65,11 @@ class Parser(object):
     def _parse_date(self, s):
         if len(s) > 10:
             return dtparser.parse(s[:10]).date()
-        return dtparser.parse(s).date()
-
+        try:
+            return dtparser.parse(s).date()
+        except ValueError:
+            # try fixing likely human error
+            return dtparser.parse(s.replace('31', '30')).date()
 
 class OrganisationParser(Parser):
     pass
