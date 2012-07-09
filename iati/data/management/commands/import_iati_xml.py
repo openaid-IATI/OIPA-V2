@@ -519,20 +519,22 @@ class ActivityParser(Parser):
 
     def _save_recipient_region(self, recipient_region, iati_activity):
         match = None
-        for key in dict(REGION_CHOICES).keys():
-            if key == int(recipient_region.get('code')):
-                match = key
-        if match:
-            IATIActivityRegion.objects.create(
-                iati_activity=iati_activity,
-                region=Region.objects.get_or_create(
-                                            code=match
-                                        )[0]
-            )
-        else:
-#            e = "ValueError: Unsupported country_iso '"+str(recipient_country.get('code'))+"' in REGION_CHOICES"
-#            raise Exception(e)
-            pass
+        if recipient_region.get('code'):
+            for key in dict(REGION_CHOICES).keys():
+                if key == int(recipient_region.get('code')):
+                    match = key
+            if match:
+                IATIActivityRegion.objects.create(
+                    iati_activity=iati_activity,
+                    region=Region.objects.get_or_create(
+                                                code=match
+                                            )[0]
+                )
+            else:
+#                e = "ValueError: Unsupported country_iso '"+str(recipient_country.get('code'))+"' in REGION_CHOICES"
+#                raise Exception(e)
+                pass
+        pass
 
     def _save_participating_org(self, participating_org, iati_activity):
         participating_organisation = ParticipatingOrganisation.objects.create(
