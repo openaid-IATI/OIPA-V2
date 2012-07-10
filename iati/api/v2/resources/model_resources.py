@@ -80,9 +80,8 @@ class ActivityResource(ModelResource):
         ordering = ['start_actual', 'start_planned']
         filtering = {
             # example to allow field specific filtering.
-#            'iatitransaction': ALL_WITH_RELATIONS,
-#            'iati_identifier': ALL,
-#            'reporting_organisation': ALL_WITH_RELATIONS
+#            'reporting_organisation': ALL_WITH_RELATIONS,
+            'statistics': ALL_WITH_RELATIONS,
         }
 
     def apply_filters(self, request, applicable_filters):
