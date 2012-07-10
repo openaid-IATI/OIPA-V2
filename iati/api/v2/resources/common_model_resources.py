@@ -60,5 +60,5 @@ class ActivityStatisticResource(ModelResource):
         include_resource_uri = False
         excludes = ['id']
         filtering = {
-            'total_budget': ALL,
+            'total_budget': ['gt', 'gte', 'lt', 'lte'],
         }
