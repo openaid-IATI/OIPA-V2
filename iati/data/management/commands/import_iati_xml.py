@@ -345,7 +345,7 @@ class ActivityParser(Parser):
 
         if PARSER_DEBUG:
             print "setting activity-sectors"
-        iati_activity.iatiactivitysector_set.all().delete()
+        iati_activity.sectors.all().delete()
         if hasattr(el, 'sector'):
             for sector in el.sector:
                 self._save_sector(sector, iati_activity)
