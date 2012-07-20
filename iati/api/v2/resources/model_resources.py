@@ -95,7 +95,7 @@ class ActivityResource(ModelResource):
         if sectors:
             # @todo: implement smart filtering with seperator detection
             sectors = sectors.replace('|', ' ').replace('-', ' ').split(' ')
-            filters.update(dict(iatiactivitysector__sector__code__in=sectors))
+            filters.update(dict(sectors__sector__code__in=sectors))
         if regions:
             # @todo: implement smart filtering with seperator detection
             regions = regions.replace('|', ' ').replace('-', ' ').split(' ')
