@@ -110,7 +110,7 @@ class IATIActivityCountry(models.Model):
 
 
 class IATIActivitySector(models.Model):
-    iati_activity = models.ForeignKey(IATIActivity)
+    iati_activity = models.ForeignKey(IATIActivity, related_name='sectors')
     sector = models.ForeignKey(Sector)
     percentage = models.IntegerField(blank=True, null=True)
 
