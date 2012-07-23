@@ -62,7 +62,7 @@ class ActivityResource(ModelResource):
     activity_status = fields.ForeignKey(StatusResource, attribute='activity_status', full=True, null=True)
     recipient_country = fields.ToManyField(RecipientCountryResource, 'iatiactivitycountry_set', full=True, null=True)
     recipient_region = fields.ToManyField(RecipientRegionResource, 'iatiactivityregion_set', full=True, null=True)
-    sectors = fields.ToManyField(SectorResource, 'sectors', full=True, null=True)
+    activity_sectors = fields.ToManyField(SectorResource, 'sectors', full=True, null=True)
     collaboration_type = fields.ForeignKey(CollaborationTypeResource, attribute='collaboration_type', full=True, null=True)
     default_flow_type = fields.ForeignKey(FlowTypeResource, attribute='default_flow_type', full=True, null=True)
     default_finance_type = fields.ForeignKey(FinanceTypeResource, attribute='default_finance_type', full=True, null=True)
@@ -82,6 +82,7 @@ class ActivityResource(ModelResource):
             # example to allow field specific filtering.
 #            'reporting_organisation': ALL_WITH_RELATIONS,
             'statistics': ALL_WITH_RELATIONS,
+            'sectors': ALL
         }
 
     def apply_filters(self, request, applicable_filters):
