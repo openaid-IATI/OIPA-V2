@@ -77,7 +77,7 @@ class ActivityResource(ModelResource):
         resource_name = 'activities'
         serializer = Serializer(formats=['xml', 'json'])
         excludes = ['date_created']
-        ordering = ['start_actual', 'start_planned', 'sectors', 'statistics']
+        ordering = ['start_actual', 'start_planned', 'end_actual', 'end_planned', 'activity_sectors', 'statistics']
         filtering = {
             # example to allow field specific filtering.
 #            'reporting_organisation': ALL_WITH_RELATIONS,
