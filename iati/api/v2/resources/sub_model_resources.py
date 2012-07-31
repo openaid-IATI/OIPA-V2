@@ -129,7 +129,7 @@ class TransactionResource(ModelResource):
     def dehydrate(self, bundle):
         obj = self.obj_get(id=bundle.data['id'])
         # todo convert to resource
-        if obj.currency:
+        if hasattr(obj, 'currency'):
             bundle.data['currency'] = obj.currency.code
         bundle.data.pop('id')
         return bundle
