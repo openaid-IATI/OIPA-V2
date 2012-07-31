@@ -29,7 +29,7 @@ from data.models.activity import IATIActivityRegion
 from data.models.activity import IATIActivitySector
 from data.models.activity import IATIActivityTitle
 from data.models.activity import IATITransaction
-from data.models.common import ActivityStatusType
+from data.models.common import ActivityStatusType, CurrencyType
 from data.models.common import AidType
 from data.models.common import CollaborationType
 from data.models.common import Country
@@ -117,6 +117,8 @@ class ActivityParser(Parser):
         # get_or_create >
         # Organisation(models.Model)
         # --------------------------------------------------------------------
+
+        self.currency = el.get('default-currency', None)
 
         reporting_organisation_name = el['reporting-org']
         reporting_organisation_ref = el['reporting-org'].get('ref')
@@ -681,7 +683,6 @@ class ActivityParser(Parser):
                                                     )
         if hasattr(transaction, 'transaction-date'):
             iati_transaction.transaction_date = transaction_date
-            iati_transaction.save()
 
         if hasattr(transaction, 'receiver-org'):
             ref = transaction['receiver-org'].get('ref')
@@ -697,7 +698,12 @@ class ActivityParser(Parser):
                                            org_name=org_name
                                        )
                 iati_transaction.receiver_org=rec_organisation
-                iati_transaction.save()
+
+        if self.currency and len(self.currency) == 3:
+            iati_transaction.currency = CurrencyType.objects.get_or_create(
+                                            code=self.currency
+                                        )[0]
+        iati_transaction.save()
 
         return
 

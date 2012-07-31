@@ -48,8 +48,8 @@ class Region(models.Model):
 
 
 class CommonType(models.Model):
-    code = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=15)
+    code = models.CharField(max_length=3, primary_key=True)
+    name = models.CharField(max_length=15, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
 
     class Meta:
@@ -105,7 +105,8 @@ class TiedAidStatusType(models.Model):
         app_label = "data"
 
 
-class CurrencyType(CommonType):
+class CurrencyType(models.Model):
+    code = models.CharField(max_length=3, primary_key=True)
     language = models.ForeignKey(Country, blank=True, null=True)
 
     class Meta:
@@ -153,6 +154,7 @@ class Transaction(models.Model):
     aid_type = models.ForeignKey(AidType, blank=True, null=True)
     disbursement_channel = models.IntegerField(choices=DISBURSEMENT_CHANNEL_CHOICES, blank=True, null=True)
     tied_aid_status_type = models.IntegerField(choices=TIED_AID_STATUS_CHOICES, blank=True, null=True)
+    currency = models.ForeignKey(CurrencyType, blank=True, null=True)
 
     class Meta:
         app_label = "data"
