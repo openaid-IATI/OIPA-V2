@@ -53,6 +53,8 @@ class SectorResource(ModelResource):
 
 
 class LanguageResource(ModelResource):
+    include_resource_uri = False
+    excludes = ['id']
     class Meta:
         queryset = Language.objects.all()
 
