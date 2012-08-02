@@ -58,7 +58,7 @@ class LanguageResource(ModelResource):
 
 
 class TitleResource(ModelResource):
-    language = fields.ToOneField(LanguageResource, 'code', full=True, null=True)
+    language = fields.ToOneField(LanguageResource, 'language', full=True, null=True)
     class Meta:
         queryset = IATIActivityTitle.objects.all()
         include_resource_uri = False
@@ -66,7 +66,7 @@ class TitleResource(ModelResource):
 
 
 class DescriptionResource(ModelResource):
-    language = fields.ToOneField(LanguageResource, 'code', full=True, null=True)
+    language = fields.ToOneField(LanguageResource, 'language', full=True, null=True)
     class Meta:
         queryset = IATIActivityDescription.objects.all()
         include_resource_uri = False
