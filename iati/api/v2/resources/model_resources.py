@@ -115,5 +115,5 @@ class ActivityResource(ModelResource):
                 Q(iatiactivitytitle__title__icontains=query, **filters) |
                 Q(iatiactivitydescription__description__icontains=query, **filters)
             )
-            base_object_list = base_object_list.filter(qset).distinct()
+            return base_object_list.filter(qset).distinct()
         return base_object_list.filter(**filters).distinct()
