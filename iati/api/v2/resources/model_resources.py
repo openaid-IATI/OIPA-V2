@@ -13,6 +13,7 @@ from tastypie.constants import ALL, ALL_WITH_RELATIONS
 
 # Data specific
 from data.models.activity import IATIActivity
+from data.models.constants import COUNTRY_ISO_MAP
 from data.models.organisation import Organisation
 
 # App specific
@@ -111,6 +112,10 @@ class ActivityResource(ModelResource):
             organisations = organisations.replace('|', ' ').split(' ')
             filters.update(dict(reporting_organisation__ref__in=organisations))
         if query:
+            if query in COUNTRY_ISO_MAP.values() and not countries:
+                country = [item[0] for item in COUNTRY_ISO_MAP.items() if item[1] == query]
+                filters.update(dict(iatiactivitycountry__country__iso__in=country))
+                return base_object_list.filter(**filters).distinct()
             qset = (
                 Q(iatiactivitytitle__title__icontains=query, **filters) |
                 Q(iatiactivitydescription__description__icontains=query, **filters)
