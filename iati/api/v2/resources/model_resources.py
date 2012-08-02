@@ -27,7 +27,7 @@ from api.v2.resources.sub_model_resources import AidTypeResource
 from api.v2.resources.sub_model_resources import TiedAidStatusTypeResource
 from api.v2.resources.sub_model_resources import ActivityBudgetResource
 from api.v2.resources.sub_model_resources import TransactionResource
-from api.v2.resources.common_model_resources import ActivityStatisticResource
+from api.v2.resources.common_model_resources import ActivityStatisticResource, TitleResource, DescriptionResource
 
 
 class OrganisationResource(ModelResource):
@@ -63,6 +63,8 @@ class ActivityResource(ModelResource):
     recipient_country = fields.ToManyField(RecipientCountryResource, 'iatiactivitycountry_set', full=True, null=True)
     recipient_region = fields.ToManyField(RecipientRegionResource, 'iatiactivityregion_set', full=True, null=True)
     activity_sectors = fields.ToManyField(SectorResource, 'sectors', full=True, null=True)
+    titles = fields.ToManyField(TitleResource, 'iatiactivitytitle_set', full=True, null=True)
+    descriptions = fields.ToManyField(DescriptionResource, 'iatiactivitydescription_set', full=True, null=True)
     collaboration_type = fields.ForeignKey(CollaborationTypeResource, attribute='collaboration_type', full=True, null=True)
     default_flow_type = fields.ForeignKey(FlowTypeResource, attribute='default_flow_type', full=True, null=True)
     default_finance_type = fields.ForeignKey(FinanceTypeResource, attribute='default_finance_type', full=True, null=True)
@@ -115,17 +117,3 @@ class ActivityResource(ModelResource):
             )
             base_object_list = base_object_list.filter(qset).distinct()
         return base_object_list.filter(**filters).distinct()
-
-    def dehydrate(self, bundle):
-        obj = self.obj_get(iati_identifier=bundle.data['iati_identifier'])
-        # titles
-        titles = {}
-        for title in obj.iatiactivitytitle_set.all():
-            titles[title.language.code] = title.title
-        bundle.data['title'] = titles
-        # descriptions
-        descriptions = {}
-        for description in obj.iatiactivitydescription_set.all():
-            descriptions[description.language.code] = description.description
-        bundle.data['description'] = descriptions
-        return bundle

@@ -1,10 +1,12 @@
 # Tastypie specific
+from tastypie import fields
 from tastypie.resources import ModelResource
 from tastypie.constants import ALL, ALL_WITH_RELATIONS
 from tastypie.serializers import Serializer
 
 # Data specific
-from data.models.common import Country
+from data.models.activity import IATIActivityTitle, IATIActivityDescription
+from data.models.common import Country, Language
 from data.models.common import Region
 from data.models.common import Sector
 from data.models.statistics import ActivityStatistics
@@ -48,6 +50,27 @@ class SectorResource(ModelResource):
         queryset = Sector.objects.all()
         resource_name = 'sectors'
         serializer = Serializer(formats=['xml', 'json'])
+
+
+class LanguageResource(ModelResource):
+    class Meta:
+        queryset = Language.objects.all()
+
+
+class TitleResource(ModelResource):
+    language = fields.ToOneField(LanguageResource, 'code', full=True, null=True)
+    class Meta:
+        queryset = IATIActivityTitle.objects.all()
+        include_resource_uri = False
+        excludes = ['id']
+
+
+class DescriptionResource(ModelResource):
+    language = fields.ToOneField(LanguageResource, 'code', full=True, null=True)
+    class Meta:
+        queryset = IATIActivityDescription.objects.all()
+        include_resource_uri = False
+        excludes = ['id']
 
 
 class ActivityStatisticResource(ModelResource):
