@@ -130,3 +130,5 @@ class ParseSchedule(models.Model):
             self.iati_xml_source.process(verbosity)
         elif self.interval == u'DAILY' and (self.iati_xml_source.date_updated+datetime.timedelta(1) <= datetime.datetime.today()):
             self.iati_xml_source.process(verbosity)
+        else:
+            self.iati_xml_source.process(verbosity)
