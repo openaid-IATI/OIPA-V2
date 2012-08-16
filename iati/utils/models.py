@@ -1,14 +1,24 @@
+import datetime
 import os
+import tempfile
+from lxml import objectify
+from StringIO import StringIO
 
 # Django specific
-from django.conf import settings
-from django.core.exceptions import ValidationError
 from django.core.files.base import ContentFile
 from django.db import models
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
-from StringIO import StringIO
+# App specific
+from data.management.commands.import_iati_xml import ActivityParser
+from data.management.commands.import_iati_xml import OrganisationParser
+
+
+parsers = {
+    'iati-organisations': OrganisationParser,
+    'iati-activities': ActivityParser
+}
 
 
 class Publisher(models.Model):
@@ -27,6 +37,7 @@ class Publisher(models.Model):
 def fix(value):
     return unicode(str(value).lower().replace(' ', '_'))
 
+
 def get_upload_path(instance, filename):
     return os.path.join("utils", fix(instance.get_type_display()), fix(instance.publisher), fix(filename))
 
@@ -38,48 +49,84 @@ class IATIXMLSource(models.Model):
     ref = models.CharField(verbose_name=_(u"Reference"), max_length=55, help_text=_(u"Reference for the XML file. Preferred usage: 'collection' or single country or region name"))
     type = models.IntegerField(choices=TYPE_CHOICES, default=1)
     publisher = models.ForeignKey(Publisher)
-    local_file = models.FileField(upload_to=get_upload_path, blank=True, null=True, editable=False)
     source_url = models.URLField(unique=True, help_text=_(u"Hyperlink to an IATI activity or organisation XML file."))
-
     date_created = models.DateTimeField(auto_now_add=True, editable=False)
     date_updated = models.DateTimeField(auto_now=True, editable=False)
 
     class Meta:
         app_label = "utils"
 
-    def local_file_exists(self):
-        if self.local_file:
-            return "<img src='%sadmin/img/icon-yes.gif' alt='True'>" % settings.STATIC_URL
-        return "<img src='%sadmin/img/icon-no.gif' alt='False'>" % settings.STATIC_URL
-    local_file_exists.short_description = _(u"Local copy")
-    local_file_exists.allow_tags = True
+    def __unicode__(self):
+        return self.ref
 
-    def get_absolute_url(self):
-        return "/media/%s" % self.local_file
+    def get_parse_status(self):
+        return mark_safe("<img class='loading' src='/static/img/loading.gif' alt='loading' style='display:none;' /><a data-xml='xml_%i' class='parse'><img src='/static/img/utils.parse.png' style='cursor:pointer;' /></a>") % self.id
+    get_parse_status.allow_tags = True
+    get_parse_status.short_description = _(u"Parse status")
 
-    def save(self, force_insert=False, force_update=False, using=None):
-        """
-        @todo
-        Implement updating, file deleting etc.
-        """
-        if self.id is None:
-            if not self.ref[:4] == ".xml":
-                self.ref += ".xml"
-            file_url = self.source_url
+    def process(self, verbosity):
+        dirname, filename = os.path.split(os.path.join(os.path.abspath(os.path.dirname(__file__)), '../media/utils/temp_files/')+self.ref)
+        prefix, suffix = os.path.splitext(filename)
+        fd, filename = tempfile.mkstemp(suffix, prefix+"_", dirname)
+        file_url = self.source_url
+        try:
             try:
+                # python >= 2.7
+                import requests
+                r = requests.get(file_url)
+                f = StringIO(r.content)
+            except ImportError:
+                # python <= 2.6
+                import urllib2
+                r = urllib2.urlopen(file_url)
+                f = r
+            file = ContentFile(f.read(), filename)
+            file.close()
+            try:
+                tree = objectify.parse(file)
+                parser_cls = parsers[tree.getroot().tag]
                 try:
-                    # python >= 2.7
-                    import requests
-                    r = requests.get(file_url)
-                    f = StringIO(r.content)
-                except ImportError:
-                    # python <= 2.6
-                    import urllib2
-                    r = urllib2.urlopen(file_url)
-                    f = r
-                file = ContentFile(f.read(), self.ref)
-                self.local_file = file
-                super(IATIXMLSource, self).save(self, force_update=False, using=None)
-            except ValidationError, e:
-                pass #TODO
-        super(IATIXMLSource, self).save_base()
+                    parser_cls(tree, True, verbosity).parse()
+                    os.remove(file.name)
+                except Exception, e:
+                    os.remove(file.name)
+                    raise Exception, e #TODO log error
+            except KeyError:
+                raise ImportError(u"Undefined document structure")
+        except Exception, e:
+            pass #TODO log error
+        self.save()
+
+
+class ParseSchedule(models.Model):
+    INTERVAL_CHOICES = (
+        (u'YEARLY', _(u"Parse yearly")),
+        (u'MONTHLY', _(u"Parse monthly")),
+        (u'WEEKLY', _(u"Parse weekly")),
+        (u'DAILY', _(u"Parse daily")),
+    )
+    interval = models.CharField(verbose_name=_(u"Interval"), max_length=55, choices=INTERVAL_CHOICES)
+    iati_xml_source = models.ForeignKey(IATIXMLSource, unique=True)
+    date_created = models.DateTimeField(auto_now_add=True, editable=False)
+    date_updated = models.DateTimeField(auto_now=True, editable=False)
+
+    def __unicode__(self):
+        return "%s %s" % (self.get_interval_display(), self.iati_xml_source.source_url)
+
+    class Meta:
+        app_label = "utils"
+
+    def _add_month(self, d,months=1):
+        year, month, day = d.timetuple()[:3]
+        new_month = month + months
+        return datetime.date(year + ((new_month-1) / 12), (new_month-1) % 12 +1, day)
+
+    def process(self, verbosity):
+        if self.interval == u'YEARLY' and (self._add_month(self.iati_xml_source.date_updated, 12) <= datetime.datetime.today()):
+            self.iati_xml_source.process(verbosity)
+        elif self.interval == u'MONTHLY' and (self._add_month(self.iati_xml_source.date_updated) <= datetime.datetime.today()):
+            self.iati_xml_source.process(verbosity)
+        elif self.interval == u'WEEKLY' and (self.iati_xml_source.date_updated+datetime.timedelta(7) <= datetime.datetime.today()):
+            self.iati_xml_source.process(verbosity)
+        elif self.interval == u'DAILY' and (self.iati_xml_source.date_updated+datetime.timedelta(1) <= datetime.datetime.today()):
+            self.iati_xml_source.process(verbosity)

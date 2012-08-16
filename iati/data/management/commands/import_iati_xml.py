@@ -1,12 +1,9 @@
+import dateutil.parser as dtparser
+from datetime import datetime
 from decimal import Decimal
 from iati.settings import rel
-
-import dateutil.parser as dtparser
-
-from datetime import datetime
 from lxml import  objectify
 from optparse import make_option
-from utils.helpers import fix_whitespaces
 
 # Django specific
 from django.core.management import BaseCommand
@@ -44,6 +41,7 @@ from data.models.common import Sector
 from data.models.organisation import Organisation
 from data.models.organisation import ParticipatingOrganisation
 from data.models.statistics import ActivityStatistics
+from utils.helpers import fix_whitespaces
 
 
 PARSER_DEBUG = False
@@ -57,7 +55,7 @@ class ImportError(Exception):
 
 
 class Parser(object):
-    def __init__(self, tree, force_update=False, verbosity=2):
+    def __init__(self, tree, force_update=False, verbosity=1):
         self.tree = tree
         self.root = tree.getroot()
         self.force_update = force_update
@@ -104,8 +102,7 @@ class ActivityParser(Parser):
                     print "ACTIVITY", i
                     self._save_activity(el)
             else:
-#                if i % 100 == 0 and self.verbosity >= 2:
-                if i % 100 == 0:
+                if i % 100 == 0 and self.verbosity >= 2:
                     print '%s of %s' % (i, count)
                 self._save_activity(el)
 
