@@ -125,9 +125,9 @@ class ParseSchedule(models.Model):
         return datetime.date(year + ((new_month-1) / 12), (new_month-1) % 12 +1, day)
 
     def process(self, verbosity):
-        if self.interval == u'YEARLY' and (self._add_month(self.iati_xml_source.date_updated, 12) <= datetime.datetime.today()):
+        if self.interval == u'YEARLY' and (self._add_month(self.iati_xml_source.date_updated, 12) <= datetime.datetime.now().date()):
             self.iati_xml_source.process(verbosity)
-        elif self.interval == u'MONTHLY' and (self._add_month(self.iati_xml_source.date_updated) <= datetime.datetime.today()):
+        elif self.interval == u'MONTHLY' and (self._add_month(self.iati_xml_source.date_updated) <= datetime.datetime.now().date()):
             self.iati_xml_source.process(verbosity)
         elif self.interval == u'WEEKLY' and (self.iati_xml_source.date_updated+datetime.timedelta(7) <= datetime.datetime.today()):
             self.iati_xml_source.process(verbosity)

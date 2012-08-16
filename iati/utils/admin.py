@@ -55,7 +55,7 @@ class PublisherAdmin(admin.ModelAdmin):
 
     def parse_view(self, request):
         publisher_id = request.GET.get('publisher_id')
-        for obj in ParseSchedule.objects.filter(iati_xml_source__publisher__id=publisher_id):
+        for obj in IATIXMLSource.objects.filter(publisher__id=publisher_id):
             obj.process(1)
         return HttpResponse('Success')
 
