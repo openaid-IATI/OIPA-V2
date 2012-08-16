@@ -1,0 +1,8 @@
+OIPA (OpenAid IATI Parser and API)
+===========
+
+- Debian (of andere Linux based omgeving)
+- Python 2.6 of 2.7
+- MySQL (met Python support)
+- Lighttpd (of Nginx of Apache) heb zelf een voorkeur voor Lighttpd/Nginx, eenvoudiger te configureren
+- Dovecot/Mail configuratie
