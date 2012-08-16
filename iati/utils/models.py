@@ -1,12 +1,14 @@
 import datetime
 import os
 import tempfile
+from django.db.models.signals import post_save
 from lxml import objectify
 from StringIO import StringIO
 
 # Django specific
 from django.core.files.base import ContentFile
 from django.db import models
+from django.db.models.signals import post_save
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
@@ -21,9 +23,16 @@ parsers = {
 }
 
 
+INTERVAL_CHOICES = (
+    (u'YEARLY', _(u"Parse yearly")),
+    (u'MONTHLY', _(u"Parse monthly")),
+    (u'WEEKLY', _(u"Parse weekly")),
+    (u'DAILY', _(u"Parse daily")),
+)
 class Publisher(models.Model):
     org_name = models.CharField(max_length=255)
     org_abbreviate = models.CharField(max_length=55, blank=True, null=True)
+    default_interval = models.CharField(verbose_name=_(u"Interval"), max_length=55, choices=INTERVAL_CHOICES, default=u'MONTHLY')
 
     def __unicode__(self):
         if self.org_abbreviate:
@@ -99,12 +108,6 @@ class IATIXMLSource(models.Model):
 
 
 class ParseSchedule(models.Model):
-    INTERVAL_CHOICES = (
-        (u'YEARLY', _(u"Parse yearly")),
-        (u'MONTHLY', _(u"Parse monthly")),
-        (u'WEEKLY', _(u"Parse weekly")),
-        (u'DAILY', _(u"Parse daily")),
-    )
     interval = models.CharField(verbose_name=_(u"Interval"), max_length=55, choices=INTERVAL_CHOICES)
     iati_xml_source = models.ForeignKey(IATIXMLSource, unique=True)
     date_created = models.DateTimeField(auto_now_add=True, editable=False)
@@ -132,3 +135,17 @@ class ParseSchedule(models.Model):
             self.iati_xml_source.process(verbosity)
         else:
             self.iati_xml_source.process(verbosity)
+
+
+def update_publisher_records(sender, instance, created, **kwargs):
+    if not created:
+        for iati_xml_source in IATIXMLSource.objects.filter(publisher__id=instance.id):
+            try:
+                ParseSchedule.objects.get(iati_xml_source=iati_xml_source)
+            except ParseSchedule.DoesNotExist:
+                ParseSchedule.objects.create(
+                    iati_xml_source=iati_xml_source,
+                    interval=instance.default_interval
+                )
+
+post_save.connect(update_publisher_records, sender=Publisher)
