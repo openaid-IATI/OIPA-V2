@@ -112,13 +112,21 @@ class ActivityResource(ModelResource):
             organisations = organisations.replace('|', ' ').split(' ')
             filters.update(dict(reporting_organisation__ref__in=organisations))
         if query:
-            if query in COUNTRY_ISO_MAP.values() and not countries:
-                country = [item[0] for item in COUNTRY_ISO_MAP.items() if item[1] == query]
-                filters.update(dict(iatiactivitycountry__country__iso__in=country))
-                return base_object_list.filter(**filters).distinct()
-            qset = (
-                Q(iatiactivitytitle__title__icontains=query, **filters) |
-                Q(iatiactivitydescription__description__icontains=query, **filters)
-            )
+            query_words = query.split(' ')
+            query_countries = []
+            for query_word in query_words:
+                if query_word in COUNTRY_ISO_MAP.values() and not countries:
+                    query_countries.append([item[0] for item in COUNTRY_ISO_MAP.items() if item[1] == query_word].pop())
+            if query_countries:
+                qset = (
+                    Q(iatiactivitycountry__country__iso__in=query_countries, **filters) |
+                    Q(iatiactivitytitle__title__icontains=query, **filters) |
+                    Q(iatiactivitydescription__description__icontains=query, **filters)
+                )
+            else:
+                qset = (
+                    Q(iatiactivitytitle__title__icontains=query, **filters) |
+                    Q(iatiactivitydescription__description__icontains=query, **filters)
+                )
             return base_object_list.filter(qset).distinct()
         return base_object_list.filter(**filters).distinct()
