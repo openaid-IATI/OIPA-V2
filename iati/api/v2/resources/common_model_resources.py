@@ -81,7 +81,6 @@ class ActivityStatisticResource(ModelResource):
     """
     class Meta:
         queryset = ActivityStatistics.objects.all()
-        resource_name = 'total_budgets'
         include_resource_uri = False
         excludes = ['id']
         filtering = {

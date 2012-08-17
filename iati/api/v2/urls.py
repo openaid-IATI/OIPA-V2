@@ -11,7 +11,6 @@ from api.v2.resources.model_resources import ActivityResource
 from api.v2.resources.common_model_resources import CountryResource
 from api.v2.resources.common_model_resources import RegionResource
 from api.v2.resources.common_model_resources import SectorResource
-from api.v2.resources.common_model_resources import ActivityStatisticResource
 
 v2_api = Api(api_name='v2')
 v2_api.register(OrganisationResource())
@@ -19,7 +18,6 @@ v2_api.register(ActivityResource())
 v2_api.register(CountryResource())
 v2_api.register(RegionResource())
 v2_api.register(SectorResource())
-v2_api.register(ActivityStatisticResource())
 
 
 def api_v2_docs(request):
