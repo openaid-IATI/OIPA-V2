@@ -38,10 +38,6 @@ class IATIActivity(models.Model):
     start_actual = models.DateField(blank=True, null=True)
     end_planned = models.DateField(blank=True, null=True)
     end_actual = models.DateField(blank=True, null=True)
-
-    # TODO: Sub-national Geographic Location
-    # TODO: Performance
-
     collaboration_type = models.ForeignKey(CollaborationType, blank=True, null=True)
     default_flow_type = models.ForeignKey(FlowType, blank=True, null=True)
     default_aid_type = models.ForeignKey(AidType, blank=True, null=True)
