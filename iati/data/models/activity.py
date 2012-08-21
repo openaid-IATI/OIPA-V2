@@ -49,7 +49,7 @@ class IATIActivity(models.Model):
     default_tied_status_type = models.ForeignKey(TiedAidStatusType, blank=True, null=True)
 
     date_created = models.DateField(auto_now_add=True, editable=False)
-    date_updated = models.DateField(editable=False)
+    date_updated = models.DateField(editable=False, null=True, blank=True)
 
     def __unicode__(self):
         return self.iati_identifier
