@@ -179,8 +179,8 @@ class Document(models.Model):
     @language   The ISO 639 language code for the target document, e.g. "en".
     """
     url = models.URLField()
-    format = models.CharField(max_length=55)
-    language = models.ForeignKey(Language)
+    format = models.CharField(max_length=55, null=True, blank=True)
+    language = models.ForeignKey(Language, null=True, blank=True)
 
     class Meta:
         abstract = True

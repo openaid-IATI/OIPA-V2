@@ -16,7 +16,7 @@ from data.models.constants import ORGANISATION_TYPE_CHOICES
 from data.models.constants import POLICY_MARKER_CODE_CHOICES
 from data.models.constants import REGION_CHOICES
 from data.models.constants import VOCABULARY_CHOICES
-from data.models.activity import IATIActivity
+from data.models.activity import IATIActivity, IATIActivityDocument
 from data.models.activity import IATIActivityBudget
 from data.models.activity import IATIActivityContact
 from data.models.activity import IATIActivityCountry
@@ -510,6 +510,21 @@ class ActivityParser(Parser):
         # ====================================================================
         # RELATED DOCUMENTS
         # ====================================================================
+
+        if PARSER_DEBUG:
+            print "setting documents"
+
+        iati_activity.iatiactivitydocument_set.all().delete()
+        if hasattr(el, 'document-link'):
+            for document in el['document-link']:
+                if document.get('url'):
+                    iati_document = IATIActivityDocument.objects.create(
+                        iati_activity=iati_activity,
+                        url=document.get('url')
+                    )
+                    if document.get('format'):
+                        iati_document.format = document.get('format')
+                        iati_document.save()
 
         # ====================================================================
         # PERFORMANCE

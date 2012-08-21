@@ -28,6 +28,7 @@ from api.v2.resources.sub_model_resources import AidTypeResource
 from api.v2.resources.sub_model_resources import TiedAidStatusTypeResource
 from api.v2.resources.sub_model_resources import ActivityBudgetResource
 from api.v2.resources.sub_model_resources import TransactionResource
+from api.v2.resources.sub_model_resources import DocumentResource
 from api.v2.resources.common_model_resources import ActivityStatisticResource, TitleResource, DescriptionResource
 
 
@@ -73,10 +74,11 @@ class ActivityResource(ModelResource):
     default_tied_status_type = fields.ForeignKey(TiedAidStatusTypeResource, attribute='default_tied_status_type', full=True, null=True)
     activity_budgets = fields.ToManyField(ActivityBudgetResource, 'iatiactivitybudget_set', full=True, null=True)
     activity_transactions = fields.ToManyField(TransactionResource, 'iatitransaction_set', full=True, null=True)
+    documents = fields.ToManyField(DocumentResource, 'iatiactivitydocument_set', full=True, null=True)
     statistics = fields.OneToOneField(ActivityStatisticResource, 'activitystatistics', full=True, null=True)
 
     class Meta:
-        queryset = IATIActivity.objects.all()
+        queryset = IATIActivity.objects.filter(is_active=True)
         resource_name = 'activities'
         serializer = Serializer(formats=['xml', 'json'])
         excludes = ['date_created']
@@ -130,3 +132,7 @@ class ActivityResource(ModelResource):
                 )
             return base_object_list.filter(qset).distinct()
         return base_object_list.filter(**filters).distinct()
+
+    def dehydrate(self, bundle):
+        bundle.data.pop('is_active')
+        return bundle

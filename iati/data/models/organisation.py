@@ -14,6 +14,9 @@ class Organisation(models.Model):
     date_created = models.DateField(auto_now_add=True, editable=False)
     date_updated = models.DateField(auto_now=True, editable=False)
 
+    def __unicode__(self):
+        return self.org_name
+
     class Meta:
         app_label = "data"
 

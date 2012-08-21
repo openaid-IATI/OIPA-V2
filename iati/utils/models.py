@@ -41,7 +41,7 @@ class Publisher(models.Model):
 
     class Meta:
         app_label = "utils"
-
+        ordering = ["org_name"]
 
 def fix(value):
     return unicode(str(value).lower().replace(' ', '_'))
@@ -64,6 +64,7 @@ class IATIXMLSource(models.Model):
 
     class Meta:
         app_label = "utils"
+        ordering = ["ref"]
 
     def __unicode__(self):
         return self.ref

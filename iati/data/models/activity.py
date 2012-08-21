@@ -28,6 +28,7 @@ from data.models.organisation import Organisation
 
 
 class IATIActivity(models.Model):
+    is_active = models.BooleanField(default=True)
     iati_identifier = models.CharField(max_length=50, primary_key=True)
     reporting_organisation = models.ForeignKey(Organisation, to_field='ref')
 

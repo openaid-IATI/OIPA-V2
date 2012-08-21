@@ -4,7 +4,7 @@ from tastypie.constants import ALL, ALL_WITH_RELATIONS
 from tastypie.serializers import Serializer
 
 # Data specific
-from data.models.activity import IATIActivityBudget
+from data.models.activity import IATIActivityBudget, IATIActivityDocument
 from data.models.activity import IATIActivityCountry
 from data.models.activity import IATIActivityRegion
 from data.models.activity import IATIActivitySector
@@ -131,5 +131,15 @@ class TransactionResource(ModelResource):
         # todo convert to resource
         if obj.currency:
             bundle.data['currency'] = obj.currency.code
+        bundle.data.pop('id')
+        return bundle
+
+
+class DocumentResource(ModelResource):
+    class Meta:
+        queryset = IATIActivityDocument.objects.all()
+        include_resource_uri = False
+
+    def dehydrate(self, bundle):
         bundle.data.pop('id')
         return bundle
