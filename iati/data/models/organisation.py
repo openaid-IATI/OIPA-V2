@@ -17,6 +17,9 @@ class Organisation(models.Model):
     def __unicode__(self):
         return self.org_name
 
+    def total_activities(self):
+        return self.iatiactivity_set.count()
+
     class Meta:
         app_label = "data"
 

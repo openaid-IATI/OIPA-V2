@@ -3,6 +3,7 @@ from django.db import models
 
 # Data specific
 from data.models.activity import IATIActivity
+from data.models.organisation import Organisation
 
 
 class ActivityStatistics(models.Model):
