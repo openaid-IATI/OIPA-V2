@@ -511,9 +511,6 @@ class ActivityParser(Parser):
         # RELATED DOCUMENTS
         # ====================================================================
 
-        if PARSER_DEBUG:
-            print "setting documents"
-
         iati_activity.iatiactivitydocument_set.all().delete()
         if hasattr(el, 'document-link'):
             for document in el['document-link']:
