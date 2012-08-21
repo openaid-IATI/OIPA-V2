@@ -161,8 +161,8 @@ class ActivityParser(Parser):
         iati_activity, created = IATIActivity.objects.get_or_create(
                                      iati_identifier=iati_identifier,
                                      reporting_organisation=organisation,
-                                     date_updated=date_updated
                                  )
+        iati_activity.date_updated = date_updated
 
 #        if not self.force_update and iati_activity.date_updated >= date_updated:
 #            print "WARNING | This record already exists. Use --force-update to override."
