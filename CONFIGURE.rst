@@ -33,7 +33,7 @@ DATABASES = {
 6. python manage.py schemamigration data --initial
 7. python manage.py schemamigration utils --initial
 8. python manage.py migrate --fake
-9. python manage.py runserver 127.0.0.1 --8080
+9. python manage.py runserver 127.0.0.1:8080
 10. visit http://127.0.0.1:8080/admin/ and add an IATIXMLSource object and use the parse button or a manage command.
 12. curl -X GET http://127.0.0.1:8080/api/v2/activities?format=json or visit http://127.0.0.1:8080/api/v2/activities?format=json in a browser
 
