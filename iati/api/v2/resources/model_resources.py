@@ -1,15 +1,15 @@
 import warnings
-from tastypie.exceptions import NotFound, BadRequest, InvalidFilterError, HydrationError, InvalidSortError, ImmediateHttpResponse
 
 # Django specific
 from django.db.models import Q
+from django.db.models.sql.constants import LOOKUP_SEP
 
 # Tastypie specific
-from django.db.models.sql.constants import LOOKUP_SEP
 from tastypie import fields
+from tastypie.constants import ALL, ALL_WITH_RELATIONS
+from tastypie.exceptions import NotFound, BadRequest, InvalidFilterError, HydrationError, InvalidSortError, ImmediateHttpResponse
 from tastypie.resources import ModelResource
 from tastypie.serializers import Serializer
-from tastypie.constants import ALL, ALL_WITH_RELATIONS
 
 # Data specific
 from data.models.activity import IATIActivity
@@ -17,6 +17,9 @@ from data.models.constants import COUNTRY_ISO_MAP
 from data.models.organisation import Organisation
 
 # App specific
+from api.v2.resources.common_model_resources import ActivityStatisticResource
+from api.v2.resources.common_model_resources import DescriptionResource
+from api.v2.resources.common_model_resources import TitleResource
 from api.v2.resources.sub_model_resources import RecipientCountryResource
 from api.v2.resources.sub_model_resources import RecipientRegionResource
 from api.v2.resources.sub_model_resources import StatusResource
@@ -29,7 +32,6 @@ from api.v2.resources.sub_model_resources import TiedAidStatusTypeResource
 from api.v2.resources.sub_model_resources import ActivityBudgetResource
 from api.v2.resources.sub_model_resources import TransactionResource
 from api.v2.resources.sub_model_resources import DocumentResource
-from api.v2.resources.common_model_resources import ActivityStatisticResource, TitleResource, DescriptionResource
 
 
 class OrganisationResource(ModelResource):
