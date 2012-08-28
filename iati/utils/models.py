@@ -74,7 +74,7 @@ class IATIXMLSource(models.Model):
     get_parse_status.allow_tags = True
     get_parse_status.short_description = _(u"Parse status")
 
-    def process(self, verbosity):
+    def process(self, verbosity, save=True):
         dirname, filename = os.path.split(os.path.join(os.path.abspath(os.path.dirname(__file__)), '../media/utils/temp_files/')+self.ref)
         prefix, suffix = os.path.splitext(filename)
         fd, filename = tempfile.mkstemp(suffix, prefix+"_", dirname)
@@ -105,7 +105,14 @@ class IATIXMLSource(models.Model):
                 raise ImportError(u"Undefined document structure")
         except Exception, e:
             pass #TODO log error
-        self.save()
+        if save:
+            self.save()
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.process(verbosity=1, save=False)
+        super(IATIXMLSource, self).save()
+
 
 
 class ParseSchedule(models.Model):
@@ -133,8 +140,6 @@ class ParseSchedule(models.Model):
         elif self.interval == u'WEEKLY' and (self.iati_xml_source.date_updated+datetime.timedelta(7) <= datetime.datetime.today()):
             self.iati_xml_source.process(verbosity)
         elif self.interval == u'DAILY' and (self.iati_xml_source.date_updated+datetime.timedelta(1) <= datetime.datetime.today()):
-            self.iati_xml_source.process(verbosity)
-        else:
             self.iati_xml_source.process(verbosity)
 
 
