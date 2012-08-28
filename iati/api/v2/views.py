@@ -51,3 +51,9 @@ def docs_ordering(request):
     context['title'] = 'Ordering'
     t = TemplateResponse(request, 'documentation/ordering.html', context)
     return t.render()
+
+def docs_about(request):
+    context = dict()
+    context['title'] = 'About'
+    t = TemplateResponse(request, 'documentation/about.html', context)
+    return t.render()

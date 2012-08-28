@@ -31,5 +31,6 @@ urlpatterns = patterns('',
     url(r'^v2/docs/resources/$', 'api.v2.views.docs_resources', name='resource_docs'),
     url(r'^v2/docs/filtering/$', 'api.v2.views.docs_filtering', name='filter_docs'),
     url(r'^v2/docs/ordering/$', 'api.v2.views.docs_ordering', name='ordering_docs'),
+    url(r'^v2/docs/about/$', 'api.v2.views.docs_about', name='about_docs'),
     (r'', include(v2_api.urls)),
 )
