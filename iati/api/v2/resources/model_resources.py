@@ -89,7 +89,8 @@ class ActivityResource(ModelResource):
             # example to allow field specific filtering.
 #            'reporting_organisation': ALL_WITH_RELATIONS,
             'statistics': ALL_WITH_RELATIONS,
-            'sectors': ALL
+            'sectors': ALL,
+            'iati_identifier': ALL
         }
 
     def apply_filters(self, request, applicable_filters):
