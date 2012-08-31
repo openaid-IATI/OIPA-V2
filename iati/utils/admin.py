@@ -45,7 +45,7 @@ class PublisherAdmin(admin.ModelAdmin):
         js = (
             'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js',
             '/static/js/publisher_admin.js',
-        )
+            )
 
     def get_urls(self):
         urls = super(PublisherAdmin, self).get_urls()

@@ -14,7 +14,7 @@ from tastypie.serializers import Serializer
 # Data specific
 from data.models.activity import IATIActivity
 from data.models.constants import COUNTRY_ISO_MAP
-from data.models.organisation import Organisation
+from data.models.organisation import Organisation, ParticipatingOrganisation
 
 # App specific
 from api.v2.resources.common_model_resources import ActivityStatisticResource
@@ -58,11 +58,22 @@ class OrganisationResource(ModelResource):
         return super(OrganisationResource, self).dehydrate(bundle)
 
 
+class ParticipatingOrganisationResource(ModelResource):
+    """
+    Resource for IATI ParticipatingOrganisations
+    """
+    class Meta:
+        queryset = ParticipatingOrganisation.objects.all()
+        fields = ['ref', 'org_name', 'role', 'type']
+        include_resource_uri = False
+
+
 class ActivityResource(ModelResource):
     """
     Resource for IATI Activities
     """
     reporting_organisation = fields.ForeignKey(OrganisationResource, attribute='reporting_organisation', full=True, null=True)
+    participating_organisations = fields.ToManyField(ParticipatingOrganisationResource, 'participatingorganisation_set', full=True, null=True)
     activity_status = fields.ForeignKey(StatusResource, attribute='activity_status', full=True, null=True)
     recipient_country = fields.ToManyField(RecipientCountryResource, 'iatiactivitycountry_set', full=True, null=True)
     recipient_region = fields.ToManyField(RecipientRegionResource, 'iatiactivityregion_set', full=True, null=True)
