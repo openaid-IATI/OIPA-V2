@@ -6,6 +6,7 @@ from data.models.activity import IATIActivity
 from data.models.organisation import Organisation
 
 class OrganistaionAdmin(admin.ModelAdmin):
+    search_fields = ['ref', 'org_name']
     list_display = ['__unicode__', 'ref', 'total_activities']
 
 class IATIActivityAdmin(admin.ModelAdmin):
