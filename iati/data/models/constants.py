@@ -106,9 +106,10 @@ REGION_CHOICES = (
     (589, _(u"Middle East, regional")),
     (619, _(u"Central Asia, regional")),
     (679, _(u"South Asia, regional")),
-    (689, _(u"Far East Asia, regional")),
-    (789, _(u"Asia, regional")),
-    (798, _(u"Oceania, regional")),
+    (689, _(u"South and Central Asia, regional")),
+    (789, _(u"Far East Asia, regional")),
+    (798, _(u"Asia, regional")),
+    (889, _(u"Oceania, regional")),
     (998, _(u"Bilateral, unspecified")),
 )
 
