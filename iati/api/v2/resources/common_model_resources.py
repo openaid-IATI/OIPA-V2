@@ -5,21 +5,42 @@ from tastypie.constants import ALL, ALL_WITH_RELATIONS
 from tastypie.serializers import Serializer
 
 # Data specific
-from data.models.activity import IATIActivityTitle, IATIActivityDescription
-from data.models.common import Country, Language
+from data.models.activity import IATIActivityTitle
+from data.models.activity import IATIActivityDescription
+from data.models.common import Country
+from data.models.common import Language
 from data.models.common import Region
 from data.models.common import Sector
 from data.models.statistics import ActivityStatistics
+from data.models.statistics import CountryStatistics
+
+
+class CountryStatisticResource(ModelResource):
+    """
+    Resource for CountryStatistics
+    """
+    class Meta:
+        queryset = CountryStatistics.objects.all()
+        include_resource_uri = False
+        excludes = ['id']
+        filtering = {
+            'total_activities': ['gt', 'gte', 'lt', 'lte'],
+        }
 
 
 class CountryResource(ModelResource):
     """
     Resource for Countries
     """
+    statistics = fields.OneToOneField(CountryStatisticResource, 'countrystatistics', full=True, null=True)
+
     class Meta:
         queryset = Country.objects.all()
         resource_name = 'countries'
         serializer = Serializer(formats=['xml', 'json'])
+        filtering = {
+            'statistics': ALL_WITH_RELATIONS,
+        }
 
     def dehydrate(self, bundle):
         obj = self.obj_get(iso=bundle.data['iso'])
