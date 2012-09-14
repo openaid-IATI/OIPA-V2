@@ -98,8 +98,6 @@ class ActivityResource(ModelResource):
         excludes = ['date_created']
         ordering = ['start_actual', 'start_planned', 'end_actual', 'end_planned', 'activity_sectors', 'statistics']
         filtering = {
-            # example to allow field specific filtering.
-#            'reporting_organisation': ALL_WITH_RELATIONS,
             'statistics': ALL_WITH_RELATIONS,
             'sectors': ALL,
             'iati_identifier': ALL
