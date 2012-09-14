@@ -93,6 +93,7 @@ class ActivityResource(ModelResource):
     class Meta:
         queryset = IATIActivity.objects.filter(is_active=True)
         resource_name = 'activities'
+        max_limit = 100
         serializer = Serializer(formats=['xml', 'json'])
         excludes = ['date_created']
         ordering = ['start_actual', 'start_planned', 'end_actual', 'end_planned', 'activity_sectors', 'statistics']
