@@ -5,7 +5,6 @@ from django.db.models import Q
 
 # Tastypie specific
 from tastypie import fields
-from tastypie.cache import SimpleCache
 from tastypie.constants import ALL, ALL_WITH_RELATIONS
 from tastypie.exceptions import NotFound, BadRequest, InvalidFilterError, HydrationError, InvalidSortError, ImmediateHttpResponse
 from tastypie.resources import ModelResource
@@ -32,6 +31,7 @@ from api.v2.resources.sub_model_resources import TiedAidStatusTypeResource
 from api.v2.resources.sub_model_resources import ActivityBudgetResource
 from api.v2.resources.sub_model_resources import TransactionResource
 from api.v2.resources.sub_model_resources import DocumentResource
+from utils.cache import NoTransformCache
 
 
 class OrganisationResource(ModelResource):
@@ -102,7 +102,7 @@ class ActivityResource(ModelResource):
             'sectors': ALL,
             'iati_identifier': ALL
         }
-        cache = SimpleCache()
+        cache = NoTransformCache()
 
     def apply_filters(self, request, applicable_filters):
         base_object_list = super(ActivityResource, self).apply_filters(request, applicable_filters)
