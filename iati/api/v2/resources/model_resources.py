@@ -2,8 +2,7 @@ import warnings
 
 # Django specific
 from django.db.models import Q
-from django.db.models.sql.constants import LOOKUP_SEP
-from django.db import connection
+
 # Tastypie specific
 from tastypie import fields
 from tastypie.constants import ALL, ALL_WITH_RELATIONS
@@ -104,7 +103,6 @@ class ActivityResource(ModelResource):
         }
 
     def apply_filters(self, request, applicable_filters):
-        print len(connection.queries)
         base_object_list = super(ActivityResource, self).apply_filters(request, applicable_filters)
         query = request.GET.get('query', None)
         sectors = request.GET.get('sectors', None)
