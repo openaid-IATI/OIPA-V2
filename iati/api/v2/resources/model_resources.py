@@ -95,7 +95,7 @@ class ActivityResource(ModelResource):
         resource_name = 'activities'
         max_limit = 100
         serializer = Serializer(formats=['xml', 'json'])
-        excludes = ['date_created']
+        excludes = ['date_created', 'is_active']
         ordering = ['start_actual', 'start_planned', 'end_actual', 'end_planned', 'activity_sectors', 'statistics']
         filtering = {
             'statistics': ALL_WITH_RELATIONS,
@@ -145,7 +145,3 @@ class ActivityResource(ModelResource):
                 )
             return base_object_list.filter(qset).distinct()
         return base_object_list.filter(**filters).distinct()
-
-    def dehydrate(self, bundle):
-        bundle.data.pop('is_active')
-        return bundle
