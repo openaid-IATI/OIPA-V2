@@ -71,11 +71,6 @@ class RegionResource(ModelResource):
         resource_name = 'regions'
         serializer = Serializer(formats=['xml', 'json'])
 
-    def dehydrate(self, bundle):
-        obj = self.obj_get(code=bundle.data['code'])
-        bundle.data['name'] = obj.get_code_display()
-        return super(RegionResource, self).dehydrate(bundle)
-
 
 class SectorResource(ModelResource):
     """

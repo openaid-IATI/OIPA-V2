@@ -23,23 +23,11 @@ class StatusResource(ModelResource):
         fields = ['code']
         include_resource_uri = False
 
-    def dehydrate(self, bundle):
-        obj = self.obj_get(code=bundle.data['code'])
-        bundle.data['name'] = obj.get_code_display()
-        return bundle
-
 
 class RecipientCountryResource(ModelResource):
     class Meta:
         queryset = IATIActivityCountry.objects.all()
         include_resource_uri = False
-
-    def dehydrate(self, bundle):
-        obj = self.obj_get(id=bundle.data['id'])
-        bundle.data['iso'] = obj.country.iso
-        bundle.data['name'] = obj.country.get_iso_display()
-        bundle.data.pop('id')
-        return bundle
 
 
 class RecipientRegionResource(ModelResource):
@@ -47,25 +35,11 @@ class RecipientRegionResource(ModelResource):
         queryset = IATIActivityRegion.objects.all()
         include_resource_uri = False
 
-    def dehydrate(self, bundle):
-        obj = self.obj_get(id=bundle.data['id'])
-        bundle.data['code'] = obj.region.code
-        bundle.data['name'] = obj.region.get_code_display()
-        bundle.data.pop('id')
-        return bundle
-
 
 class SectorResource(ModelResource):
     class Meta:
         queryset = IATIActivitySector.objects.all()
         include_resource_uri = False
-
-    def dehydrate(self, bundle):
-        obj = self.obj_get(id=bundle.data['id'])
-        bundle.data['code'] = obj.sector.code
-        bundle.data['name'] = obj.sector.name
-        bundle.data.pop('id')
-        return bundle
 
 
 class CollaborationTypeResource(ModelResource):
@@ -78,11 +52,6 @@ class FlowTypeResource(ModelResource):
     class Meta:
         queryset = FlowType.objects.all()
         include_resource_uri = False
-
-    def dehydrate(self, bundle):
-        obj = self.obj_get(code=bundle.data['code'])
-        bundle.data['name'] = obj.get_code_display()
-        return bundle
 
 
 class AidTypeResource(ModelResource):
@@ -102,20 +71,12 @@ class TiedAidStatusTypeResource(ModelResource):
         queryset = TiedAidStatusType.objects.all()
         include_resource_uri = False
 
-    def dehydrate(self, bundle):
-        obj = self.obj_get(code=bundle.data['code'])
-        bundle.data['name'] = obj.get_code_display()
-        return bundle
-
 
 class ActivityBudgetResource(ModelResource):
     class Meta:
         queryset = IATIActivityBudget.objects.all()
         include_resource_uri = False
-
-    def dehydrate(self, bundle):
-        bundle.data.pop('id')
-        return bundle
+        excludes = ['id']
 
 
 class TransactionResource(ModelResource):
@@ -125,15 +86,6 @@ class TransactionResource(ModelResource):
         filtering = {
             'value': ALL,
             }
-
-    def dehydrate(self, bundle):
-        obj = self.obj_get(id=bundle.data['id'])
-        # todo convert to resource
-        if obj.currency:
-            bundle.data['currency'] = obj.currency.code
-        bundle.data.pop('id')
-        return bundle
-
 
 class DocumentResource(ModelResource):
     class Meta:
