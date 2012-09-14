@@ -5,6 +5,7 @@ from django.db.models import Q
 
 # Tastypie specific
 from tastypie import fields
+from tastypie.cache import SimpleCache
 from tastypie.constants import ALL, ALL_WITH_RELATIONS
 from tastypie.exceptions import NotFound, BadRequest, InvalidFilterError, HydrationError, InvalidSortError, ImmediateHttpResponse
 from tastypie.resources import ModelResource
@@ -101,6 +102,7 @@ class ActivityResource(ModelResource):
             'sectors': ALL,
             'iati_identifier': ALL
         }
+        cache = SimpleCache()
 
     def apply_filters(self, request, applicable_filters):
         base_object_list = super(ActivityResource, self).apply_filters(request, applicable_filters)
