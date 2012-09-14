@@ -119,6 +119,7 @@ class TransactionResource(ModelResource):
     class Meta:
         queryset = IATITransaction.objects.all()
         include_resource_uri = False
+        excludes = ['id']
         filtering = {
             'value': ALL,
             }
