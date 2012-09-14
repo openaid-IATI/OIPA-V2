@@ -114,10 +114,6 @@ class ActivityBudgetResource(ModelResource):
         include_resource_uri = False
         excludes = ['id']
 
-    def dehydrate(self, bundle):
-        bundle.data.pop('id')
-        return bundle
-
 
 class TransactionResource(ModelResource):
     class Meta:
