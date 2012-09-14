@@ -17,7 +17,7 @@ from data.models.constants import COUNTRY_ISO_MAP
 from data.models.organisation import Organisation, ParticipatingOrganisation
 
 # App specific
-from api.v2.resources.common_model_resources import ActivityStatisticResource
+from api.v2.resources.common_model_resources import ActivityStatisticResource, OrganisationStatisticsResource
 from api.v2.resources.common_model_resources import DescriptionResource
 from api.v2.resources.common_model_resources import TitleResource
 from api.v2.resources.sub_model_resources import RecipientCountryResource
@@ -38,6 +38,8 @@ class OrganisationResource(ModelResource):
     """
     Resource for IATI Organisations
     """
+    statistics = fields.OneToOneField(OrganisationStatisticsResource, 'organisationstatistics', full=True, null=True)
+
     class Meta:
         queryset = Organisation.objects.all()
         resource_name = 'organisations'
@@ -47,15 +49,13 @@ class OrganisationResource(ModelResource):
             # example to allow field specific filtering.
             'org_name': ALL,
             'ref': ALL,
+            'statistics': ALL_WITH_RELATIONS,
         }
 
-    def dehydrate(self, bundle):
-        obj = self.obj_get(ref=bundle.data['ref'])
-        bundle.data['type'] = obj.get_type_display()
-        bundle.data['statistics'] = dict(
-            total_activities=obj.iatiactivity_set.count()
-        )
-        return super(OrganisationResource, self).dehydrate(bundle)
+#    def dehydrate(self, bundle):
+#        obj = self.obj_get(ref=bundle.data['ref'])
+#        bundle.data['type'] = obj.get_type_display()
+#        return super(OrganisationResource, self).dehydrate(bundle)
 
 
 class ParticipatingOrganisationResource(ModelResource):

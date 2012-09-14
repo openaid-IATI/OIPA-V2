@@ -13,6 +13,7 @@ from data.models.common import Region
 from data.models.common import Sector
 from data.models.statistics import ActivityStatistics
 from data.models.statistics import CountryStatistics
+from data.models.statistics import OrganisationStatistics
 
 
 class CountryStatisticResource(ModelResource):
@@ -21,6 +22,19 @@ class CountryStatisticResource(ModelResource):
     """
     class Meta:
         queryset = CountryStatistics.objects.all()
+        include_resource_uri = False
+        excludes = ['id']
+        filtering = {
+            'total_activities': ['gt', 'gte', 'lt', 'lte'],
+        }
+
+
+class OrganisationStatisticsResource(ModelResource):
+    """
+    Resource for OrganisationStatistics
+    """
+    class Meta:
+        queryset = OrganisationStatistics.objects.all()
         include_resource_uri = False
         excludes = ['id']
         filtering = {
