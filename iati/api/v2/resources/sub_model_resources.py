@@ -124,13 +124,13 @@ class TransactionResource(ModelResource):
             'value': ALL,
             }
 
-#    def dehydrate(self, bundle):
-#        obj = self.obj_get(id=bundle.data['id'])
-#        # todo convert to resource
-#        if obj.currency:
-#            bundle.data['currency'] = obj.currency.code
-#        bundle.data.pop('id')
-#        return bundle
+    def dehydrate(self, bundle):
+        obj = self.obj_get(id=bundle.data['id'])
+        # todo convert to resource
+        if obj.currency:
+            bundle.data['currency'] = obj.currency.code
+        bundle.data.pop('id')
+        return bundle
 
 
 class DocumentResource(ModelResource):
