@@ -1,0 +1,10 @@
+Django==1.4.1
+south
+django-tastypie
+johnny-cache
+python-memcached
+lxml
+mysql-python
+django-haystack
+pysolr
+BeautifulSoup

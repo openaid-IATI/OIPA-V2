@@ -39,7 +39,7 @@ class IATIXMLSourceAdmin(admin.ModelAdmin):
 
 class PublisherAdmin(admin.ModelAdmin):
     inlines = [IATIXMLSourceInline]
-    list_display = ('org_name', 'org_abbreviate', 'default_interval',)
+    list_display = ('org_name', 'org_abbreviate')
 
     class Media:
         js = (
