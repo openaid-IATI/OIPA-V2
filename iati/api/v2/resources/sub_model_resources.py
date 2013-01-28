@@ -4,6 +4,7 @@ from tastypie.constants import ALL, ALL_WITH_RELATIONS
 from tastypie.serializers import Serializer
 
 # Data specific
+import pdb
 from data.models.activity import IATIActivityBudget, IATIActivityDocument
 from data.models.activity import IATIActivityCountry
 from data.models.activity import IATIActivityRegion
@@ -24,8 +25,7 @@ class StatusResource(ModelResource):
         include_resource_uri = False
 
     def dehydrate(self, bundle):
-        obj = self.obj_get(code=bundle.data['code'])
-        bundle.data['name'] = obj.get_code_display()
+        bundle.data['name'] = bundle.obj.get_code_display()
         return bundle
 
 
@@ -35,9 +35,8 @@ class RecipientCountryResource(ModelResource):
         include_resource_uri = False
 
     def dehydrate(self, bundle):
-        obj = self.obj_get(id=bundle.data['id'])
-        bundle.data['iso'] = obj.country.iso
-        bundle.data['name'] = obj.country.get_iso_display()
+        bundle.data['iso'] = bundle.obj.country.iso
+        bundle.data['name'] = bundle.obj.country.get_iso_display()
         bundle.data.pop('id')
         return bundle
 
@@ -48,9 +47,8 @@ class RecipientRegionResource(ModelResource):
         include_resource_uri = False
 
     def dehydrate(self, bundle):
-        obj = self.obj_get(id=bundle.data['id'])
-        bundle.data['code'] = obj.region.code
-        bundle.data['name'] = obj.region.get_code_display()
+        bundle.data['code'] = bundle.obj.region.code
+        bundle.data['name'] = bundle.obj.region.get_code_display()
         bundle.data.pop('id')
         return bundle
 
@@ -61,9 +59,8 @@ class SectorResource(ModelResource):
         include_resource_uri = False
 
     def dehydrate(self, bundle):
-        obj = self.obj_get(id=bundle.data['id'])
-        bundle.data['code'] = obj.sector.code
-        bundle.data['name'] = obj.sector.name
+        bundle.data['code'] = bundle.obj.sector.code
+        bundle.data['name'] = bundle.obj.sector.name
         bundle.data.pop('id')
         return bundle
 
@@ -80,8 +77,7 @@ class FlowTypeResource(ModelResource):
         include_resource_uri = False
 
     def dehydrate(self, bundle):
-        obj = self.obj_get(code=bundle.data['code'])
-        bundle.data['name'] = obj.get_code_display()
+        bundle.data['name'] = bundle.obj.get_code_display()
         return bundle
 
 
@@ -103,8 +99,7 @@ class TiedAidStatusTypeResource(ModelResource):
         include_resource_uri = False
 
     def dehydrate(self, bundle):
-        obj = self.obj_get(code=bundle.data['code'])
-        bundle.data['name'] = obj.get_code_display()
+        bundle.data['name'] = bundle.obj.get_code_display()
         return bundle
 
 
@@ -124,10 +119,9 @@ class TransactionResource(ModelResource):
             }
 
     def dehydrate(self, bundle):
-        obj = self.obj_get(id=bundle.data['id'])
         # todo convert to resource
-        if obj.currency:
-            bundle.data['currency'] = obj.currency.code
+        if bundle.obj.currency:
+            bundle.data['currency'] = bundle.obj.currency.code
         bundle.data.pop('id')
         return bundle
 

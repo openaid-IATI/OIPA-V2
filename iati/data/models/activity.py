@@ -64,6 +64,7 @@ class IATIActivityTitle(models.Model):
         app_label = "data"
 
 
+
 class IATIActivityDescription(models.Model):
     iati_activity = models.ForeignKey(IATIActivity)
     description = models.TextField(blank=True, null=True)

@@ -8,6 +8,9 @@ from tastypie.api import Api
 # App specific
 from api.v2.resources.model_resources import OrganisationResource
 from api.v2.resources.model_resources import ActivityResource
+from api.v2.resources.model_resources import ActivityListResource
+from api.v2.resources.model_resources import ActivitySearchResource
+
 from api.v2.resources.common_model_resources import CountryResource
 from api.v2.resources.common_model_resources import RegionResource
 from api.v2.resources.common_model_resources import SectorResource
@@ -18,6 +21,8 @@ v2_api.register(ActivityResource())
 v2_api.register(CountryResource())
 v2_api.register(RegionResource())
 v2_api.register(SectorResource())
+v2_api.register(ActivityListResource())
+v2_api.register(ActivitySearchResource())
 
 
 def api_v2_docs(request):

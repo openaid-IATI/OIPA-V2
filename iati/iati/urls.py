@@ -3,7 +3,7 @@ from django.conf import settings
 from django.conf.urls import *
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-
+from iati.search_sites import PeriodicalSearchView
 
 from api.v2.urls import api_v2_docs
 
@@ -16,6 +16,8 @@ urlpatterns = patterns('',
     (r'^$', api_v2_docs),
 
     (r'^api/', include('api.urls')),
+    url(r'^search/$', PeriodicalSearchView(template='search/search.html'),
+        name='haystack_search'),
 )
 
 if settings.DEBUG:

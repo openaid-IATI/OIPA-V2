@@ -12,6 +12,15 @@ TEMPLATE_DEBUG = DEBUG
 
 from local_settings import ADMINS, DATABASES, SERVER_EMAIL, SECRET_KEY
 
+#location of the indexing file for haystack
+HAYSTACK_SITECONF = 'iati.search_sites'
+
+#search engine using for Haystack, we use SOLR
+HAYSTACK_SEARCH_ENGINE = 'solr'
+
+#where we interface with the solr server
+HAYSTACK_SOLR_URL = 'http://127.0.0.1:8080/solr'
+
 SERVER_EMAIL = SERVER_EMAIL
 
 ADMINS = ADMINS
@@ -118,6 +127,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'haystack',
     'data',
     'api',
     'tastypie',
