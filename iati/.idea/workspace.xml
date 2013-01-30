@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8720e6d0-6fc8-4771-b076-de910d943c93" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/migrations/0011_auto__add_population.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/migrations/0012_auto__del_field_population_slum_proportion__del_field_population_slum_.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data_dump_30_01_2013_population_un_habitat.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/upload_csv.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/utils/migrations/0004_auto__add_slumparserlog__add_countrytoisolog.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/utils/migrations/0005_auto__del_slumparserlog__add_unhabitatparserlog.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/iati.iml" afterPath="$PROJECT_DIR$/.idea/iati.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/models/common.py" afterPath="$PROJECT_DIR$/data/models/common.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/iati/urls.py" afterPath="$PROJECT_DIR$/iati/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/admin.py" afterPath="$PROJECT_DIR$/utils/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/forms.py" afterPath="$PROJECT_DIR$/utils/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/models.py" afterPath="$PROJECT_DIR$/utils/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/views.py" afterPath="$PROJECT_DIR$/utils/views.py" />
     </list>
     <ignored path="iati.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -776,6 +763,11 @@
       <created>1349697217213</created>
       <updated>1349697217213</updated>
     </task>
+    <task id="LOCAL-00001" summary="-added data importer for five tables (per country)&#10;-added 5 data tables unhabitat to show:&#10;  -slum population&#10;  -population&#10;  -water services&#10;  -proportion slum population&#10;  -mortality numbers&#10;">
+      <created>1359561751274</created>
+      <updated>1359561751274</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
