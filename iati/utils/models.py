@@ -155,3 +155,32 @@ def update_publisher_records(sender, instance, created, **kwargs):
                 )
 
 post_save.connect(update_publisher_records, sender=Publisher)
+
+type_unhabitat_uploads = (
+    (1, _('Populations')),
+    (2, _('Urban Slum Population')),
+    (3, _('Proportion of urban population living in slum area')),
+    (4, _('Under-five mortality rate')),
+    (5, _('Improved water source and improved toilet'))
+)
+class UnHabitatParserLog(models.Model):
+    csv_file = models.FileField(upload_to='uploads/')
+    type_upload = models.IntegerField(choices=type_unhabitat_uploads)
+    ip_address = models.IPAddressField()
+    message = models.CharField(max_length=255, null=True, blank=True)
+    success = models.BooleanField(default=False)
+
+    country_iso = models.CharField(max_length=255)
+
+    country_name = models.CharField(max_length=255)
+    year = models.IntegerField(max_length=4)
+    date_created = models.DateTimeField(auto_now_add=True, editable=False)
+    date_updated = models.DateTimeField(auto_now=True, editable=False)
+
+class CountryToIsoLog(models.Model):
+    country_iso = models.CharField(max_length=255)
+    message = models.CharField(max_length=255, null=True, blank=True)
+    success = models.BooleanField(default=False)
+    country_name = models.CharField(max_length=255)
+    date_created = models.DateTimeField(auto_now_add=True, editable=False)
+    date_updated = models.DateTimeField(auto_now=True, editable=False)

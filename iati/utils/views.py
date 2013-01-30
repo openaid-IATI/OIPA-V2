@@ -3,7 +3,11 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponse
 from django.utils import simplejson
+from django.views.generic import FormView
+from utils.forms import UploadForm
+from django.core.urlresolvers import reverse
 
+import pdb
 
 class JSONResponse(HttpResponse):
     def __init__(self, data):
@@ -43,3 +47,16 @@ def render_json(func):
             return data
         return JSONResponse(data)
     return wrapper
+
+class UploadPopulationCSV(FormView):
+    template_name = "upload_csv.html"
+    form_class = UploadForm
+
+    def get_success_url(self):
+        return reverse('update_populations')
+
+    def form_valid(self, form):
+        form.save()
+        return super(UploadPopulationCSV, self).form_valid(form=form)
+
+

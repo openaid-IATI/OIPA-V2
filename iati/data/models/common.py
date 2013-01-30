@@ -28,12 +28,63 @@ class Country(models.Model):
 
     def __unicode__(self):
         return "%s - %s" % (self.iso, self.get_iso_display())
+    @staticmethod
+    def find_iso_country(country_name):
+        import pdb
+        countries = Country.objects.all()
 
+        for country in countries:
+#            pdb.set_trace()
+            if country_name.decode('utf8') in country.get_iso_display() or country_name.decode('utf8')[:8] in country.get_iso_display() or country_name.decode('utf8')[-8:] in country.get_iso_display():
+                return country
+        print country_name
+        return False
     class Meta:
         app_label = "data"
         verbose_name = _("country")
         verbose_name_plural = _("countries")
 
+class Population(models.Model):
+    """
+    Added model from project Un-Habitat phase 2 project.
+
+    Storing population data, slum population and slum proportion
+
+    This is on a per country basis
+    """
+    country = models.ForeignKey(Country)
+    year = models.IntegerField()
+    population = models.IntegerField(blank=True, null=True)
+    urban_slum_population = models.IntegerField(blank=True, null=True, verbose_name=_('Urban Slum Population'))
+    under_five_mortality_rate = models.IntegerField(blank=True, null=True, verbose_name=_('Under-five mortality rate'))
+    slum_proportion_living_urban = models.FloatField(blank=True, null=True, verbose_name=_('Proportion of urban population living in slum area'))
+
+    #water related statistics
+    improved_water = models.FloatField(blank=True, null=True)
+    piped_water = models.FloatField(blank=True, null=True)
+    public_tap_pump_borehole = models.FloatField(blank=True, null=True)
+    protected_well = models.FloatField(blank=True, null=True)
+    improved_spring_surface_water = models.FloatField(blank=True, null=True)
+    rainwater = models.FloatField(blank=True, null=True)
+    bottle_water = models.FloatField(blank=True, null=True)
+    improved_toilet = models.FloatField(blank=True, null=True)
+    improved_flush_toilet = models.FloatField(blank=True, null=True)
+    improved_pit_latrine = models.FloatField(blank=True, null=True)
+    pit_latrine_with_slab_or_covered_latrine = models.FloatField(blank=True, null=True)
+    composting_toilet = models.FloatField(blank=True, null=True)
+    pit_latrine_without_slab = models.FloatField(blank=True, null=True)
+    pump_borehole = models.FloatField(blank=True, null=True)
+
+
+
+
+    def __unicode__(self):
+        return "%s of %s" % (self.population, self.country.get_iso_display())
+
+    class Meta:
+        app_label = "data"
+        verbose_name = _("population")
+        verbose_name_plural = _('populations')
 
 class Region(models.Model):
     code = models.IntegerField(max_length=5, primary_key=True, choices=REGION_CHOICES)

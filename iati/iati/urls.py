@@ -7,6 +7,7 @@ from iati.search_sites import PeriodicalSearchView
 
 from api.v2.urls import api_v2_docs
 
+from utils.views import UploadPopulationCSV
 
 admin.autodiscover()
 
@@ -14,7 +15,7 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
 
     (r'^$', api_v2_docs),
-
+    url(r'^update-population$', UploadPopulationCSV.as_view(), name="update_populations"),
     (r'^api/', include('api.urls')),
     url(r'^search/$', PeriodicalSearchView(template='search/search.html'),
         name='haystack_search'),

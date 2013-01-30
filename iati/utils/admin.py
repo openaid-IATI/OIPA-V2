@@ -5,6 +5,7 @@ from django.contrib import admin
 # App specific
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
+from data.models.common import  Population
 from utils.models import IATIXMLSource, Publisher, ParseSchedule
 
 
@@ -68,3 +69,4 @@ class ParseScheduleAdmin(admin.ModelAdmin):
 admin.site.register(Publisher, PublisherAdmin)
 admin.site.register(IATIXMLSource, IATIXMLSourceAdmin)
 admin.site.register(ParseSchedule, ParseScheduleAdmin)
+admin.site.register(Population)
