@@ -91,7 +91,7 @@ class ActivityListResource(ModelResource):
     @staticmethod
     def get_country(bundle):
         try:
-            country = bundle.obj.iatiactivitycountry_set.all()[0].country
+            country = bundle.obj.iatiactivitycountry_set.values('country__pk').all()
             return country
         except:
             return None
@@ -172,7 +172,7 @@ class ActivityResource(ModelResource):
     activity_transactions = fields.ToManyField(TransactionResource, 'iatitransaction_set', full=True, null=True)
     documents = fields.ToManyField(DocumentResource, 'iatiactivitydocument_set', full=True, null=True)
     statistics = fields.OneToOneField(ActivityStatisticResource, 'activitystatistics', full=True, null=True)
-    unhabitat_indicators = fields.ToManyField(UnHabitatDemoGraphicResource, attribute=lambda bundle: Population.objects.filter(country=ActivityListResource.get_country(bundle)).order_by('year'), full=True, null=True)
+    unhabitat_indicators = fields.ToManyField(UnHabitatDemoGraphicResource, attribute=lambda bundle: Population.objects.filter(country__pk__in=ActivityListResource.get_country(bundle)).order_by('country', 'year',), full=True, null=True)
 
 
     class Meta:
@@ -188,15 +188,6 @@ class ActivityResource(ModelResource):
             'iati_identifier': ALL
         }
         cache = NoTransformCache()
-
-    @staticmethod
-    def get_country(bundle):
-        try:
-            country = bundle.obj.iatiactivitycountry_set.all()[0].country
-            return country
-        except:
-            return None
-
 
 
     def apply_filters(self, request, applicable_filters):
