@@ -1,16 +1,21 @@
 # Tastypie specific
+from django.conf.urls import url
+from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
+from tastypie.http import HttpGone, HttpMultipleChoices
 from tastypie.resources import ModelResource
 from tastypie.constants import ALL, ALL_WITH_RELATIONS
 from tastypie.serializers import Serializer
 
 # Data specific
 import pdb
+from tastypie import fields
+from tastypie.utils import trailing_slash
 from data.models.activity import IATIActivityBudget, IATIActivityDocument
 from data.models.activity import IATIActivityCountry
 from data.models.activity import IATIActivityRegion
 from data.models.activity import IATIActivitySector
 from data.models.activity import IATITransaction
-from data.models.common import ActivityStatusType
+from data.models.common import ActivityStatusType, Population, Country
 from data.models.common import CollaborationType
 from data.models.common import FlowType
 from data.models.common import AidType
@@ -28,6 +33,17 @@ class StatusResource(ModelResource):
         bundle.data['name'] = bundle.obj.get_code_display()
         return bundle
 
+class UnHabitatDemoGraphicResource(ModelResource):
+    class Meta:
+        queryset = Population.objects.all()
+        include_resource_uri = False
+
+    def dehydrate(self, bundle):
+        bundle.data['country_iso'] = bundle.obj.country.iso
+        bundle.data['country_name'] = bundle.obj.country.get_iso_display()
+        bundle.data.pop('id')
+
+        return bundle
 
 class RecipientCountryResource(ModelResource):
     class Meta:
@@ -39,6 +55,9 @@ class RecipientCountryResource(ModelResource):
         bundle.data['name'] = bundle.obj.country.get_iso_display()
         bundle.data.pop('id')
         return bundle
+
+
+
 
 
 class RecipientRegionResource(ModelResource):

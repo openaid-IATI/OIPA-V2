@@ -1,6 +1,4 @@
 *.pyc
 local_settings.py
-migrations
-migrations/*
 media/utils
 media/utils/*

@@ -111,7 +111,8 @@ WSGI_APPLICATION = 'iati.wsgi.application'
 
 TEMPLATE_DIRS = (
     rel('../templates'),
-)
+    )
+
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.static",
@@ -133,6 +134,7 @@ INSTALLED_APPS = (
     'tastypie',
     'utils',
     'south',
+    'django.contrib.admin',
 )
 
 API_VERSION = 'v2.0.1'

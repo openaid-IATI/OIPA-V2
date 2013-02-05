@@ -28,6 +28,7 @@ class Country(models.Model):
 
     def __unicode__(self):
         return "%s - %s" % (self.iso, self.get_iso_display())
+
     @staticmethod
     def find_iso_country(country_name):
         import pdb
@@ -79,12 +80,12 @@ class Population(models.Model):
 
 
     def __unicode__(self):
-        return "%s of %s" % (self.population, self.country.get_iso_display())
+        return "%s of %s" % (self.year, self.country.get_iso_display())
 
     class Meta:
         app_label = "data"
-        verbose_name = _("population")
-        verbose_name_plural = _('populations')
+        verbose_name = _("Unhabitat Global Indicator")
+        verbose_name_plural = _('Unhabitat Global Indicators')
 
 class Region(models.Model):
     code = models.IntegerField(max_length=5, primary_key=True, choices=REGION_CHOICES)

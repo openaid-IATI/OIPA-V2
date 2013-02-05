@@ -65,8 +65,12 @@ class PublisherAdmin(admin.ModelAdmin):
 class ParseScheduleAdmin(admin.ModelAdmin):
     list_display = ['iati_xml_source', 'get_interval_display',]
 
+class PopulationAdmin(admin.ModelAdmin):
+    search_fields = ['country__iso']
+    list_filter = ['year', 'country',]
+
 
 admin.site.register(Publisher, PublisherAdmin)
 admin.site.register(IATIXMLSource, IATIXMLSourceAdmin)
 admin.site.register(ParseSchedule, ParseScheduleAdmin)
-admin.site.register(Population)
+admin.site.register(Population, PopulationAdmin)

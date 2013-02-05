@@ -13,6 +13,7 @@ from tastypie.serializers import Serializer
 # Data specific
 import pdb
 from data.models.activity import IATIActivity, IATIActivityTitle
+from data.models.common import Population
 from data.models.constants import COUNTRY_ISO_MAP
 from data.models.organisation import Organisation, ParticipatingOrganisation
 
@@ -20,7 +21,7 @@ from data.models.organisation import Organisation, ParticipatingOrganisation
 from api.v2.resources.common_model_resources import ActivityStatisticResource, OrganisationStatisticsResource
 from api.v2.resources.common_model_resources import DescriptionResource
 from api.v2.resources.common_model_resources import TitleResource
-from api.v2.resources.sub_model_resources import RecipientCountryResource
+from api.v2.resources.sub_model_resources import RecipientCountryResource, UnHabitatDemoGraphicResource
 from api.v2.resources.sub_model_resources import RecipientRegionResource
 from api.v2.resources.sub_model_resources import StatusResource
 from api.v2.resources.sub_model_resources import SectorResource
@@ -78,12 +79,23 @@ class ActivityListResource(ModelResource):
     """
 
     recipient_country = fields.ToManyField(RecipientCountryResource, 'iatiactivitycountry_set', full=True, null=True)
+    unhabitat_indicators = fields.ToManyField(UnHabitatDemoGraphicResource, attribute=lambda bundle: Population.objects.filter(country=ActivityListResource.get_country(bundle)).order_by('year'), full=True, null=True)
+
     activity_sectors = fields.ToManyField(SectorResource, 'sectors', full=True, null=True)
     titles = fields.ToManyField(TitleResource, 'iatiactivitytitle_set', full=True, null=True)
     descriptions = fields.ToManyField(DescriptionResource, 'iatiactivitydescription_set', full=True, null=True)
     recipient_region = fields.ToManyField(RecipientRegionResource, 'iatiactivityregion_set', full=True, null=True)
     activity_sectors = fields.ToManyField(SectorResource, 'sectors', full=True, null=True)
     statistics = fields.OneToOneField(ActivityStatisticResource, 'activitystatistics', full=True, null=True)
+
+    @staticmethod
+    def get_country(bundle):
+        try:
+            country = bundle.obj.iatiactivitycountry_set.all()[0].country
+            return country
+        except:
+            return None
+
 
     class Meta:
         queryset = IATIActivity.objects.filter(is_active=True)
@@ -160,6 +172,8 @@ class ActivityResource(ModelResource):
     activity_transactions = fields.ToManyField(TransactionResource, 'iatitransaction_set', full=True, null=True)
     documents = fields.ToManyField(DocumentResource, 'iatiactivitydocument_set', full=True, null=True)
     statistics = fields.OneToOneField(ActivityStatisticResource, 'activitystatistics', full=True, null=True)
+    unhabitat_indicators = fields.ToManyField(UnHabitatDemoGraphicResource, attribute=lambda bundle: Population.objects.filter(country=ActivityListResource.get_country(bundle)).order_by('year'), full=True, null=True)
+
 
     class Meta:
         queryset = IATIActivity.objects.filter(is_active=True)
@@ -174,6 +188,16 @@ class ActivityResource(ModelResource):
             'iati_identifier': ALL
         }
         cache = NoTransformCache()
+
+    @staticmethod
+    def get_country(bundle):
+        try:
+            country = bundle.obj.iatiactivitycountry_set.all()[0].country
+            return country
+        except:
+            return None
+
+
 
     def apply_filters(self, request, applicable_filters):
         base_object_list = super(ActivityResource, self).apply_filters(request, applicable_filters)

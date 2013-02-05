@@ -88,7 +88,6 @@ class UploadForm(forms.ModelForm):
                                     pop.under_five_mortality_rate = None
                                 else:
                                     pop.under_five_mortality_rate = value
-                                pop.under_five_mortality_rate = k
                             try:
                                 pop.save()
                             except ValueError:
