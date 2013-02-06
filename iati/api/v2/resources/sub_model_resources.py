@@ -54,8 +54,10 @@ class UnHabitatDemoGraphicResource(ModelResource):
 
     def apply_filters(self, request, applicable_filters):
         base_object_list = super(UnHabitatDemoGraphicResource, self).apply_filters(request, applicable_filters)
-        regions = request.GET.get('sector', None)
-        countries = request.GET.get('country', None)
+        regions = request.GET.get('regions', None)
+        countries = request.GET.get('country_name', None)
+        isos = request.GET.get('iso', None)
+
 
 
         filters = {}
@@ -66,6 +68,9 @@ class UnHabitatDemoGraphicResource(ModelResource):
         if countries:
             countries = countries.replace('|', ' ').replace('-', ' ').split(' ')
             filters.update(dict(country__country_name__in=countries))
+        if isos:
+            isos = isos.replace('|', ' ').replace('-', ' ').split(' ')
+            filters.update(dict(country__iso__in=isos))
 
         return base_object_list.filter(**filters).distinct()
 
