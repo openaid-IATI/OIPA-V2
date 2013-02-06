@@ -8,3 +8,5 @@ mysql-python
 django-haystack
 pysolr
 BeautifulSoup
+raven
+ipython

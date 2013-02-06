@@ -36,7 +36,7 @@ class StatusResource(ModelResource):
 class UnHabitatDemoGraphicResource(ModelResource):
     class Meta:
         queryset = Population.objects.all()
-        include_resource_uri = False
+        include_resource_uri = True
 
     def dehydrate(self, bundle):
         bundle.data['country_iso'] = bundle.obj.country.iso
