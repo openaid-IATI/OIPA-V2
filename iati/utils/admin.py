@@ -3,8 +3,10 @@ from django.conf.urls import patterns
 from django.contrib import admin
 
 # App specific
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
+from tastypie.models import ApiKey
 from data.models.common import  Population
 from utils.models import IATIXMLSource, Publisher, ParseSchedule
 
@@ -74,3 +76,4 @@ admin.site.register(Publisher, PublisherAdmin)
 admin.site.register(IATIXMLSource, IATIXMLSourceAdmin)
 admin.site.register(ParseSchedule, ParseScheduleAdmin)
 admin.site.register(Population, PopulationAdmin)
+admin.site.register(ApiKey)

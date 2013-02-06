@@ -1,6 +1,7 @@
 # Tastypie specific
 from django.conf.urls import url
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
+from tastypie.authentication import ApiKeyAuthentication
 from tastypie.http import HttpGone, HttpMultipleChoices
 from tastypie.resources import ModelResource
 from tastypie.constants import ALL, ALL_WITH_RELATIONS
@@ -40,6 +41,7 @@ class UnHabitatDemoGraphicResource(ModelResource):
         resource_name = 'indicators'
         serializer = Serializer(formats=['xml', 'json'])
         filtering = {"year": ALL }
+        authentication = ApiKeyAuthentication()
 
 
     def dehydrate(self, bundle):

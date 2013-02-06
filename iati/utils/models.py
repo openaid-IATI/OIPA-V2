@@ -16,6 +16,11 @@ from django.utils.translation import ugettext_lazy as _
 from data.management.commands.import_iati_xml import ActivityParser
 from data.management.commands.import_iati_xml import OrganisationParser
 
+from django.contrib.auth.models import User
+from tastypie.models import create_api_key
+
+#this post save signals generates an API key for the user
+models.signals.post_save.connect(create_api_key, sender=User)
 
 parsers = {
     'iati-organisations': OrganisationParser,
