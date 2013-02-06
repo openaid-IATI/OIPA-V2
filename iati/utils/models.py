@@ -161,7 +161,8 @@ type_unhabitat_uploads = (
     (2, _('Urban Slum Population')),
     (3, _('Proportion of urban population living in slum area')),
     (4, _('Under-five mortality rate')),
-    (5, _('Improved water source and improved toilet'))
+    (5, _('Improved water source and improved toilet')),
+    (6, _('ISO DAC Countries Regions')),
 )
 class UnHabitatParserLog(models.Model):
     csv_file = models.FileField(upload_to='uploads/')

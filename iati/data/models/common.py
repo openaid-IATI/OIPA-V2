@@ -25,6 +25,13 @@ class Language(models.Model):
 
 class Country(models.Model):
     iso = models.CharField(max_length=2, primary_key=True, choices=COUNTRIES_TUPLE)
+    dac_region_code = models.IntegerField(null=True, blank=True)
+    dac_region_name = models.CharField(max_length=100, null=True, blank=True)
+    country_name = models.CharField(max_length=100, null=True, blank=True)
+    dac_country_code = models.IntegerField(null=True, blank=True)
+    iso2 = models.CharField(max_length=5, null=True, blank=True)
+    iso3 = models.CharField(max_length=5, null=True, blank=True)
+
 
     def __unicode__(self):
         return "%s - %s" % (self.iso, self.get_iso_display())

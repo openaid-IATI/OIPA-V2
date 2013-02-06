@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
 
     (r'^$', api_v2_docs),
-    url(r'^update-population$', UploadPopulationCSV.as_view(), name="update_populations"),
+    url(r'^upload-data$', UploadPopulationCSV.as_view(), name="upload_data"),
     (r'^api/', include('api.urls')),
     url(r'^search/$', PeriodicalSearchView(template='search/search.html'),
         name='haystack_search'),

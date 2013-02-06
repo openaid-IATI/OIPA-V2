@@ -79,7 +79,7 @@ class ActivityListResource(ModelResource):
     """
 
     recipient_country = fields.ToManyField(RecipientCountryResource, 'iatiactivitycountry_set', full=True, null=True)
-    unhabitat_indicators = fields.ToManyField(UnHabitatDemoGraphicResource, attribute=lambda bundle: Population.objects.filter(country=ActivityListResource.get_country(bundle)).order_by('year'), full=True, null=True)
+    unhabitat_indicators = fields.ToManyField(UnHabitatDemoGraphicResource, attribute=lambda bundle: Population.objects.filter(country__pk__in=ActivityListResource.get_country(bundle)).order_by('country', 'year',), full=True, null=True)
 
     activity_sectors = fields.ToManyField(SectorResource, 'sectors', full=True, null=True)
     titles = fields.ToManyField(TitleResource, 'iatiactivitytitle_set', full=True, null=True)

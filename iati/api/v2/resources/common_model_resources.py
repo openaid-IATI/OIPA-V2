@@ -61,6 +61,18 @@ class CountryResource(ModelResource):
         bundle.data['name'] = obj.get_iso_display()
         return super(CountryResource, self).dehydrate(bundle)
 
+    def apply_filters(self, request, applicable_filters):
+        base_object_list = super(CountryResource, self).apply_filters(request, applicable_filters)
+        sector = request.GET.get('sector', None)
+
+        filters = {}
+        if sector:
+            # @todo: implement smart filtering with seperator detection
+            sectors = sector.replace('|', ' ').replace('-', ' ').split(' ')
+            filters.update(dict(dac_region_code__in=sectors))
+
+        return base_object_list.filter(**filters).distinct()
+
 
 class RegionResource(ModelResource):
     """

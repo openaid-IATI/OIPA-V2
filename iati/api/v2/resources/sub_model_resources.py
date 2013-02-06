@@ -36,14 +36,31 @@ class StatusResource(ModelResource):
 class UnHabitatDemoGraphicResource(ModelResource):
     class Meta:
         queryset = Population.objects.all()
-        include_resource_uri = True
+        include_resource_uri = False
+        resource_name = 'indicators'
+        serializer = Serializer(formats=['xml', 'json'])
 
     def dehydrate(self, bundle):
         bundle.data['country_iso'] = bundle.obj.country.iso
         bundle.data['country_name'] = bundle.obj.country.get_iso_display()
+        bundle.data['dac_region_code'] = bundle.obj.country.dac_region_code
+        bundle.data['dac_region_name'] = bundle.obj.country.dac_region_name
+
         bundle.data.pop('id')
 
         return bundle
+
+    def apply_filters(self, request, applicable_filters):
+        base_object_list = super(UnHabitatDemoGraphicResource, self).apply_filters(request, applicable_filters)
+        regions = request.GET.get('sector', None)
+
+        filters = {}
+        if regions:
+            # @todo: implement smart filtering with seperator detection
+            regions = regions.replace('|', ' ').replace('-', ' ').split(' ')
+            filters.update(dict(country__dac_region_code__in=regions))
+
+        return base_object_list.filter(**filters).distinct()
 
 class RecipientCountryResource(ModelResource):
     class Meta:
