@@ -36,7 +36,6 @@ CACHES = {
         JOHNNY_CACHE = True,
     )
 }
-SENTRY_DSN = 'http://8dfdd57f016d410bb7d87f79f58fbae0:0649133c77ef454791d2d7e184107b83@dev.openaidsearch.org:9000/2'
 
 JOHNNY_MIDDLEWARE_KEY_PREFIX='jc_oipa'
 
