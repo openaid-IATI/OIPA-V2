@@ -39,6 +39,8 @@ class UnHabitatDemoGraphicResource(ModelResource):
         include_resource_uri = False
         resource_name = 'indicators'
         serializer = Serializer(formats=['xml', 'json'])
+        filtering = {"year": ALL }
+
 
     def dehydrate(self, bundle):
         bundle.data['country_iso'] = bundle.obj.country.iso
@@ -53,12 +55,17 @@ class UnHabitatDemoGraphicResource(ModelResource):
     def apply_filters(self, request, applicable_filters):
         base_object_list = super(UnHabitatDemoGraphicResource, self).apply_filters(request, applicable_filters)
         regions = request.GET.get('sector', None)
+        countries = request.GET.get('country', None)
+
 
         filters = {}
         if regions:
             # @todo: implement smart filtering with seperator detection
             regions = regions.replace('|', ' ').replace('-', ' ').split(' ')
             filters.update(dict(country__dac_region_code__in=regions))
+        if countries:
+            countries = countries.replace('|', ' ').replace('-', ' ').split(' ')
+            filters.update(dict(country__country_name__in=countries))
 
         return base_object_list.filter(**filters).distinct()
 
