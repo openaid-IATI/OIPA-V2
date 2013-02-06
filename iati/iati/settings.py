@@ -10,7 +10,7 @@ sys.path.insert(0, rel('..','lib'))
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-from local_settings import ADMINS, DATABASES, SERVER_EMAIL, SECRET_KEY
+from local_settings import *
 
 #location of the indexing file for haystack
 HAYSTACK_SITECONF = 'iati.search_sites'
