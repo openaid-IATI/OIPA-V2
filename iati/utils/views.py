@@ -53,7 +53,7 @@ class UploadPopulationCSV(FormView):
     form_class = UploadForm
 
     def get_success_url(self):
-        return reverse('update_populations')
+        return reverse('upload_data')
 
     def form_valid(self, form):
         form.save()
