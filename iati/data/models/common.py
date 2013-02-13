@@ -40,34 +40,52 @@ class Country(models.Model):
     def find_iso_country(country_name):
         import pdb
         countries = Country.objects.all()
-
-        for country in countries:
-#            pdb.set_trace()
-            if country_name.decode('utf8') in country.get_iso_display() or country_name.decode('utf8')[:8] in country.get_iso_display() or country_name.decode('utf8')[-8:] in country.get_iso_display():
-                return country
-        print country_name
+        try:
+            for country in countries:
+                if country_name.decode('utf8') in country.get_iso_display() or country_name.decode('utf8')[:8] in country.get_iso_display() or country_name.decode('utf8')[-8:] in country.get_iso_display():
+                    return country
+        except:
+            return False
         return False
     class Meta:
         app_label = "data"
         verbose_name = _("country")
         verbose_name_plural = _("countries")
 
-class Population(models.Model):
-    """
-    Added model from project Un-Habitat phase 2 project.
-
-    Storing population data, slum population and slum proportion
-
-    This is on a per country basis
-    """
+class City(models.Model):
+    name = models.CharField(max_length=100, blank=False, null=False)
     country = models.ForeignKey(Country)
+
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        app_label = "data"
+        verbose_name = _("City")
+        verbose_name_plural = _("Cities")
+
+
+class UnhabitatIndicator(models.Model):
+    class Meta:
+        abstract = True
+
     year = models.IntegerField()
-    population = models.IntegerField(blank=True, null=True, verbose_name=_('Table 4: Total Population at Mid-Year by Major Area, Region and Country, 1950-2050 (thousands)'))
+
+    #extra options
+    year_plus_range = models.IntegerField(blank=True, null=True, verbose_name=_('Range in year+'), help_text=_('Some tables ask for year ranges, with this field we can add this range'))
+
+    #Table 4: Total UnHabitatIndicatorCountry at Mid-Year by Major Area, Region and Country, 1950-2050 (thousands)
+    population = models.IntegerField(blank=True, null=True, verbose_name=_('Table 4: Total UnHabitatIndicatorCountry at Mid-Year by Major Area, Region and Country, 1950-2050 (thousands)'))
+
+    #Table 7: Urban slum population at mid-year
     urban_slum_population = models.IntegerField(blank=True, null=True, verbose_name=_('Table 7: Urban slum population at mid-year'))
-    under_five_mortality_rate = models.IntegerField(blank=True, null=True, verbose_name=_('Table 9: Under-Five mortality rate'))
     slum_proportion_living_urban = models.FloatField(blank=True, null=True, verbose_name=_('Table 7: Urban population living in slum area'))
 
-    #water related statistics
+    #Table 9: Under-Five mortality rate
+    under_five_mortality_rate = models.IntegerField(blank=True, null=True, verbose_name=_('Table 9: Under-Five mortality rate'))
+
+    #Table 10: Water resources
     improved_water = models.FloatField(blank=True, null=True, verbose_name=_('Table 10: Improved water source'))
     piped_water = models.FloatField(blank=True, null=True,verbose_name=_('Table 10: Piped water'))
     public_tap_pump_borehole = models.FloatField(blank=True, null=True,verbose_name=_('Table 10: Public tap/pump bore hole'))
@@ -83,16 +101,121 @@ class Population(models.Model):
     pit_latrine_without_slab = models.FloatField(blank=True, null=True,verbose_name=_('Table 10: Pit latrine without slab'))
     pump_borehole = models.FloatField(blank=True, null=True,verbose_name=_('Table 10: Pump bore hole'))
 
+    #Table 11: Access to improved toilet,improved floor, sufficient living, connection to telephone, connection to electricity.
+    improved_floor = models.FloatField(blank=True, null=True, verbose_name=_('Table 11 - Improved floor'))
+    sufficient_living = models.FloatField(blank=True, null=True, verbose_name=_('Table 11 - sufficient living'))
+    has_telephone = models.FloatField(blank=True, null=True, verbose_name=_('Table 11 - has telephone'))
+    connection_to_electricity = models.FloatField(blank=True, null=True, verbose_name=_('Table 11 - connection to electricity'))
+
+
+
+
+    date_created = models.DateTimeField(auto_now_add=True, editable=False, null=True, blank=True)
+    date_updated = models.DateTimeField(auto_now=True, editable=False, null=True, blank=True)
+
+
+
+class UnHabitatIndicatorCountry(UnhabitatIndicator):
+    """
+    Added model from project Un-Habitat phase 2 project.
+
+    Storing all received indicators from 28 tables related to countries. This is from the global urban indicators database 2010.xls file
+
+    This is on a per country and year basis
+    """
+
+    #country and year are the primary keys
+    country = models.ForeignKey(Country)
+
+    #Table 2: Average annual rate of change of the Total Population by major area, Region and Country, 1950-2050 (%)
+    avg_annual_rate_change_total_population = models.FloatField(blank=True, null=True, verbose_name=_('Table 2: Average annual rate of change of the Total Population'))
+
+
+    #Table 5:Average Annual Rate of Change of the Percentage Urban by Major Area, Region and Country, 1950-2050 (per cent)
+    avg_annual_rate_change_percentage_urban = models.FloatField(blank=True, null=True, verbose_name=_('Table 5:Average Annual Rate of Change of the Percentage Urban by Major Area, Region and Country, 1950-2050 (per cent)'))
+
+    #Table 6- Population of Rural and urban areas and percentage urban 2007
+    pop_urban_area = models.FloatField(blank=True, null=True, verbose_name=_('Table 6- Population urban areas and percentage urban'))
+    pop_rural_area = models.FloatField(blank=True, null=True, verbose_name=_('Table 6- Population Rural areas and percentage urban'))
+    pop_urban_percentage = models.FloatField(blank=True, null=True, verbose_name=_('Table 6- Percentage urban areas urban'))
+
+
 
 
 
     def __unicode__(self):
-        return "%s of %s" % (self.year, self.country.get_iso_display())
+            return "%s of %s" % (self.year, self.country.get_iso_display())
 
     class Meta:
         app_label = "data"
-        verbose_name = _("Unhabitat Global Indicator")
-        verbose_name_plural = _('Unhabitat Global Indicators')
+        verbose_name = _("Unhabitat Global Indicator per country")
+        verbose_name_plural = _('Unhabitat Global Indicators per country')
+
+#Table 13 matrix waste disposal by shelter deprivation
+class Solid_waste_disposal_by_shelter_deprivation(models.Model):
+    unhabitat_indicator_country = models.ForeignKey(UnHabitatIndicatorCountry)
+
+    kind_of_soil_waste_disposal = models.CharField(max_length=100, verbose_name=_('Kind of soil waste disposal'))
+    urban = models.FloatField(blank=True, null=True, verbose_name=_('urban'))
+    non_slum_household = models.FloatField(blank=True, null=True, verbose_name=_('non slum household'))
+    slum_household = models.FloatField(blank=True, null=True, verbose_name=_('slum household'))
+    one_shelter_deprivation = models.FloatField(blank=True, null=True, verbose_name=_('one shelter deprivation'))
+    two_shelter_deprivations = models.FloatField(blank=True, null=True, verbose_name=_('two shelter deprivations'))
+
+    def __unicode__(self):
+        return "%s from %s" % (self.kind_of_soil_waste_disposal, self.unhabitat_indicator_country.country.country_name)
+
+    class Meta:
+        app_label = "data"
+        verbose_name = _("matrix waste disposal by shelter deprivation")
+        verbose_name_plural = _('matrix waste disposals by shelter deprivation')
+
+#Table 14: Percent distribution of type of cooking fuel by shelter deprivation
+class DistributionCookingFuelByShelterDepr(models.Model):
+    unhabitat_indicator_country = models.ForeignKey(UnHabitatIndicatorCountry)
+
+    type_of_cooking_fuel = models.CharField(max_length=100, verbose_name=_('Type of cooking fuel'))
+    urban = models.FloatField(blank=True, null=True, verbose_name=_('urban'))
+    non_slum_household = models.FloatField(blank=True, null=True, verbose_name=_('non slum household'))
+    slum_household = models.FloatField(blank=True, null=True, verbose_name=_('slum household'))
+    one_shelter_deprivation = models.FloatField(blank=True, null=True, verbose_name=_('one shelter deprivation'))
+    two_shelter_deprivations = models.FloatField(blank=True, null=True, verbose_name=_('two shelter deprivations'))
+
+    def __unicode__(self):
+        return "%s from %s" % (self.type_of_cooking_fuel, self.unhabitat_indicator_country.country.country_name)
+
+    class Meta:
+        app_label = "data"
+        verbose_name = _("Table 14: Percent distribution of type of cooking fuel by shelter deprivation")
+        verbose_name_plural = _('Table 14: Percent distribution of type of cooking fuel by shelter deprivation')
+
+class UnHabitatIndicatorCity(UnhabitatIndicator):
+    """
+    Added model from project Un-Habitat phase 2 project.
+
+    Storing all received indicators from 28 tables related to countries. This is from the global urban indicators database 2010.xls file
+
+    This is on a per country and year basis
+    """
+
+    #country and year are the primary keys
+    city = models.ForeignKey(City)
+
+    #Table 1: city population of urban agglomerations with 750k inhabitants or more
+    pop_urban_agglomerations = models.FloatField(blank=True, null=True, verbose_name=_('Table 1: city population of urban agglomerations with 750k inhabitants or more'))
+
+    #Table 3: Average annual rate of change of urban agglomerations with 750,000 inhabitants or more in 2007, by country, 1950-2025
+    avg_annual_rate_change_urban_agglomerations = models.FloatField(blank=True, null=True, verbose_name=_('Table 3: Average annual rate of change of urban agglomerations with 750,000 inhabitants'))
+
+
+    def __unicode__(self):
+        return "%s of %s" % (self.year, self.city.name)
+
+    class Meta:
+        app_label = "data"
+        verbose_name = _("Unhabitat Global Indicator per city")
+        verbose_name_plural = _('Unhabitat Global Indicators per city')
+
 
 class Region(models.Model):
     code = models.IntegerField(max_length=5, primary_key=True, choices=REGION_CHOICES)

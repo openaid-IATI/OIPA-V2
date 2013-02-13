@@ -226,30 +226,7 @@ class Migration(SchemaMigration):
             'period_end': ('django.db.models.fields.DateField', [], {}),
             'period_start': ('django.db.models.fields.DateField', [], {})
         },
-        'data.population': {
-            'Meta': {'object_name': 'Population'},
-            'bottle_water': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
-            'composting_toilet': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
-            'country': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['data.Country']"}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'improved_flush_toilet': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
-            'improved_pit_latrine': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
-            'improved_spring_surface_water': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
-            'improved_toilet': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
-            'improved_water': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
-            'piped_water': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
-            'pit_latrine_with_slab_or_covered_latrine': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
-            'pit_latrine_without_slab': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
-            'population': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
-            'protected_well': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
-            'public_tap_pump_borehole': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
-            'pump_borehole': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
-            'rainwater': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
-            'slum_proportion_living_urban': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
-            'under_five_mortality_rate': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
-            'urban_slum_population': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
-            'year': ('django.db.models.fields.IntegerField', [], {})
-        },
+
         'data.region': {
             'Meta': {'object_name': 'Region'},
             'code': ('django.db.models.fields.IntegerField', [], {'max_length': '5', 'primary_key': 'True'})

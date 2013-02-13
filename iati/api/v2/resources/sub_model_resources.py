@@ -16,7 +16,7 @@ from data.models.activity import IATIActivityCountry
 from data.models.activity import IATIActivityRegion
 from data.models.activity import IATIActivitySector
 from data.models.activity import IATITransaction
-from data.models.common import ActivityStatusType, Population, Country
+from data.models.common import ActivityStatusType, UnHabitatIndicatorCountry, Country
 from data.models.common import CollaborationType
 from data.models.common import FlowType
 from data.models.common import AidType
@@ -36,7 +36,7 @@ class StatusResource(ModelResource):
 
 class UnHabitatDemoGraphicResource(ModelResource):
     class Meta:
-        queryset = Population.objects.all()
+        queryset = UnHabitatIndicatorCountry.objects.all()
         include_resource_uri = False
         resource_name = 'indicators'
         serializer = Serializer(formats=['xml', 'json'])

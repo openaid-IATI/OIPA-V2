@@ -162,13 +162,25 @@ def update_publisher_records(sender, instance, created, **kwargs):
 post_save.connect(update_publisher_records, sender=Publisher)
 
 type_unhabitat_uploads = (
-    (1, _('Populations')),
-    (2, _('Urban Slum Population')),
+    (1, _('UnHabitatIndicatorCountrys')),
+    (2, _('Urban Slum UnHabitatIndicatorCountry')),
     (3, _('Proportion of urban population living in slum area')),
     (4, _('Under-five mortality rate')),
     (5, _('Improved water source and improved toilet')),
     (6, _('ISO DAC Countries Regions')),
-)
+    (7, _('Table 1- city population of urban agglomerations with 750k inhabitants or more')),
+    (8, _('Table 2: Average annual rate of change of the Total Population by major area, Region and Country, 1950-2050 (%)')),
+    (9, _('Table 3: Average annual rate of change of urban agglomerations with 750,000 inhabitants or more in 2007, by country, 1950-2025')),
+    (10, _('Table 5:Average Annual Rate of Change of the Percentage Urban by Major Area, Region and Country, 1950-2050 (per cent)')),
+    (11, _('Table 6: Population of Rural and urban areas and percentage urban, 2007')),
+    (12, _('Table 11: Access to improved toilet,improved floor, sufficient living, connection to telephone, connection to electricity.')),
+    (13, _('Table 12: Table 12: Improved Services (City Level)')),
+    (14, _('Table 13: Solid waste disposal by shelter deprivation')),
+    (15, _('Table 14: Percent distribution of type of cooking fuel by shelter deprivation'))
+
+
+
+    )
 class UnHabitatParserLog(models.Model):
     csv_file = models.FileField(upload_to='uploads/')
     type_upload = models.IntegerField(choices=type_unhabitat_uploads)

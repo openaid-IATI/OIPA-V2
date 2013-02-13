@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from data.models.constants import DESCRIPTION_TYPE_CHOICES
 from data.models.constants import POLICY_MARKER_CODE_CHOICES
 from data.models.constants import RELATED_CHOICES
-from data.models.common import Contact, Population
+from data.models.common import Contact, UnHabitatIndicatorCountry
 from data.models.common import Country
 from data.models.common import Language
 from data.models.common import CollaborationType

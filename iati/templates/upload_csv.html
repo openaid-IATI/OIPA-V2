@@ -8,7 +8,17 @@
     <form action="{% url upload_data %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
-        <input type="submit" value="Upload CSV Population file">
+        <input type="submit" value="Upload CSV UnHabitatIndicatorCountry file">
     </form>
+    {% for key, value in test.items %}
+        {% if key|stringformat:"s" == "sNL-1-PPR-19884" %}
+            {{ key }} - {{ value.0 }}
+        {% else %}
+            {{ key }}
+        {% endif %}
+    {% endfor %}
+    {% if key in "NL-1-PPR-19884" %}
+        {{ key.value }}
+{% endif %}
 </body>
 </html>

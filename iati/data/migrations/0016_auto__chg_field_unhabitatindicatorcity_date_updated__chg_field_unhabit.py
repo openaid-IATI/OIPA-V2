@@ -8,46 +8,32 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding field 'Country.country_name'
-        db.add_column('data_country', 'country_name',
-                      self.gf('django.db.models.fields.CharField')(max_length=100, null=True, blank=True),
-                      keep_default=False)
 
-        # Adding field 'Country.dac_country_code'
-        db.add_column('data_country', 'dac_country_code',
-                      self.gf('django.db.models.fields.IntegerField')(null=True, blank=True),
-                      keep_default=False)
+        # Changing field 'UnHabitatIndicatorCity.date_updated'
+        db.alter_column('data_unhabitatindicatorcity', 'date_updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, null=True))
 
-        # Adding field 'Country.iso2'
-        db.add_column('data_country', 'iso2',
-                      self.gf('django.db.models.fields.CharField')(max_length=5, null=True, blank=True),
-                      keep_default=False)
+        # Changing field 'UnHabitatIndicatorCity.date_created'
+        db.alter_column('data_unhabitatindicatorcity', 'date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, null=True))
 
-        # Adding field 'Country.iso3'
-        db.add_column('data_country', 'iso3',
-                      self.gf('django.db.models.fields.CharField')(max_length=5, null=True, blank=True),
-                      keep_default=False)
+        # Changing field 'UnHabitatIndicatorCountry.date_updated'
+        db.alter_column('data_unhabitatindicatorcountry', 'date_updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, null=True))
 
-
-        # Changing field 'Country.dac_region_name'
-        db.alter_column('data_country', 'dac_region_name', self.gf('django.db.models.fields.CharField')(max_length=100, null=True))
+        # Changing field 'UnHabitatIndicatorCountry.date_created'
+        db.alter_column('data_unhabitatindicatorcountry', 'date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, null=True))
 
     def backwards(self, orm):
-        # Deleting field 'Country.country_name'
-        db.delete_column('data_country', 'country_name')
 
-        # Deleting field 'Country.dac_country_code'
-        db.delete_column('data_country', 'dac_country_code')
+        # Changing field 'UnHabitatIndicatorCity.date_updated'
+        db.alter_column('data_unhabitatindicatorcity', 'date_updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, default=datetime.datetime(2013, 2, 11, 0, 0)))
 
-        # Deleting field 'Country.iso2'
-        db.delete_column('data_country', 'iso2')
+        # Changing field 'UnHabitatIndicatorCity.date_created'
+        db.alter_column('data_unhabitatindicatorcity', 'date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, default=datetime.datetime(2013, 2, 11, 0, 0)))
 
-        # Deleting field 'Country.iso3'
-        db.delete_column('data_country', 'iso3')
+        # Changing field 'UnHabitatIndicatorCountry.date_updated'
+        db.alter_column('data_unhabitatindicatorcountry', 'date_updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, default=datetime.datetime(2013, 2, 11, 0, 0)))
 
-
-        # Changing field 'Country.dac_region_name'
-        db.alter_column('data_country', 'dac_region_name', self.gf('django.db.models.fields.CharField')(max_length=40, null=True))
+        # Changing field 'UnHabitatIndicatorCountry.date_created'
+        db.alter_column('data_unhabitatindicatorcountry', 'date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, default=datetime.datetime(2013, 2, 11, 0, 0)))
 
     models = {
         'data.activitystatistics': {
@@ -75,6 +61,12 @@ class Migration(SchemaMigration):
             'period_start': ('django.db.models.fields.DateField', [], {}),
             'type': ('django.db.models.fields.IntegerField', [], {'max_length': '2', 'null': 'True', 'blank': 'True'}),
             'value': ('django.db.models.fields.DecimalField', [], {'max_digits': '20', 'decimal_places': '2'})
+        },
+        'data.city': {
+            'Meta': {'object_name': 'City'},
+            'country': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['data.Country']"}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
         'data.collaborationtype': {
             'Meta': {'object_name': 'CollaborationType'},
@@ -285,6 +277,60 @@ class Migration(SchemaMigration):
             'transaction_type': ('django.db.models.fields.CharField', [], {'max_length': '55'}),
             'value': ('django.db.models.fields.DecimalField', [], {'max_digits': '20', 'decimal_places': '2'}),
             'value_date': ('django.db.models.fields.DateField', [], {})
+        },
+        'data.unhabitatindicatorcity': {
+            'Meta': {'object_name': 'UnHabitatIndicatorCity'},
+            'bottle_water': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'city': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['data.City']"}),
+            'composting_toilet': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'null': 'True', 'blank': 'True'}),
+            'date_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'improved_flush_toilet': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'improved_pit_latrine': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'improved_spring_surface_water': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'improved_toilet': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'improved_water': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'piped_water': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'pit_latrine_with_slab_or_covered_latrine': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'pit_latrine_without_slab': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'population': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
+            'protected_well': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'public_tap_pump_borehole': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'pump_borehole': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'rainwater': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'slum_proportion_living_urban': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'under_five_mortality_rate': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
+            'urban_slum_population': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
+            'year': ('django.db.models.fields.IntegerField', [], {}),
+            'year_plus_range': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'})
+        },
+        'data.unhabitatindicatorcountry': {
+            'Meta': {'object_name': 'UnHabitatIndicatorCountry'},
+            'bottle_water': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'composting_toilet': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'country': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['data.Country']"}),
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'null': 'True', 'blank': 'True'}),
+            'date_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'improved_flush_toilet': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'improved_pit_latrine': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'improved_spring_surface_water': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'improved_toilet': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'improved_water': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'piped_water': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'pit_latrine_with_slab_or_covered_latrine': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'pit_latrine_without_slab': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'population': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
+            'protected_well': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'public_tap_pump_borehole': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'pump_borehole': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'rainwater': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'slum_proportion_living_urban': ('django.db.models.fields.FloatField', [], {'null': 'True', 'blank': 'True'}),
+            'under_five_mortality_rate': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
+            'urban_slum_population': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
+            'year': ('django.db.models.fields.IntegerField', [], {}),
+            'year_plus_range': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'})
         },
         'data.vocabularytype': {
             'Meta': {'object_name': 'VocabularyType'},

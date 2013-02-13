@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from tastypie.models import ApiKey
-from data.models.common import  Population
+from data.models.common import  UnHabitatIndicatorCountry, UnHabitatIndicatorCity, City, Solid_waste_disposal_by_shelter_deprivation, DistributionCookingFuelByShelterDepr
 from utils.models import IATIXMLSource, Publisher, ParseSchedule
 
 
@@ -67,13 +67,21 @@ class PublisherAdmin(admin.ModelAdmin):
 class ParseScheduleAdmin(admin.ModelAdmin):
     list_display = ['iati_xml_source', 'get_interval_display',]
 
-class PopulationAdmin(admin.ModelAdmin):
+class UnHabitatIndicatorCountryAdmin(admin.ModelAdmin):
     search_fields = ['country__iso']
     list_filter = ['year', 'country',]
+
+class UnHabitatIndicatorCityAdmin(admin.ModelAdmin):
+    search_fields = ['city__name']
+    list_filter = ['city', 'year',]
 
 
 admin.site.register(Publisher, PublisherAdmin)
 admin.site.register(IATIXMLSource, IATIXMLSourceAdmin)
 admin.site.register(ParseSchedule, ParseScheduleAdmin)
-admin.site.register(Population, PopulationAdmin)
+admin.site.register(UnHabitatIndicatorCountry, UnHabitatIndicatorCountryAdmin)
+admin.site.register(UnHabitatIndicatorCity, UnHabitatIndicatorCityAdmin)
+admin.site.register(Solid_waste_disposal_by_shelter_deprivation)
+admin.site.register(DistributionCookingFuelByShelterDepr)
+admin.site.register(City)
 admin.site.register(ApiKey)

@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8720e6d0-6fc8-4771-b076-de910d943c93" name="Default" comment="-bug fix retrieving only one country Unhabitat Global Indicators, now retrieving all the data of all countries">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/iati.iml" afterPath="$PROJECT_DIR$/.idea/iati.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list id="8720e6d0-6fc8-4771-b076-de910d943c93" name="Default" comment="" />
+    <list default="true" id="0bd80857-c744-4260-9a1e-22559d9bb8f8" name="fuck off" comment="-first">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/migrations/0015_auto__add_unhabitatindicatorcity__add_unhabitatindicatorcountry__add_c.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/migrations/0016_auto__chg_field_unhabitatindicatorcity_date_updated__chg_field_unhabit.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/migrations/0017_auto__add_field_unhabitatindicatorcity_pop_urban_agglomerations__add_f.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/migrations/0019_auto__add_field_unhabitatindicatorcountry_pop_urban_area__add_field_un.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/migrations/0021_auto__add_field_unhabitatindicatorcity_improved_floor__add_field_unhab.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/migrations/0022_auto__add_solid_waste_disposal_by_shelter_deprivation.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/migrations/0023_auto__add_distributioncookingfuelbyshelterdepr.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/data/migrations/0011_auto__add_population.py" afterPath="$PROJECT_DIR$/data/migrations/0018_auto__add_field_unhabitatindicatorcity_avg_annual_rate_change_urban_ag.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/data/migrations/0012_auto__del_field_population_slum_proportion__del_field_population_slum_.py" afterPath="$PROJECT_DIR$/data/migrations/0020_auto__add_field_unhabitatindicatorcountry_improved_floor__add_field_un.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/v2/resources/model_resources.py" afterPath="$PROJECT_DIR$/api/v2/resources/model_resources.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/v2/resources/sub_model_resources.py" afterPath="$PROJECT_DIR$/api/v2/resources/sub_model_resources.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/migrations/0013_auto__add_field_country_dac_region_code__add_field_country_dac_region_.py" afterPath="$PROJECT_DIR$/data/migrations/0013_auto__add_field_country_dac_region_code__add_field_country_dac_region_.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/migrations/0014_auto__add_field_country_country_name__add_field_country_dac_country_co.py" afterPath="$PROJECT_DIR$/data/migrations/0014_auto__add_field_country_country_name__add_field_country_dac_country_co.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/models/activity.py" afterPath="$PROJECT_DIR$/data/models/activity.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/models/common.py" afterPath="$PROJECT_DIR$/data/models/common.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data_dump_4_2_2013_population_un_habitat.json" afterPath="$PROJECT_DIR$/data_dump_4_2_2013_population_un_habitat.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/iati/urls.py" afterPath="$PROJECT_DIR$/iati/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/upload_csv.html" afterPath="$PROJECT_DIR$/templates/upload_csv.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/admin.py" afterPath="$PROJECT_DIR$/utils/admin.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/forms.py" afterPath="$PROJECT_DIR$/utils/forms.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/models.py" afterPath="$PROJECT_DIR$/utils/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/views.py" afterPath="$PROJECT_DIR$/utils/views.py" />
     </list>
     <ignored path="iati.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,10 +48,75 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="178" column="12" selection-start="7650" selection-end="7650" vertical-scroll-proportion="-23.346153">
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="common.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/models/common.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="176" column="24" selection-start="9098" selection-end="9118" vertical-scroll-proportion="-17.307692">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="activity.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/models/activity.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="26" selection-start="2246" selection-end="2246" vertical-scroll-proportion="-13.538462">
+            <state line="8" column="0" selection-start="289" selection-end="289" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="local_settings.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/iati/local_settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="2457" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="230" column="260" selection-start="13446" selection-end="13446" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="49" column="30" selection-start="1707" selection-end="1721" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="upload_csv.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/upload_csv.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="20" selection-start="549" selection-end="549" vertical-scroll-proportion="0.31840795">
               <folding />
             </state>
           </provider>
@@ -40,81 +125,7 @@
       <file leaf-file-name="admin.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="37" selection-start="2165" selection-end="2165" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="common.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/models/common.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="40" selection-start="434" selection-end="440" vertical-scroll-proportion="-5.5384617">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sub_model_resources.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/v2/resources/sub_model_resources.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="26" selection-start="2110" selection-end="2110" vertical-scroll-proportion="-14.076923">
-              <folding>
-                <element signature="e#20#52#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="model_resources.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/api/v2/resources/model_resources.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="111" column="62" selection-start="4989" selection-end="4989" vertical-scroll-proportion="-0.79325515">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/v2/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="0" selection-start="160" selection-end="160" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/iati/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="0" selection-start="235" selection-end="235" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="importlib.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../lib/python2.7/site-packages/django/utils/importlib.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="0" selection-start="1179" selection-end="1179" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urlresolvers.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../lib/python2.7/site-packages/django/core/urlresolvers.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="322" column="0" selection-start="12803" selection-end="12803" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fields.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../lib/python2.7/site-packages/tastypie/fields.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="708" column="0" selection-start="25104" selection-end="25104" vertical-scroll-proportion="0.0">
+            <state line="84" column="56" selection-start="2946" selection-end="2946" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -133,22 +144,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/schema.xml" />
-        <option value="$PROJECT_DIR$/templates/search/search.html" />
-        <option value="$PROJECT_DIR$/iati/search_sites.py" />
-        <option value="$PROJECT_DIR$/api/v2/resources/common_model_resources.py" />
-        <option value="$PROJECT_DIR$/templates/upload_csv.html" />
-        <option value="$PROJECT_DIR$/iati/urls.py" />
-        <option value="$PROJECT_DIR$/utils/views.py" />
-        <option value="$PROJECT_DIR$/utils/models.py" />
-        <option value="$PROJECT_DIR$/iati/settings.py" />
-        <option value="$PROJECT_DIR$/data/models/activity.py" />
-        <option value="$PROJECT_DIR$/utils/forms.py" />
         <option value="$PROJECT_DIR$/api/v2/urls.py" />
-        <option value="$PROJECT_DIR$/utils/admin.py" />
-        <option value="$PROJECT_DIR$/data/models/common.py" />
+        <option value="$PROJECT_DIR$/api/v2/resources/common_model_resources.py" />
+        <option value="$PROJECT_DIR$/iati/urls.py" />
         <option value="$PROJECT_DIR$/api/v2/resources/sub_model_resources.py" />
         <option value="$PROJECT_DIR$/api/v2/resources/model_resources.py" />
+        <option value="$PROJECT_DIR$/data/models/test.py" />
+        <option value="$PROJECT_DIR$/data/migrations/0013_auto__add_field_country_dac_region_code__add_field_country_dac_region_.py" />
+        <option value="$PROJECT_DIR$/data/migrations/0014_auto__add_field_country_country_name__add_field_country_dac_country_co.py" />
+        <option value="$PROJECT_DIR$/data_dump_4_2_2013_population_un_habitat.json" />
+        <option value="$PROJECT_DIR$/data/models/activity.py" />
+        <option value="$PROJECT_DIR$/data/models/common.py" />
+        <option value="$PROJECT_DIR$/utils/models.py" />
+        <option value="$PROJECT_DIR$/utils/admin.py" />
+        <option value="$PROJECT_DIR$/utils/forms.py" />
+        <option value="$PROJECT_DIR$/utils/views.py" />
+        <option value="$PROJECT_DIR$/templates/upload_csv.html" />
       </list>
     </option>
   </component>
@@ -184,16 +195,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -205,50 +206,6 @@
               <option name="myItemId" value="External Libraries" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt; Python 2.7.2 virtualenv at ~/virtualenvs/oipa &gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iati" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt; Python 2.7.2 virtualenv at ~/virtualenvs/oipa &gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="site-packages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iati" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt; Python 2.7.2 virtualenv at ~/virtualenvs/oipa &gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="site-packages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tastypie" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -284,69 +241,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="migrations" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iati" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iati" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iati" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iati" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="search" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iati" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iati" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="search" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="indexes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -406,6 +301,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrations" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="iati" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="iati" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="api" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -428,26 +341,14 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
           <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iati" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iati" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -619,8 +520,9 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="8720e6d0-6fc8-4771-b076-de910d943c93" name="Default" comment="" />
+      <changelist id="0bd80857-c744-4260-9a1e-22559d9bb8f8" name="fuck off" comment="" />
       <created>1349697217213</created>
-      <updated>1349697217213</updated>
+      <updated>1360145344624</updated>
     </task>
     <task id="LOCAL-00001" summary="-added data importer for five tables (per country)&#10;-added 5 data tables unhabitat to show:&#10;  -slum population&#10;  -population&#10;  -water services&#10;  -proportion slum population&#10;  -mortality numbers&#10;">
       <created>1359561751274</created>
@@ -638,7 +540,39 @@
       <created>1360063601848</created>
       <updated>1360063601848</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="-bug fix retrieving only one country Unhabitat Global Indicators, now retrieving all the data of all countries">
+      <created>1360073105365</created>
+      <updated>1360073105365</updated>
+    </task>
+    <task id="LOCAL-00006" summary="-removed sentry setting in global settings">
+      <created>1360145332817</created>
+      <updated>1360145332817</updated>
+    </task>
+    <task id="LOCAL-00008" summary="-import everything from local settings">
+      <created>1360153743051</created>
+      <updated>1360153743051</updated>
+    </task>
+    <task id="LOCAL-00009" summary="-update country model information included from: https://github.com/okfn/iatitools/blob/master/mapping/ISO-DAC-Countries-Regions.csv&#10;-added import for above region info&#10;-added API view api/v2/indicators/?sector=689&#10;">
+      <created>1360160337571</created>
+      <updated>1360160337571</updated>
+    </task>
+    <task id="LOCAL-00010" summary="-fix bug upload redirect url">
+      <created>1360160584620</created>
+      <updated>1360160584620</updated>
+    </task>
+    <task id="LOCAL-00011" summary="add year and country to filter">
+      <created>1360162013866</created>
+      <updated>1360162013866</updated>
+    </task>
+    <task id="LOCAL-00012" summary="-add iso code as well, with list arguments">
+      <created>1360164276891</created>
+      <updated>1360164276891</updated>
+    </task>
+    <task id="LOCAL-00013" summary="-support for saving API keys when new users are registered&#10;-only need to support authentication method = ApiKeyAuthentication and we can integrate API authentication">
+      <created>1360167801583</created>
+      <updated>1360167801583</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -663,24 +597,24 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="22" width="1916" height="1178" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32923368" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4588458" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293872" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30850503" sideWeight="0.704825" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20588236" sideWeight="0.6830653" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31693473" sideWeight="0.4971223" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21016043" sideWeight="0.68495744" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3150426" sideWeight="0.4971223" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5561427" sideWeight="0.49784172" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32923368" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32923368" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32992327" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -721,7 +655,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="-add table reference to Unhabitat global indicators" />
+    <option name="LAST_COMMIT_MESSAGE" value="-support for saving API keys when new users are registered&#10;-only need to support authentication method = ApiKeyAuthentication and we can integrate API authentication" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -737,115 +671,135 @@
     <MESSAGE value="-added data importer for five tables (per country)&#10;-added 5 data tables unhabitat to show:&#10;  -slum population&#10;  -population&#10;  -water services&#10;  -proportion slum population&#10;  -mortality numbers&#10;" />
     <MESSAGE value="-update unhabitat indicators especially five-mortality number&#10;-changed admin view Unhabitat indicators for better navigation&#10;-added unhabitat global indicators to IATA api&#10; -fix bug in upload function" />
     <MESSAGE value="-add table reference to Unhabitat global indicators" />
+    <MESSAGE value="-bug fix retrieving only one country Unhabitat Global Indicators, now retrieving all the data of all countries" />
+    <MESSAGE value="-removed sentry setting in global settings" />
+    <MESSAGE value="-import everything from local settings" />
+    <MESSAGE value="-update country model information included from: https://github.com/okfn/iatitools/blob/master/mapping/ISO-DAC-Countries-Regions.csv&#10;-added import for above region info&#10;-added API view api/v2/indicators/?sector=689&#10;" />
+    <MESSAGE value="-fix bug upload redirect url" />
+    <MESSAGE value="add year and country to filter" />
+    <MESSAGE value="-add iso code as well, with list arguments" />
+    <MESSAGE value="-support for saving API keys when new users are registered&#10;-only need to support authentication method = ApiKeyAuthentication and we can integrate API authentication" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="20" />
+      <option name="time" value="56" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/utils/forms.py">
+    <entry file="file://$PROJECT_DIR$/data/migrations/0013_auto__add_field_country_dac_region_code__add_field_country_dac_region_.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="0" selection-start="2909" selection-end="2909" vertical-scroll-proportion="0.0">
+        <state line="228" column="0" selection-start="16547" selection-end="16547" vertical-scroll-proportion="-6.730769">
+          <folding>
+            <element signature="e#24#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/migrations/0014_auto__add_field_country_country_name__add_field_country_dac_country_co.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="10" selection-start="2452" selection-end="2452" vertical-scroll-proportion="6.1538463">
+          <folding>
+            <element signature="e#24#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_dump_4_2_2013_population_un_habitat.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="28" selection-start="513" selection-end="513" vertical-scroll-proportion="-4.6545453">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/urls.py">
+    <entry file="file://$PROJECT_DIR$/iati/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/iati/local_settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/iati/settings_deployment.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/iati/wsgi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../lib/python2.7/site-packages/tastypie/fields.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="708" column="0" selection-start="25104" selection-end="25104" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../lib/python2.7/site-packages/tastypie/resources.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="664" column="8" selection-start="24879" selection-end="24879" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/iati/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="235" selection-end="235" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../lib/python2.7/site-packages/django/utils/importlib.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="0" selection-start="1179" selection-end="1179" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../lib/python2.7/site-packages/django/core/urlresolvers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="322" column="0" selection-start="12803" selection-end="12803" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/v2/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="160" selection-end="160" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="37" selection-start="2165" selection-end="2165" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/models/common.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="40" selection-start="434" selection-end="440" vertical-scroll-proportion="-5.5384617">
+        <state line="0" column="0" selection-start="0" selection-end="2457" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/models/activity.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="26" selection-start="2246" selection-end="2246" vertical-scroll-proportion="-13.538462">
+        <state line="8" column="0" selection-start="289" selection-end="289" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/v2/resources/sub_model_resources.py">
+    <entry file="file://$PROJECT_DIR$/utils/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="26" selection-start="2110" selection-end="2110" vertical-scroll-proportion="-14.076923">
+        <state line="178" column="12" selection-start="7650" selection-end="7650" vertical-scroll-proportion="-23.346153">
           <folding>
-            <element signature="e#20#52#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/v2/resources/model_resources.py">
+    <entry file="file://$PROJECT_DIR$/utils/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="111" column="62" selection-start="4989" selection-end="4989" vertical-scroll-proportion="-0.79325515">
+        <state line="84" column="56" selection-start="2946" selection-end="2946" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../lib/python2.7/site-packages/django/utils/autoreload.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="100" column="35" selection-start="3895" selection-end="3895" vertical-scroll-proportion="0.5164993">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/SocketServer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="225" column="0" selection-start="8018" selection-end="8018" vertical-scroll-proportion="0.3328551">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="230" column="260" selection-start="13446" selection-end="13446" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/os.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="555" column="33" selection-start="17959" selection-end="17959" vertical-scroll-proportion="0.5394548">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/models/common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="176" column="24" selection-start="9098" selection-end="9118" vertical-scroll-proportion="-17.307692">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="30" selection-start="1707" selection-end="1721" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/upload_csv.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="20" selection-start="549" selection-end="549" vertical-scroll-proportion="0.31840795">
           <folding />
         </state>
       </provider>
