@@ -162,11 +162,11 @@ def update_publisher_records(sender, instance, created, **kwargs):
 post_save.connect(update_publisher_records, sender=Publisher)
 
 type_unhabitat_uploads = (
-    (1, _('UnHabitatIndicatorCountrys')),
-    (2, _('Urban Slum UnHabitatIndicatorCountry')),
-    (3, _('Proportion of urban population living in slum area')),
-    (4, _('Under-five mortality rate')),
-    (5, _('Improved water source and improved toilet')),
+    (1, _('Table 4: Total Population at Mid-Year by Major Area, Region and Country, 1950-2050 (thousands)')),
+    (2, _('Table 7: Urban Slum UnHabitatIndicatorCountry')),
+    (3, _('Table 7: Proportion of urban population living in slum area')),
+    (4, _('Table 9: Under-five mortality rate')),
+    (5, _('Table 10: Improved water source and improved toilet')),
     (6, _('ISO DAC Countries Regions')),
     (7, _('Table 1- city population of urban agglomerations with 750k inhabitants or more')),
     (8, _('Table 2: Average annual rate of change of the Total Population by major area, Region and Country, 1950-2050 (%)')),
@@ -175,30 +175,55 @@ type_unhabitat_uploads = (
     (11, _('Table 6: Population of Rural and urban areas and percentage urban, 2007')),
     (12, _('Table 11: Access to improved toilet,improved floor, sufficient living, connection to telephone, connection to electricity.')),
     (13, _('Table 12: Table 12: Improved Services (City Level)')),
-    (14, _('Table 13: Solid waste disposal by shelter deprivation')),
-    (15, _('Table 14: Percent distribution of type of cooking fuel by shelter deprivation'))
+#    (14, _('Table 13: Solid waste disposal by shelter deprivation')),
+    (15, _('Table 14: Percent distribution of type of cooking fuel by shelter deprivation')),
+    (16, _('Table 15: Education; Literacy Rates by Shelter Deprivation (Woman)')),
+    (17, _('Table 16: Enrolmen in primary education in urban and rural areas male')),
+    (26, _('Table 16: Enrolmen in primary education in urban and rural areas female')),
 
+    (18, _('Table 17: Enrolment in primary education  (female and male)(City)')),
+#    (19, _('Table 18: Percentage of female aged 15-24 years unemployed by shelter depriviation')),
+#    (20, _('Table 18: Percentage of male aged 15-24 years unemployed by shelter depriviation')),
 
+#    (21, _('Table 19: Percentage of female aged 15-24 years in informal employment by shelter depriviation')),
+#    (22, _('Table 26: Percentage of children  with Diarhea')),
+#    (23, _('Table 27: Percentage of women who were attended to during delivery by skilled personnel')),
+#    (24, _('Table 28: Percentage of Malnourished children')),
+#    (25, _('Table 28: Percentage of children immunised against Measles')),
+    (27, _('Table 29: Percentage of children with diarrhea in last two weeks, ARI, fever in last 2 week')),
+    (28, _('Table 30: Percentage of Malnourished and of Children immunised against measles'))
+)
 
-    )
 class UnHabitatParserLog(models.Model):
     csv_file = models.FileField(upload_to='uploads/')
     type_upload = models.IntegerField(choices=type_unhabitat_uploads)
-    ip_address = models.IPAddressField()
+    ip_address = models.IPAddressField(null=True, blank=True)
     message = models.CharField(max_length=255, null=True, blank=True)
-    success = models.BooleanField(default=False)
+    total_errors = models.IntegerField(default=0)
+    total_processed = models.IntegerField(default=0)
+    date_created = models.DateTimeField(auto_now_add=True, editable=True)
+    date_updated = models.DateTimeField(auto_now=True, editable=True)
+
+    class Meta:
+        app_label = "utils"
+
+class UnhabitatRecordLog(models.Model):
+    parser = models.ForeignKey(UnHabitatParserLog)
 
     country_iso = models.CharField(max_length=255)
+    message = models.CharField(max_length=255, null=True, blank=True)
+    success = models.BooleanField(default=False)
+    country_success = models.CharField(max_length=255, null=True, blank=True)
+    city_success = models.CharField(max_length=255, null=True, blank=True)
 
-    country_name = models.CharField(max_length=255)
-    year = models.IntegerField(max_length=4)
+    country_input_name = models.CharField(max_length=255)
+    city_input_name = models.CharField(max_length=255, null=True, blank=True)
+    raw_data = models.CharField(max_length=255, null=True, blank=True)
+
+    year = models.IntegerField(max_length=4, null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True, editable=False)
     date_updated = models.DateTimeField(auto_now=True, editable=False)
 
-class CountryToIsoLog(models.Model):
-    country_iso = models.CharField(max_length=255)
-    message = models.CharField(max_length=255, null=True, blank=True)
-    success = models.BooleanField(default=False)
-    country_name = models.CharField(max_length=255)
-    date_created = models.DateTimeField(auto_now_add=True, editable=False)
-    date_updated = models.DateTimeField(auto_now=True, editable=False)
+    class Meta:
+        app_label = "utils"
+

@@ -7,8 +7,8 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from tastypie.models import ApiKey
-from data.models.common import  UnHabitatIndicatorCountry, UnHabitatIndicatorCity, City, Solid_waste_disposal_by_shelter_deprivation, DistributionCookingFuelByShelterDepr
-from utils.models import IATIXMLSource, Publisher, ParseSchedule
+from data.models.common import  UnHabitatIndicatorCountry, UnHabitatIndicatorCity, City, TypeDeprivationCity, TypeDeprivationCountry
+from utils.models import IATIXMLSource, Publisher, ParseSchedule, UnHabitatParserLog, UnhabitatRecordLog
 
 
 class IATIXMLSourceInline(admin.TabularInline):
@@ -75,13 +75,22 @@ class UnHabitatIndicatorCityAdmin(admin.ModelAdmin):
     search_fields = ['city__name']
     list_filter = ['city', 'year',]
 
+class TypeDeprivationCityAdmin(admin.ModelAdmin):
+    raw_id_fields = ('indicator',)
+
+class TypeDeprivationCountryAdmin(admin.ModelAdmin):
+    raw_id_fields = ('indicator',)
+
+
 
 admin.site.register(Publisher, PublisherAdmin)
 admin.site.register(IATIXMLSource, IATIXMLSourceAdmin)
 admin.site.register(ParseSchedule, ParseScheduleAdmin)
 admin.site.register(UnHabitatIndicatorCountry, UnHabitatIndicatorCountryAdmin)
 admin.site.register(UnHabitatIndicatorCity, UnHabitatIndicatorCityAdmin)
-admin.site.register(Solid_waste_disposal_by_shelter_deprivation)
-admin.site.register(DistributionCookingFuelByShelterDepr)
+admin.site.register(TypeDeprivationCity, TypeDeprivationCityAdmin)
+admin.site.register(TypeDeprivationCountry, TypeDeprivationCountryAdmin)
 admin.site.register(City)
 admin.site.register(ApiKey)
+admin.site.register(UnHabitatParserLog)
+admin.site.register(UnhabitatRecordLog)

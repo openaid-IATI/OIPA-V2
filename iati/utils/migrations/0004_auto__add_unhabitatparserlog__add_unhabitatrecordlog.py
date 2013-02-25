@@ -8,59 +8,48 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'SlumParserLog'
-        db.create_table('utils_slumparserlog', (
+        # Adding model 'UnHabitatParserLog'
+        db.create_table('utils_unhabitatparserlog', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('csv_file', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('ip_address', self.gf('django.db.models.fields.IPAddressField')(max_length=15)),
+            ('csv_file', self.gf('django.db.models.fields.files.FileField')(max_length=100)),
+            ('type_upload', self.gf('django.db.models.fields.IntegerField')()),
+            ('ip_address', self.gf('django.db.models.fields.IPAddressField')(max_length=15, null=True, blank=True)),
             ('message', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank=True)),
-            ('success', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('slum_population_diff', self.gf('django.db.models.fields.IntegerField')()),
-            ('slum_proportion_diff', self.gf('django.db.models.fields.FloatField')()),
-            ('population_diff', self.gf('django.db.models.fields.IntegerField')(null=True, blank=True)),
-            ('slum_proportion', self.gf('django.db.models.fields.FloatField')()),
-            ('slum_population', self.gf('django.db.models.fields.IntegerField')()),
-            ('population', self.gf('django.db.models.fields.IntegerField')()),
-            ('country_iso', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('country_name', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('year', self.gf('django.db.models.fields.IntegerField')(max_length=4)),
+            ('total_errors', self.gf('django.db.models.fields.IntegerField')(default=0)),
+            ('total_processed', self.gf('django.db.models.fields.IntegerField')(default=0)),
             ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
             ('date_updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
         ))
-        db.send_create_signal('utils', ['SlumParserLog'])
+        db.send_create_signal('utils', ['UnHabitatParserLog'])
 
-        # Adding model 'CountryToIsoLog'
-        db.create_table('utils_countrytoisolog', (
+        # Adding model 'UnhabitatRecordLog'
+        db.create_table('utils_unhabitatrecordlog', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('parser', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['utils.UnHabitatParserLog'])),
             ('country_iso', self.gf('django.db.models.fields.CharField')(max_length=255)),
             ('message', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank=True)),
             ('success', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('country_name', self.gf('django.db.models.fields.CharField')(max_length=255)),
+            ('country_success', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank=True)),
+            ('city_success', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank=True)),
+            ('country_input_name', self.gf('django.db.models.fields.CharField')(max_length=255)),
+            ('city_input_name', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank=True)),
+            ('raw_data', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank=True)),
+            ('year', self.gf('django.db.models.fields.IntegerField')(max_length=4, null=True, blank=True)),
             ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
             ('date_updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
         ))
-        db.send_create_signal('utils', ['CountryToIsoLog'])
+        db.send_create_signal('utils', ['UnhabitatRecordLog'])
 
 
     def backwards(self, orm):
-        # Deleting model 'SlumParserLog'
-        db.delete_table('utils_slumparserlog')
+        # Deleting model 'UnHabitatParserLog'
+        db.delete_table('utils_unhabitatparserlog')
 
-        # Deleting model 'CountryToIsoLog'
-        db.delete_table('utils_countrytoisolog')
+        # Deleting model 'UnhabitatRecordLog'
+        db.delete_table('utils_unhabitatrecordlog')
 
 
     models = {
-        'utils.countrytoisolog': {
-            'Meta': {'object_name': 'CountryToIsoLog'},
-            'country_iso': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-            'country_name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
-            'date_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'message': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
-            'success': ('django.db.models.fields.BooleanField', [], {'default': 'False'})
-        },
         'utils.iatixmlsource': {
             'Meta': {'ordering': "['ref']", 'object_name': 'IATIXMLSource'},
             'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
@@ -86,24 +75,33 @@ class Migration(SchemaMigration):
             'org_abbreviate': ('django.db.models.fields.CharField', [], {'max_length': '55', 'null': 'True', 'blank': 'True'}),
             'org_name': ('django.db.models.fields.CharField', [], {'max_length': '255'})
         },
-        'utils.slumparserlog': {
-            'Meta': {'object_name': 'SlumParserLog'},
-            'country_iso': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-            'country_name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
-            'csv_file': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
+        'utils.unhabitatparserlog': {
+            'Meta': {'object_name': 'UnHabitatParserLog'},
+            'csv_file': ('django.db.models.fields.files.FileField', [], {'max_length': '100'}),
             'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'date_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'ip_address': ('django.db.models.fields.IPAddressField', [], {'max_length': '15'}),
+            'ip_address': ('django.db.models.fields.IPAddressField', [], {'max_length': '15', 'null': 'True', 'blank': 'True'}),
             'message': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
-            'population': ('django.db.models.fields.IntegerField', [], {}),
-            'population_diff': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
-            'slum_population': ('django.db.models.fields.IntegerField', [], {}),
-            'slum_population_diff': ('django.db.models.fields.IntegerField', [], {}),
-            'slum_proportion': ('django.db.models.fields.FloatField', [], {}),
-            'slum_proportion_diff': ('django.db.models.fields.FloatField', [], {}),
+            'total_errors': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
+            'total_processed': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
+            'type_upload': ('django.db.models.fields.IntegerField', [], {})
+        },
+        'utils.unhabitatrecordlog': {
+            'Meta': {'object_name': 'UnhabitatRecordLog'},
+            'city_input_name': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
+            'city_success': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
+            'country_input_name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
+            'country_iso': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
+            'country_success': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'date_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'message': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
+            'parser': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['utils.UnHabitatParserLog']"}),
+            'raw_data': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
             'success': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'year': ('django.db.models.fields.IntegerField', [], {'max_length': '4'})
+            'year': ('django.db.models.fields.IntegerField', [], {'max_length': '4', 'null': 'True', 'blank': 'True'})
         }
     }
 

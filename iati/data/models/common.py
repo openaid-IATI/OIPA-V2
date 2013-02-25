@@ -38,7 +38,6 @@ class Country(models.Model):
 
     @staticmethod
     def find_iso_country(country_name):
-        import pdb
         countries = Country.objects.all()
         try:
             for country in countries:
@@ -64,6 +63,62 @@ class City(models.Model):
         app_label = "data"
         verbose_name = _("City")
         verbose_name_plural = _("Cities")
+
+types_deprivation = (
+    (1, _('Table 13 matrix waste disposal by shelter deprivation')),
+    (2, _('Table 14: Percent distribution of type of cooking fuel by shelter deprivation')),
+    (3, _('Table 15: Education; Literacy Rates by Shelter Deprivation (Woman)')),
+    (4, _('Table 16: Enrolmen in primary education in urban and rural areas (female and male)')),
+    (6, _('Table 18: Percentage of female and male aged 15-24 years unemployed by shelter depriviation')),
+    (7, _('Table 19: Percentage of female and male aged 15-24 years in informal employment by shelter depriviation')),
+    (8, _('Table 26: Percentage of children  with Diarhea')),
+    (9, _('Table 27: Percentage of women who were attended to during delivery by skilled personnel')),
+    (10, _('Table 28: Percentage of Malnourished children and Percentage of children immunised against Measles')),
+)
+class TypeDeprivation(models.Model):
+    urban = models.FloatField(blank=True, null=True, verbose_name=_('urban'))
+    total = models.FloatField(blank=True, null=True, verbose_name=_('total'))
+
+    rural = models.FloatField(blank=True, null=True, verbose_name=_('rural'))
+
+
+    non_slum_household = models.FloatField(blank=True, null=True, verbose_name=_('non slum household'))
+    slum_household = models.FloatField(blank=True, null=True, verbose_name=_('slum household'))
+    one_shelter_deprivation = models.FloatField(blank=True, null=True, verbose_name=_('one shelter deprivation'))
+    two_shelter_deprivations = models.FloatField(blank=True, null=True, verbose_name=_('two shelter deprivations'))
+    three_shelter_deprivations = models.FloatField(blank=True, null=True, verbose_name=_('three shelter deprivations'))
+    four_shelter_deprivations = models.FloatField(blank=True, null=True, verbose_name=_('four shelter deprivations'))
+
+    gender = models.IntegerField(blank=True, null=True, choices=((1, _('Man')), (2, _('Woman'))))
+
+    extra_type_name = models.CharField(max_length=200, null=True, blank=True, verbose_name=_('Extra type field for matrix tables'))
+
+    is_matrix = models.BooleanField(default=False)
+
+    type_deprivation = models.IntegerField(choices=types_deprivation)
+
+    class Meta:
+        abstract = True
+
+class TypeDeprivationCity(TypeDeprivation):
+    indicator = models.ForeignKey('UnHabitatIndicatorCity')
+    def __unicode__(self):
+        return self.get_type_deprivation_display()
+
+    class Meta:
+        app_label = "data"
+        verbose_name = _("Type Deprivation City")
+        verbose_name_plural = _('Type Deprivations City')
+
+class TypeDeprivationCountry(TypeDeprivation):
+    indicator = models.ForeignKey('UnHabitatIndicatorCountry')
+    def __unicode__(self):
+        return self.get_type_deprivation_display()
+
+    class Meta:
+        app_label = "data"
+        verbose_name = _("Type Deprivation Country")
+        verbose_name_plural = _('Type Deprivation Countries')
 
 
 class UnhabitatIndicator(models.Model):
@@ -106,6 +161,11 @@ class UnhabitatIndicator(models.Model):
     sufficient_living = models.FloatField(blank=True, null=True, verbose_name=_('Table 11 - sufficient living'))
     has_telephone = models.FloatField(blank=True, null=True, verbose_name=_('Table 11 - has telephone'))
     connection_to_electricity = models.FloatField(blank=True, null=True, verbose_name=_('Table 11 - connection to electricity'))
+
+    #Table 17:     enrollment_male_primary_education = models.FloatField(blank=True, null=True, verbose_name=_('Table 17: Enrolment in primary education male'))
+    enrollment_female_primary_education = models.FloatField(blank=True, null=True, verbose_name=_('Table 17: Enrolment in primary education female'))
+    enrollment_male_primary_education = models.FloatField(blank=True, null=True, verbose_name=_('Table 17: Enrolment in primary education male'))
+
 
 
 
@@ -151,43 +211,35 @@ class UnHabitatIndicatorCountry(UnhabitatIndicator):
         verbose_name = _("Unhabitat Global Indicator per country")
         verbose_name_plural = _('Unhabitat Global Indicators per country')
 
-#Table 13 matrix waste disposal by shelter deprivation
-class Solid_waste_disposal_by_shelter_deprivation(models.Model):
-    unhabitat_indicator_country = models.ForeignKey(UnHabitatIndicatorCountry)
-
-    kind_of_soil_waste_disposal = models.CharField(max_length=100, verbose_name=_('Kind of soil waste disposal'))
-    urban = models.FloatField(blank=True, null=True, verbose_name=_('urban'))
-    non_slum_household = models.FloatField(blank=True, null=True, verbose_name=_('non slum household'))
-    slum_household = models.FloatField(blank=True, null=True, verbose_name=_('slum household'))
-    one_shelter_deprivation = models.FloatField(blank=True, null=True, verbose_name=_('one shelter deprivation'))
-    two_shelter_deprivations = models.FloatField(blank=True, null=True, verbose_name=_('two shelter deprivations'))
-
-    def __unicode__(self):
-        return "%s from %s" % (self.kind_of_soil_waste_disposal, self.unhabitat_indicator_country.country.country_name)
-
-    class Meta:
-        app_label = "data"
-        verbose_name = _("matrix waste disposal by shelter deprivation")
-        verbose_name_plural = _('matrix waste disposals by shelter deprivation')
-
-#Table 14: Percent distribution of type of cooking fuel by shelter deprivation
-class DistributionCookingFuelByShelterDepr(models.Model):
-    unhabitat_indicator_country = models.ForeignKey(UnHabitatIndicatorCountry)
-
-    type_of_cooking_fuel = models.CharField(max_length=100, verbose_name=_('Type of cooking fuel'))
-    urban = models.FloatField(blank=True, null=True, verbose_name=_('urban'))
-    non_slum_household = models.FloatField(blank=True, null=True, verbose_name=_('non slum household'))
-    slum_household = models.FloatField(blank=True, null=True, verbose_name=_('slum household'))
-    one_shelter_deprivation = models.FloatField(blank=True, null=True, verbose_name=_('one shelter deprivation'))
-    two_shelter_deprivations = models.FloatField(blank=True, null=True, verbose_name=_('two shelter deprivations'))
-
-    def __unicode__(self):
-        return "%s from %s" % (self.type_of_cooking_fuel, self.unhabitat_indicator_country.country.country_name)
-
-    class Meta:
-        app_label = "data"
-        verbose_name = _("Table 14: Percent distribution of type of cooking fuel by shelter deprivation")
-        verbose_name_plural = _('Table 14: Percent distribution of type of cooking fuel by shelter deprivation')
+##Table 13 matrix waste disposal by shelter deprivation
+#class SolidWastDisposalShelterDeprivation(models.Model):
+#    unhabitat_indicator_country = models.ForeignKey(UnHabitatIndicatorCountry)
+#
+#    kind_of_soil_waste_disposal = models.CharField(max_length=100, verbose_name=_('Kind of soil waste disposal'))
+#
+#
+#    def __unicode__(self):
+#        return "%s from %s" % (self.kind_of_soil_waste_disposal, self.unhabitat_indicator_country.country.country_name)
+#
+#    class Meta:
+#        app_label = "data"
+#        verbose_name = _("Table 13: matrix waste disposal by shelter deprivation")
+#        verbose_name_plural = _('Table 13: matrix waste disposals by shelter deprivation')
+#
+##Table 14: Percent distribution of type of cooking fuel by shelter deprivation
+#class DistributionCookingFuelByShelterDepr(models.Model):
+#    unhabitat_indicator_country = models.ForeignKey(UnHabitatIndicatorCountry)
+#
+#    type_of_cooking_fuel = models.CharField(max_length=100, verbose_name=_('Type of cooking fuel'))
+#
+#
+#    def __unicode__(self):
+#        return "%s from %s" % (self.type_of_cooking_fuel, self.unhabitat_indicator_country.country.country_name)
+#
+#    class Meta:
+#        app_label = "data"
+#        verbose_name = _("Table 14: Percent distribution of type of cooking fuel by shelter deprivation")
+#        verbose_name_plural = _('Table 14: Percent distribution of type of cooking fuel by shelter deprivation')
 
 class UnHabitatIndicatorCity(UnhabitatIndicator):
     """
@@ -207,6 +259,18 @@ class UnHabitatIndicatorCity(UnhabitatIndicator):
     #Table 3: Average annual rate of change of urban agglomerations with 750,000 inhabitants or more in 2007, by country, 1950-2025
     avg_annual_rate_change_urban_agglomerations = models.FloatField(blank=True, null=True, verbose_name=_('Table 3: Average annual rate of change of urban agglomerations with 750,000 inhabitants'))
 
+    #Table 29: Percentage of children with diarrhea in last two weeks, ARI, fever in last 2 weeks
+    diarrhea_last_two_weeks = models.FloatField(blank=True, null=True, verbose_name=_('Table 29: diarrhea in last two weeks'))
+    diarrhea_had_ari = models.FloatField(blank=True, null=True, verbose_name=_('Table 29: had ari'))
+    fever_last_two_weeks = models.FloatField(blank=True, null=True, verbose_name=_('Table 29: fever in last two weeks'))
+
+    #Table 30: Percentage of Malnourished and of Children immunised against measles
+    perc_malnourished =models.FloatField(blank=True, null=True, verbose_name=_('Table 30: Percentage of Malnourished'))
+    perc_measles =models.FloatField(blank=True, null=True, verbose_name=_('Table 30: Children immunised against measles'))
+
+
+
+
 
     def __unicode__(self):
         return "%s of %s" % (self.year, self.city.name)
@@ -215,6 +279,8 @@ class UnHabitatIndicatorCity(UnhabitatIndicator):
         app_label = "data"
         verbose_name = _("Unhabitat Global Indicator per city")
         verbose_name_plural = _('Unhabitat Global Indicators per city')
+
+
 
 
 class Region(models.Model):
