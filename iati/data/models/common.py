@@ -113,7 +113,11 @@ class TypeDeprivationCity(TypeDeprivation):
 class TypeDeprivationCountry(TypeDeprivation):
     indicator = models.ForeignKey('UnHabitatIndicatorCountry')
     def __unicode__(self):
-        return self.get_type_deprivation_display()
+        if self.extra_type_name:
+            return "year: %s, country: %s, type %s, table %s" % (self.indicator.year, self.indicator.country, self.extra_type_name, self.get_type_deprivation_display())
+        else:
+            return "year: %s, country: %s, table %s" % (self.indicator.year, self.indicator.country, self.get_type_deprivation_display())
+
 
     class Meta:
         app_label = "data"
@@ -135,7 +139,9 @@ class UnhabitatIndicator(models.Model):
 
     #Table 7: Urban slum population at mid-year
     urban_slum_population = models.IntegerField(blank=True, null=True, verbose_name=_('Table 7: Urban slum population at mid-year'))
-    slum_proportion_living_urban = models.FloatField(blank=True, null=True, verbose_name=_('Table 7: Urban population living in slum area'))
+    slum_proportion_living_urban = models.FloatField(blank=True, null=True, verbose_name=_('Table 7: proportion of urban population living'))
+    urban_population = models.FloatField(blank=True, null=True, verbose_name=_('Table 7: urban population'))
+
 
     #Table 9: Under-Five mortality rate
     under_five_mortality_rate = models.IntegerField(blank=True, null=True, verbose_name=_('Table 9: Under-Five mortality rate'))

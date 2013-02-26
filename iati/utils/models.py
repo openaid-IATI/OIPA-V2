@@ -165,6 +165,7 @@ type_unhabitat_uploads = (
     (1, _('Table 4: Total Population at Mid-Year by Major Area, Region and Country, 1950-2050 (thousands)')),
     (2, _('Table 7: Urban Slum UnHabitatIndicatorCountry')),
     (3, _('Table 7: Proportion of urban population living in slum area')),
+    (29, _('Table 7: Urban Population')),
     (4, _('Table 9: Under-five mortality rate')),
     (5, _('Table 10: Improved water source and improved toilet')),
     (6, _('ISO DAC Countries Regions')),
@@ -218,7 +219,7 @@ class UnhabitatRecordLog(models.Model):
 
     country_input_name = models.CharField(max_length=255)
     city_input_name = models.CharField(max_length=255, null=True, blank=True)
-    raw_data = models.CharField(max_length=255, null=True, blank=True)
+    raw_data = models.TextField(null=True, blank=True)
 
     year = models.IntegerField(max_length=4, null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True, editable=False)
@@ -226,4 +227,7 @@ class UnhabitatRecordLog(models.Model):
 
     class Meta:
         app_label = "utils"
+
+    def __unicode__(self):
+        return self.raw_data
 

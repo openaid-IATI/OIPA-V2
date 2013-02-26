@@ -28,7 +28,7 @@ class SaveCsvData(object):
     countries = {}
     #three different type of documents supported:
     config_type_table = {}
-    config_type_table['save_year_in_column_data'] = [1,2,3,4,7,8,9,10]
+    config_type_table['save_year_in_column_data'] = [1,2,3,4,7,8,9,10, 29]
     config_type_table['save_year_in_row_data'] = []
     config_type_table['save_overall_data'] = [6]
     #temp object to store the uploaded file, and close when the document has been processed
@@ -211,6 +211,8 @@ class SaveCsvData(object):
                             pop.under_five_mortality_rate = None
                         else:
                             pop.under_five_mortality_rate = value
+                    elif self.type_upload == 29:
+                        pop.urban_population = self.return_value_else_none(value)
                     #Table 1- city population of urban agglomerations with 750k inhabitants or more
                     elif self.type_upload == 7:
                         try:
@@ -303,7 +305,7 @@ class SaveCsvData(object):
             pop.save()
             #Table 11: Access to improved toilet,improved floor, sufficient living, connection to telephone, connection to electricity.
         if self.type_upload == 12:
-            pop, _ = UnHabitatIndicatorCountry.objects.get_or_create(country=country, year=2007)
+            pop, _ = UnHabitatIndicatorCountry.objects.get_or_create(country=country, year=line['Year'])
 
 
             pop.improved_floor = self.return_value_else_none(line['Improved floor'].replace(',',''), type="float")

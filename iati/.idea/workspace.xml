@@ -2,19 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list id="8720e6d0-6fc8-4771-b076-de910d943c93" name="Default" comment="" />
-    <list default="true" id="0bd80857-c744-4260-9a1e-22559d9bb8f8" name="fuck off" comment="-support for the first 15 tables of Unhabitat indicators">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/migrations/0024_auto__del_solid_waste_disposal_by_shelter_deprivation__add_solidwastdi.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/migrations/0025_auto__del_solidwastdisposalshelterdeprivation__del_distributioncooking.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/migrations/0026_auto__add_typedeprivationcity__add_typedeprivationcountry.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/migrations/0027_auto__chg_field_typedeprivationcity_gender__chg_field_typedeprivationc.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/migrations/0028_auto__add_field_typedeprivationcity_rural__add_field_typedeprivationco.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/migrations/0029_auto__add_field_unhabitatindicatorcity_enrollment_female_primary_educa.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/migrations/0030_auto__add_field_unhabitatindicatorcity_diarrhea_last_two_weeks__add_fi.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/utils/migrations/0004_auto__add_slumparserlog__add_countrytoisolog.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/utils/migrations/0005_auto__del_slumparserlog__add_unhabitatparserlog.py" afterPath="$PROJECT_DIR$/utils/migrations/0004_auto__add_unhabitatparserlog__add_unhabitatrecordlog.py" />
+    <list default="true" id="0bd80857-c744-4260-9a1e-22559d9bb8f8" name="fuck off" comment="-support for all Unhabitat Global Indicators except table 8&#10;-support for logging errors&#10;-documented code">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/migrations/0031_auto__add_field_unhabitatindicatorcity_urban_population__add_field_unh.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/models/common.py" afterPath="$PROJECT_DIR$/data/models/common.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/upload_csv.html" afterPath="$PROJECT_DIR$/templates/upload_csv.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/admin.py" afterPath="$PROJECT_DIR$/utils/admin.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/forms.py" afterPath="$PROJECT_DIR$/utils/forms.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/models.py" afterPath="$PROJECT_DIR$/utils/models.py" />
@@ -43,7 +34,7 @@
       <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="204" column="68" selection-start="9543" selection-end="9543" vertical-scroll-proportion="0.0">
+            <state line="231" column="28" selection-start="10556" selection-end="10556" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -52,7 +43,7 @@
       <file leaf-file-name="common.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/models/common.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="18" selection-start="1534" selection-end="1534" vertical-scroll-proportion="0.0">
+            <state line="97" column="20" selection-start="4450" selection-end="4466" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -85,10 +76,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="forms.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="170" column="54" selection-start="6857" selection-end="6857" vertical-scroll-proportion="-4.438669">
+            <state line="161" column="24" selection-start="6568" selection-end="6568" vertical-scroll-proportion="-1.6727272">
               <folding />
             </state>
           </provider>
@@ -123,10 +114,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="admin.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/utils/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="95" column="26" selection-start="3263" selection-end="3263" vertical-scroll-proportion="0.0">
+            <state line="86" column="30" selection-start="2929" selection-end="2929" vertical-scroll-proportion="0.7514563">
               <folding />
             </state>
           </provider>
@@ -157,10 +148,10 @@
         <option value="$PROJECT_DIR$/data/models/activity.py" />
         <option value="$PROJECT_DIR$/utils/views.py" />
         <option value="$PROJECT_DIR$/templates/upload_csv.html" />
-        <option value="$PROJECT_DIR$/utils/admin.py" />
-        <option value="$PROJECT_DIR$/utils/models.py" />
-        <option value="$PROJECT_DIR$/data/models/common.py" />
         <option value="$PROJECT_DIR$/utils/forms.py" />
+        <option value="$PROJECT_DIR$/data/models/common.py" />
+        <option value="$PROJECT_DIR$/utils/models.py" />
+        <option value="$PROJECT_DIR$/utils/admin.py" />
       </list>
     </option>
   </component>
@@ -307,6 +298,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="iati" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="iati" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrations" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -577,7 +586,11 @@
       <created>1360773596215</created>
       <updated>1360773596215</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="-support for all Unhabitat Global Indicators except table 8&#10;-support for logging errors&#10;-documented code">
+      <created>1361810011863</created>
+      <updated>1361810011863</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -604,11 +617,12 @@
     <frame x="4" y="22" width="1916" height="1178" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32923368" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293872" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30850503" sideWeight="0.704825" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29090908" sideWeight="0.77483445" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29090908" sideWeight="0.6707663" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22516556" sideWeight="0.4971223" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5561427" sideWeight="0.49784172" order="10" side_tool="true" content_ui="tabs" />
@@ -619,7 +633,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4588458" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -660,7 +673,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="-support for the first 15 tables of Unhabitat indicators" />
+    <option name="LAST_COMMIT_MESSAGE" value="-support for all Unhabitat Global Indicators except table 8&#10;-support for logging errors&#10;-documented code" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -685,10 +698,11 @@
     <MESSAGE value="-add iso code as well, with list arguments" />
     <MESSAGE value="-support for saving API keys when new users are registered&#10;-only need to support authentication method = ApiKeyAuthentication and we can integrate API authentication" />
     <MESSAGE value="-support for the first 15 tables of Unhabitat indicators" />
+    <MESSAGE value="-support for all Unhabitat Global Indicators except table 8&#10;-support for logging errors&#10;-documented code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="115" />
+      <option name="time" value="120" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -763,27 +777,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="26" selection-start="3263" selection-end="3263" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="204" column="68" selection-start="9543" selection-end="9543" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/models/common.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="18" selection-start="1534" selection-end="1534" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/models/activity.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="100" column="25" selection-start="3736" selection-end="3743" vertical-scroll-proportion="-9.807693">
@@ -793,7 +786,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="170" column="54" selection-start="6857" selection-end="6857" vertical-scroll-proportion="-4.438669">
+        <state line="161" column="24" selection-start="6568" selection-end="6568" vertical-scroll-proportion="-1.6727272">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/models/common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="97" column="20" selection-start="4450" selection-end="4466" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="231" column="28" selection-start="10556" selection-end="10556" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="86" column="30" selection-start="2929" selection-end="2929" vertical-scroll-proportion="0.7514563">
           <folding />
         </state>
       </provider>

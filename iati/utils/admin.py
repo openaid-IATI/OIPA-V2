@@ -77,11 +77,15 @@ class UnHabitatIndicatorCityAdmin(admin.ModelAdmin):
 
 class TypeDeprivationCityAdmin(admin.ModelAdmin):
     raw_id_fields = ('indicator',)
+    list_filter = ['type_deprivation', 'indicator__year', 'indicator__city',]
 
 class TypeDeprivationCountryAdmin(admin.ModelAdmin):
     raw_id_fields = ('indicator',)
+    list_filter = ['type_deprivation','indicator__year', 'indicator__country',]
 
-
+class UnhabitatRecordLogAdmin(admin.ModelAdmin):
+    search_fields = ['raw_data']
+    list_filter = ['country_input_name']
 
 admin.site.register(Publisher, PublisherAdmin)
 admin.site.register(IATIXMLSource, IATIXMLSourceAdmin)
@@ -93,4 +97,4 @@ admin.site.register(TypeDeprivationCountry, TypeDeprivationCountryAdmin)
 admin.site.register(City)
 admin.site.register(ApiKey)
 admin.site.register(UnHabitatParserLog)
-admin.site.register(UnhabitatRecordLog)
+admin.site.register(UnhabitatRecordLog, UnhabitatRecordLogAdmin)
