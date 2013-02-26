@@ -16,7 +16,7 @@ from data.models.activity import IATIActivityCountry
 from data.models.activity import IATIActivityRegion
 from data.models.activity import IATIActivitySector
 from data.models.activity import IATITransaction
-from data.models.common import ActivityStatusType, UnHabitatIndicatorCountry, Country
+from data.models.common import ActivityStatusType, UnHabitatIndicatorCountry, Country, UnHabitatIndicatorCity
 from data.models.common import CollaborationType
 from data.models.common import FlowType
 from data.models.common import AidType
@@ -34,14 +34,14 @@ class StatusResource(ModelResource):
         bundle.data['name'] = bundle.obj.get_code_display()
         return bundle
 
-class UnHabitatDemoGraphicResource(ModelResource):
+class UnHabitatIndicatorCountryResource(ModelResource):
     class Meta:
         queryset = UnHabitatIndicatorCountry.objects.all()
         include_resource_uri = False
-        resource_name = 'indicators'
+        resource_name = 'indicators-country'
         serializer = Serializer(formats=['xml', 'json'])
         filtering = {"year": ALL }
-        authentication = ApiKeyAuthentication()
+#        authentication = ApiKeyAuthentication()
 
 
     def dehydrate(self, bundle):
@@ -55,7 +55,7 @@ class UnHabitatDemoGraphicResource(ModelResource):
         return bundle
 
     def apply_filters(self, request, applicable_filters):
-        base_object_list = super(UnHabitatDemoGraphicResource, self).apply_filters(request, applicable_filters)
+        base_object_list = super(UnHabitatIndicatorCountryResource, self).apply_filters(request, applicable_filters)
         regions = request.GET.get('regions', None)
         countries = request.GET.get('country_name', None)
         isos = request.GET.get('iso', None)
@@ -73,6 +73,52 @@ class UnHabitatDemoGraphicResource(ModelResource):
         if isos:
             isos = isos.replace('|', ' ').replace('-', ' ').split(' ')
             filters.update(dict(country__iso__in=isos))
+
+        return base_object_list.filter(**filters).distinct()
+
+class UnHabitatIndicatorCityResource(ModelResource):
+    class Meta:
+        queryset = UnHabitatIndicatorCity.objects.all()
+        include_resource_uri = False
+        resource_name = 'indicators-city'
+        serializer = Serializer(formats=['xml', 'json'])
+        filtering = {"year": ALL }
+    #        authentication = ApiKeyAuthentication()
+
+
+    def dehydrate(self, bundle):
+        bundle.data['country_iso'] = bundle.obj.city.country.iso
+        bundle.data['country_name'] = bundle.obj.city.country.get_iso_display()
+        bundle.data['dac_region_code'] = bundle.obj.city.country.dac_region_code
+        bundle.data['dac_region_name'] = bundle.obj.city.country.dac_region_name
+
+        bundle.data.pop('id')
+
+        return bundle
+
+    def apply_filters(self, request, applicable_filters):
+        base_object_list = super(UnHabitatIndicatorCityResource, self).apply_filters(request, applicable_filters)
+        regions = request.GET.get('regions', None)
+        countries = request.GET.get('country_name', None)
+        isos = request.GET.get('iso', None)
+        city = request.GET.get('city', None)
+
+
+
+        filters = {}
+        if regions:
+            # @todo: implement smart filtering with seperator detection
+            regions = regions.replace('|', ' ').replace('-', ' ').split(' ')
+            filters.update(dict(city__country__dac_region_code__in=regions))
+        if countries:
+            countries = countries.replace('|', ' ').replace('-', ' ').split(' ')
+            filters.update(dict(city__country__country_name__in=countries))
+        if isos:
+            isos = isos.replace('|', ' ').replace('-', ' ').split(' ')
+            filters.update(dict(city__country__iso__in=isos))
+        if city:
+            city = city.replace('|', ' ').replace('-', ' ').split(' ')
+            filters.update(dict(city__name__in=city))
 
         return base_object_list.filter(**filters).distinct()
 

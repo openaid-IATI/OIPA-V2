@@ -1,3 +1,4 @@
+from django.http import Http404
 import warnings
 
 # Django specific
@@ -21,7 +22,7 @@ from data.models.organisation import Organisation, ParticipatingOrganisation
 from api.v2.resources.common_model_resources import ActivityStatisticResource, OrganisationStatisticsResource
 from api.v2.resources.common_model_resources import DescriptionResource
 from api.v2.resources.common_model_resources import TitleResource
-from api.v2.resources.sub_model_resources import RecipientCountryResource, UnHabitatDemoGraphicResource
+from api.v2.resources.sub_model_resources import RecipientCountryResource, UnHabitatIndicatorCountryResource
 from api.v2.resources.sub_model_resources import RecipientRegionResource
 from api.v2.resources.sub_model_resources import StatusResource
 from api.v2.resources.sub_model_resources import SectorResource
@@ -79,7 +80,7 @@ class ActivityListResource(ModelResource):
     """
 
     recipient_country = fields.ToManyField(RecipientCountryResource, 'iatiactivitycountry_set', full=True, null=True)
-    unhabitat_indicators = fields.ToManyField(UnHabitatDemoGraphicResource, attribute=lambda bundle: UnHabitatIndicatorCountry.objects.filter(country__pk__in=ActivityListResource.get_country(bundle)).order_by('country', 'year',), full=True, null=True)
+    unhabitat_indicators = fields.ToManyField(UnHabitatIndicatorCountryResource, attribute=lambda bundle: UnHabitatIndicatorCountry.objects.filter(country__pk__in=ActivityListResource.get_country(bundle)).order_by('country', 'year',), full=True, null=True)
 
     activity_sectors = fields.ToManyField(SectorResource, 'sectors', full=True, null=True)
     titles = fields.ToManyField(TitleResource, 'iatiactivitytitle_set', full=True, null=True)
@@ -172,7 +173,7 @@ class ActivityResource(ModelResource):
     activity_transactions = fields.ToManyField(TransactionResource, 'iatitransaction_set', full=True, null=True)
     documents = fields.ToManyField(DocumentResource, 'iatiactivitydocument_set', full=True, null=True)
     statistics = fields.OneToOneField(ActivityStatisticResource, 'activitystatistics', full=True, null=True)
-    unhabitat_indicators = fields.ToManyField(UnHabitatDemoGraphicResource, attribute=lambda bundle: UnHabitatIndicatorCountry.objects.filter(country__pk__in=ActivityListResource.get_country(bundle)).order_by('country', 'year',), full=True, null=True)
+    unhabitat_indicators = fields.ToManyField(UnHabitatIndicatorCountryResource, attribute=lambda bundle: UnHabitatIndicatorCountry.objects.filter(country__pk__in=ActivityListResource.get_country(bundle)).order_by('country', 'year',), full=True, null=True)
 
 
     class Meta:
