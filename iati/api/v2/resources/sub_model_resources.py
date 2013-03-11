@@ -67,7 +67,7 @@ class UnHabitatIndicatorCountryResource(ModelResource):
             temp_list['total'] = tp.total
             temp_list['rural'] = tp.rural
 
-            tp_list.update(temp_list)
+            tp_list['deprivation_id_'+str(tp.id)] = temp_list
         bundle.data['deprivation'] = tp_list
         bundle.data.pop('id')
 
