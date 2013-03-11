@@ -49,7 +49,26 @@ class UnHabitatIndicatorCountryResource(ModelResource):
         bundle.data['country_name'] = bundle.obj.country.get_iso_display()
         bundle.data['dac_region_code'] = bundle.obj.country.dac_region_code
         bundle.data['dac_region_name'] = bundle.obj.country.dac_region_name
+        tpset = bundle.obj.typedeprivationcountry_set.all()
+        tp_list = {}
+        for tp in tpset:
+            temp_list = {}
+            temp_list['type'] = tp.get_type_deprivation_display()
+            temp_list['non_slum_household'] = tp.non_slum_household
+            temp_list['slum_household'] = tp.slum_household
+            temp_list['one_shelter_deprivation'] = tp.one_shelter_deprivation
+            temp_list['two_shelter_deprivations'] = tp.two_shelter_deprivations
+            temp_list['three_shelter_deprivations'] = tp.three_shelter_deprivations
+            temp_list['four_shelter_deprivations'] = tp.four_shelter_deprivations
+            temp_list['gender'] = tp.gender
+            temp_list['extra_type_name'] = tp.extra_type_name
+            temp_list['is_matrix'] = tp.is_matrix
+            temp_list['urban'] = tp.urban
+            temp_list['total'] = tp.total
+            temp_list['rural'] = tp.rural
 
+            tp_list.update(temp_list)
+        bundle.data['deprivation'] = tp_list
         bundle.data.pop('id')
 
         return bundle
