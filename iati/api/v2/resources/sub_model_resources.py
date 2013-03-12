@@ -110,6 +110,9 @@ class UnHabitatIndicatorCityResource(ModelResource):
         bundle.data['country_name'] = bundle.obj.city.country.get_iso_display()
         bundle.data['dac_region_code'] = bundle.obj.city.country.dac_region_code
         bundle.data['dac_region_name'] = bundle.obj.city.country.dac_region_name
+        bundle.data['city_name'] = bundle.obj.city.name
+
+    #        bundle.data['']
 
         bundle.data.pop('id')
 
