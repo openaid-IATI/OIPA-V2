@@ -84,13 +84,13 @@ class UnHabitatIndicatorCountryResource(ModelResource):
         filters = {}
         if regions:
             # @todo: implement smart filtering with seperator detection
-            regions = regions.replace('|', ' ').replace('-', ' ').split(' ')
+            regions = regions.replace('|', ',').replace('-', ',').split(',')
             filters.update(dict(country__dac_region_code__in=regions))
         if countries:
-            countries = countries.replace('|', ' ').replace('-', ' ').split(' ')
+            countries = countries.replace('|', ',').replace('-', ',').split(',')
             filters.update(dict(country__country_name__in=countries))
         if isos:
-            isos = isos.replace('|', ' ').replace('-', ' ').split(' ')
+            isos = isos.replace('|', ',').replace('-', ',').split(',')
             filters.update(dict(country__iso__in=isos))
 
         return base_object_list.filter(**filters).distinct()
@@ -130,16 +130,17 @@ class UnHabitatIndicatorCityResource(ModelResource):
         filters = {}
         if regions:
             # @todo: implement smart filtering with seperator detection
-            regions = regions.replace('|', ' ').replace('-', ' ').split(' ')
+            regions = regions.replace('|', ',').replace('-', ',').split(',')
             filters.update(dict(city__country__dac_region_code__in=regions))
         if countries:
-            countries = countries.replace('|', ' ').replace('-', ' ').split(' ')
+            countries = countries.replace('|', ',').replace('-', ',').split(',')
             filters.update(dict(city__country__country_name__in=countries))
         if isos:
-            isos = isos.replace('|', ' ').replace('-', ' ').split(' ')
+            isos = isos.replace('|', ',').replace('-', ',').split(',')
             filters.update(dict(city__country__iso__in=isos))
         if city:
-            city = city.replace('|', ' ').replace('-', ' ').split(' ')
+            city = city.replace('|', ',').replace('-', ',').split(',')
+
             filters.update(dict(city__name__in=city))
 
         return base_object_list.filter(**filters).distinct()
