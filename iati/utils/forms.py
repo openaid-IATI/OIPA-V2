@@ -100,8 +100,13 @@ class SaveCsvData(object):
                     country_str = line.get('Country Name')
                 if not country_str:
                     country_str = line.get('COUNTRY')
-                #get country from database based on the country string found
-                country =  self.find_country(country_name=country_str)
+                if country_str:
+                    #get country from database based on the country string found
+                    country =  self.find_country(country_name=country_str)
+                else:
+                    country = None
+                    self.save_overall_data(country=country, line=line)
+
             except ValueError:
                 country = None
             #if a country has been found, we are able to process the data
@@ -159,6 +164,8 @@ class SaveCsvData(object):
         return log
 
     def log_detail_not_found(self,logger, country_input=None, city_input=None, raw_data=None, year=None):
+        if not country_input:
+            country_input = 'no country found'
         log = UnhabitatRecordLog()
         log.city_input_name = city_input
         log.country_input_name = country_input
@@ -444,7 +451,7 @@ class SaveCsvData(object):
         if self.type_upload == 6:
             #add region info to country
             try:
-                country = Country.objects.get(iso=line['iso2'])
+                country, _ = Country.objects.get_or_create(iso=line['iso2'])
                 country.country_name = line['country_name']
                 country.dac_country_code = line['dac_country_code']
                 country.dac_region_code = line['dac_region_code']

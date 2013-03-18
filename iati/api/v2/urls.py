@@ -14,7 +14,7 @@ from api.v2.resources.model_resources import ActivitySearchResource
 from api.v2.resources.common_model_resources import CountryResource
 from api.v2.resources.common_model_resources import RegionResource
 from api.v2.resources.common_model_resources import SectorResource
-from api.v2.resources.sub_model_resources import RecipientCountryResource, UnHabitatIndicatorCountryResource, UnHabitatIndicatorCityResource
+from api.v2.resources.sub_model_resources import RecipientCountryResource, UnHabitatIndicatorCountryResource, UnHabitatIndicatorCityResource, OnlyCityResource, OnlyRegionResource, OnlyCountryResource
 
 v2_api = Api(api_name='v2')
 v2_api.register(OrganisationResource())
@@ -27,6 +27,11 @@ v2_api.register(ActivitySearchResource())
 v2_api.register(RecipientCountryResource(), canonical=True)
 v2_api.register(UnHabitatIndicatorCountryResource(), canonical=True)
 v2_api.register(UnHabitatIndicatorCityResource(), canonical=True)
+v2_api.register(OnlyCountryResource())
+v2_api.register(OnlyRegionResource())
+v2_api.register(OnlyCityResource())
+
+
 
 
 

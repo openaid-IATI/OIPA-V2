@@ -16,7 +16,7 @@ from data.models.activity import IATIActivityCountry
 from data.models.activity import IATIActivityRegion
 from data.models.activity import IATIActivitySector
 from data.models.activity import IATITransaction
-from data.models.common import ActivityStatusType, UnHabitatIndicatorCountry, Country, UnHabitatIndicatorCity
+from data.models.common import ActivityStatusType, UnHabitatIndicatorCountry, Country, UnHabitatIndicatorCity, City, Region
 from data.models.common import CollaborationType
 from data.models.common import FlowType
 from data.models.common import AidType
@@ -33,6 +33,19 @@ class StatusResource(ModelResource):
     def dehydrate(self, bundle):
         bundle.data['name'] = bundle.obj.get_code_display()
         return bundle
+
+class OnlyCountryResource(ModelResource):
+    class Meta:
+        queryset = Country.objects.all().distinct().order_by('country_name')
+        resource_name = 'country'
+class OnlyRegionResource(ModelResource):
+    class Meta:
+        queryset = Region.objects.all().distinct().order_by('code')
+        resource_name = 'region'
+class OnlyCityResource(ModelResource):
+    class Meta:
+        queryset = City.objects.all().distinct().order_by('name')
+        resource_name = 'city'
 
 class UnHabitatIndicatorCountryResource(ModelResource):
     class Meta:
