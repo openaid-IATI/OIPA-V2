@@ -38,6 +38,8 @@ class OnlyCountryResource(ModelResource):
     class Meta:
         queryset = Country.objects.all().distinct().order_by('country_name')
         resource_name = 'country'
+
+
 class OnlyRegionResource(ModelResource):
     class Meta:
         queryset = Region.objects.all().distinct().order_by('code')
@@ -46,6 +48,23 @@ class OnlyCityResource(ModelResource):
     class Meta:
         queryset = City.objects.all().distinct().order_by('name')
         resource_name = 'city'
+
+    def dehydrate(self, bundle):
+        bundle.data['country'] = bundle.obj.country.iso
+        return bundle
+
+    def apply_filters(self, request, applicable_filters):
+        base_object_list = super(OnlyCityResource, self).apply_filters(request, applicable_filters)
+        countries = request.GET.get('country', None)
+
+
+
+        filters = {}
+        if countries:
+            countries = countries.replace('|', ',').replace('-', ',').split(',')
+            filters.update(dict(country__iso__in=countries))
+
+        return base_object_list.filter(**filters).distinct()
 
 class UnHabitatIndicatorCountryResource(ModelResource):
     class Meta:
@@ -59,6 +78,8 @@ class UnHabitatIndicatorCountryResource(ModelResource):
 
     def dehydrate(self, bundle):
         bundle.data['country_iso'] = bundle.obj.country.iso
+        bundle.data['country_iso3'] = bundle.obj.country.iso3
+
         bundle.data['country_name'] = bundle.obj.country.get_iso_display()
         bundle.data['dac_region_code'] = bundle.obj.country.dac_region_code
         bundle.data['dac_region_name'] = bundle.obj.country.dac_region_name
