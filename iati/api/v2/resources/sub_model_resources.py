@@ -112,6 +112,7 @@ class UnHabitatIndicatorCountryResource(ModelResource):
         regions = request.GET.get('regions', None)
         countries = request.GET.get('country_name', None)
         isos = request.GET.get('iso', None)
+        indicators = request.GET.get('indicators', None)
 
 
 
@@ -126,6 +127,7 @@ class UnHabitatIndicatorCountryResource(ModelResource):
         if isos:
             isos = isos.replace('|', ',').replace('-', ',').split(',')
             filters.update(dict(country__iso__in=isos))
+#
 
         return base_object_list.filter(**filters).distinct()
 

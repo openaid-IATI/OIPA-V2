@@ -28,7 +28,7 @@ class SaveCsvData(object):
     countries = {}
     #three different type of documents supported:
     config_type_table = {}
-    config_type_table['save_year_in_column_data'] = [1,2,3,4,7,8,9,10, 29]
+    config_type_table['save_year_in_column_data'] = [1,2,3,4,7,8,9,10]
     config_type_table['save_year_in_row_data'] = []
     config_type_table['save_overall_data'] = [6]
     #temp object to store the uploaded file, and close when the document has been processed
@@ -446,6 +446,21 @@ class SaveCsvData(object):
             pop.perc_malnourished = self.return_value_else_none(line['Malnutrition'], type="float")
             pop.perc_measles =   self.return_value_else_none(line['Measles'], type="float")
             pop.save()
+
+        if self.type_upload == 29:
+            try:
+                city, _ = City.objects.get_or_create(name=line['City'], country=country)
+                pop, _ = UnHabitatIndicatorCity.objects.get_or_create(city=city, year=line['Year'])
+                pop.cpi_5_dimensions =self.return_value_else_none(line['five'], type="float")
+                pop.cpi_4_dimensions =self.return_value_else_none(line['four'], type="float")
+                pop.cpi_productivity_index =self.return_value_else_none(line['Productivity Index'], type="float")
+                pop.cpi_quality_of_live_index =self.return_value_else_none(line['Quality of life Index'], type="float")
+                pop.cpi_infrastructure_index =self.return_value_else_none(line['Infrastructure Index'], type="float")
+                pop.cpi_environment_index = self.return_value_else_none(line['Enivronment Index'], type="float")
+                pop.cpi_equity_index = self.return_value_else_none(line['Equity Index'], type="float")
+                pop.save()
+            except ValueError:
+                pass
 
     def save_overall_data(self, country, line):
         if self.type_upload == 6:

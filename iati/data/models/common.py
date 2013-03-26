@@ -274,6 +274,15 @@ class UnHabitatIndicatorCity(UnhabitatIndicator):
     perc_malnourished =models.FloatField(blank=True, null=True, verbose_name=_('Table 30: Percentage of Malnourished'))
     perc_measles =models.FloatField(blank=True, null=True, verbose_name=_('Table 30: Children immunised against measles'))
 
+    cpi_5_dimensions = models.FloatField(blank=True, null=True, verbose_name=_('City Prosperity Index (CPI) with 5 Dimensions'))
+    cpi_4_dimensions = models.FloatField(blank=True, null=True, verbose_name=_('City Prosperity Index (CPI) with 4 Dimensions'))
+    cpi_productivity_index = models.FloatField(blank=True, null=True, verbose_name=_('Productivity Index'))
+    cpi_quality_of_live_index = models.FloatField(blank=True, null=True, verbose_name=_('Quality of life Index'))
+    cpi_infrastructure_index = models.FloatField(blank=True, null=True, verbose_name=_('Infrastructure Index'))
+    cpi_environment_index = models.FloatField(blank=True, null=True, verbose_name=_('Enivronment Index'))
+    cpi_equity_index = models.FloatField(blank=True, null=True, verbose_name=_('Equity Index'))
+
+
 
 
 
