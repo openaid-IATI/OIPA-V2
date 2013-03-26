@@ -233,3 +233,10 @@ class UnhabitatRecordLog(models.Model):
     def __unicode__(self):
         return self.raw_data
 
+class ConversationCityNames(models.Model):
+    unusable_name = models.CharField(max_length=255)
+    usable_name = models.CharField(max_length=255)
+
+    class Meta:
+        app_label = 'utils'
+

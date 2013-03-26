@@ -2,7 +2,7 @@
 from django import forms
 
 # App specific
-from utils.models import IATIXMLSource, UnhabitatRecordLog
+from utils.models import IATIXMLSource, UnhabitatRecordLog, ConversationCityNames
 from utils.models import UnHabitatParserLog
 from data.models.common import Country, City, UnHabitatIndicatorCity, TypeDeprivationCountry
 import pdb
@@ -224,7 +224,7 @@ class SaveCsvData(object):
                     #Table 1- city population of urban agglomerations with 750k inhabitants or more
                     elif self.type_upload == 7:
                         try:
-                            city, _ = City.objects.get_or_create(name=line['City'], country=country)
+                            city, _ = City.objects.get_or_create(name=self.check_unusual_name(input_city_name=line['City']), country=country)
                             indicator, _ = UnHabitatIndicatorCity.objects.get_or_create(city=city, year=k)
                             if not value:
                                 indicator.pop_urban_agglomerations = None
@@ -247,7 +247,7 @@ class SaveCsvData(object):
                     #Table 3: Average annual rate of change of urban agglomerations with 750,000 inhabitants or more in 2007, by country, 1950-2025
                     elif self.type_upload == 9:
                         try:
-                            city, _ = City.objects.get_or_create(name=line['City'], country=country)
+                            city, _ = City.objects.get_or_create(name=self.check_unusual_name(input_city_name=line['City']), country=country)
 
                             indicator, _ = UnHabitatIndicatorCity.objects.get_or_create(city=city, year=year)
                             if not value:
@@ -324,7 +324,8 @@ class SaveCsvData(object):
             pop.save()
             #Table 12: Improved Services (City Level)
         if self.type_upload == 13:
-            city, _ = City.objects.get_or_create(name=line['City'], country=country)
+
+            city, _ = City.objects.get_or_create(name=self.check_unusual_name(input_city_name=line['City']), country=country)
             pop, _ = UnHabitatIndicatorCity.objects.get_or_create(city=city, year=line['Year'])
 
 
@@ -418,7 +419,7 @@ class SaveCsvData(object):
             cooking_fuel.save()
             #Table 17
         if self.type_upload == 18:
-            city, _ = City.objects.get_or_create(name=line['City'], country=country)
+            city, _ = City.objects.get_or_create(name=self.check_unusual_name(input_city_name=line['City']), country=country)
             pop, _ = UnHabitatIndicatorCity.objects.get_or_create(city=city, year=line['Year'])
 
 
@@ -428,7 +429,7 @@ class SaveCsvData(object):
 
         #Table 29
         if self.type_upload == 27:
-            city, _ = City.objects.get_or_create(name=line['City'], country=country)
+            city, _ = City.objects.get_or_create(name=self.check_unusual_name(input_city_name=line['City']), country=country)
             pop, _ = UnHabitatIndicatorCity.objects.get_or_create(city=city, year=line['Year'])
 
 
@@ -440,7 +441,7 @@ class SaveCsvData(object):
 
         #Table 30
         if self.type_upload == 28:
-            city, _ = City.objects.get_or_create(name=line['City'], country=country)
+            city, _ = City.objects.get_or_create(name=self.check_unusual_name(input_city_name=line['City']), country=country)
             pop, _ = UnHabitatIndicatorCity.objects.get_or_create(city=city, year=line['Year'])
 
 
@@ -450,7 +451,7 @@ class SaveCsvData(object):
 
         if self.type_upload == 31:
             try:
-                city, _ = City.objects.get_or_create(name=line['City'], country=country)
+                city, _ = City.objects.get_or_create(name=self.check_unusual_name(input_city_name=line['City']), country=country)
                 pop, _ = UnHabitatIndicatorCity.objects.get_or_create(city=city, year=line['Year'])
                 pop.cpi_5_dimensions =self.return_value_else_none(line['five'], type="float")
                 pop.cpi_4_dimensions =self.return_value_else_none(line['four'], type="float")
@@ -462,7 +463,14 @@ class SaveCsvData(object):
                 pop.save()
             except ValueError:
                 pass
-
+    def check_unusual_name(self, input_city_name):
+        try:
+            city_name = input_city_name
+            city_name = ConversationCityNames.objects.get(unusable_name=city_name)
+            city_name = city_name.usable_name
+        except:
+            city_name = input_city_name
+        return city_name
     def save_overall_data(self, country, line):
         if self.type_upload == 6:
             #add region info to country
@@ -485,6 +493,12 @@ class SaveCsvData(object):
             for city in cities:
                 city.name = usable_name
                 city.save()
+
+            #add conversation to the database
+            conversation,_ = ConversationCityNames.objects.get_or_create(usable_name=line['Usable name'])
+            conversation.unusable_name = line['Unusable name']
+            conversation.save()
+
 
 
 
