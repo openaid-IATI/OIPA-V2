@@ -108,6 +108,7 @@ class SaveCsvData(object):
                     self.save_overall_data(country=country, line=line)
 
             except ValueError:
+                self.save_overall_data(country=None, line=line)
                 country = None
             #if a country has been found, we are able to process the data
             if country:
@@ -447,7 +448,7 @@ class SaveCsvData(object):
             pop.perc_measles =   self.return_value_else_none(line['Measles'], type="float")
             pop.save()
 
-        if self.type_upload == 29:
+        if self.type_upload == 31:
             try:
                 city, _ = City.objects.get_or_create(name=line['City'], country=country)
                 pop, _ = UnHabitatIndicatorCity.objects.get_or_create(city=city, year=line['Year'])
@@ -476,6 +477,17 @@ class SaveCsvData(object):
                 country.save()
             except Country.DoesNotExist:
                 pass
+        if self.type_upload == 32:
+            #will change odd (unusual city names to "normal" city names)
+            usable_name = line['Usable name']
+            unusable_name = line['Unusable name']
+            cities = City.objects.filter(name=unusable_name)
+            for city in cities:
+                city.name = usable_name
+                city.save()
+
+
+
 
     def return_value_else_none(self, value, type=""):
         if type == "float":

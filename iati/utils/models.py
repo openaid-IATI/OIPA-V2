@@ -193,7 +193,8 @@ type_unhabitat_uploads = (
 #    (25, _('Table 28: Percentage of children immunised against Measles')),
     (27, _('Table 29: Percentage of children with diarrhea in last two weeks, ARI, fever in last 2 week')),
     (28, _('Table 30: Percentage of Malnourished and of Children immunised against measles')),
-    (29, _('Table CPI: City Prosperity Index, and the components of its 5 dimensions')),
+    (31, _('Table CPI: City Prosperity Index, and the components of its 5 dimensions')),
+    (32, _('Convert unusable city names to usable city names')),
 )
 
 class UnHabitatParserLog(models.Model):
