@@ -173,7 +173,7 @@ class ActivityResource(ModelResource):
     activity_transactions = fields.ToManyField(TransactionResource, 'iatitransaction_set', full=True, null=True)
     documents = fields.ToManyField(DocumentResource, 'iatiactivitydocument_set', full=True, null=True)
     statistics = fields.OneToOneField(ActivityStatisticResource, 'activitystatistics', full=True, null=True)
-    unhabitat_indicators = fields.ToManyField(UnHabitatIndicatorCountryResource, attribute=lambda bundle: UnHabitatIndicatorCountry.objects.filter(country__pk__in=ActivityListResource.get_country(bundle)).order_by('country', 'year',), full=True, null=True)
+#    unhabitat_indicators = fields.ToManyField(UnHabitatIndicatorCountryResource, attribute=lambda bundle: UnHabitatIndicatorCountry.objects.filter(country__pk__in=ActivityListResource.get_country(bundle)).order_by('country', 'year',), full=True, null=True)
 
 
     class Meta:
