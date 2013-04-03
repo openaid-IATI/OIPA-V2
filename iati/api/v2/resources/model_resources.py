@@ -116,18 +116,18 @@ class ActivityListResource(ModelResource):
         filters = {}
         if sectors:
             # @todo: implement smart filtering with seperator detection
-            sectors = sectors.replace('|', ' ').replace('-', ' ').split(' ')
+            sectors = sectors.replace('|', ',').replace('-', ',').split(',')
             filters.update(dict(sectors__sector__code__in=sectors))
         if regions:
             # @todo: implement smart filtering with seperator detection
-            regions = regions.replace('|', ' ').replace('-', ' ').split(' ')
+            regions = regions.replace('|', ',').replace('-', ',').split(',')
             filters.update(dict(iatiactivityregion__region__code__in=regions))
         if countries:
             # @todo: implement smart filtering with seperator detection
-            countries = countries.replace('|', ' ').replace('-', ' ').split(' ')
+            countries = countries.replace('|', ',').replace('-', ',').split(',')
             filters.update(dict(iatiactivitycountry__country__iso__in=countries))
         if organisations:
-            organisations = organisations.replace('|', ' ').split(' ')
+            organisations = organisations.replace('|', ',').replace('-', ',').split(',')
             filters.update(dict(reporting_organisation__ref__in=organisations))
         if query:
             query_words = query.split(' ')
