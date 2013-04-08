@@ -105,6 +105,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.gzip.GZipMiddleware',
     'johnny.middleware.LocalStoreClearMiddleware',
     'johnny.middleware.QueryCacheMiddleware',
+    'api.v2.xhr_middleware.XsSharing',
 )
 
 ROOT_URLCONF = 'iati.urls'

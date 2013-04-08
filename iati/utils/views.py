@@ -67,7 +67,8 @@ class UploadUnHabitatIndicatorCountryCSV(FormView):
 
 def test_json_response(request):
     cursor = connection.cursor()
-    cursor.execute('SELECT indicator_id, country_id, country_name, value, year, latitude, longitude FROM data_indicatordata id LEFT OUTER JOIN data_country C ON id.country_id=C.iso')
+    cursor.execute('SELECT indicator_id, country_id, country_name, value, year, latitude, longitude '
+                   'FROM data_indicatordata id LEFT OUTER JOIN data_country C ON id.country_id=C.iso GROUP BY year')
     desc = cursor.description
     results = [
     dict(zip([col[0] for col in desc], row))
