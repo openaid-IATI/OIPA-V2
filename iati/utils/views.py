@@ -68,13 +68,48 @@ class UploadUnHabitatIndicatorCountryCSV(FormView):
 def test_json_response(request):
     cursor = connection.cursor()
     cursor.execute('SELECT indicator_id, country_id, country_name, value, year, latitude, longitude '
-                   'FROM data_indicatordata id LEFT OUTER JOIN data_country C ON id.country_id=C.iso GROUP BY year')
+                   'FROM data_indicatordata id LEFT OUTER JOIN data_country C ON id.country_id=C.iso '
+                   'WHERE indicator_id = \"population\"')
     desc = cursor.description
     results = [
     dict(zip([col[0] for col in desc], row))
     for row in cursor.fetchall()
     ]
-    return HttpResponse(json.dumps(results), mimetype='application/json')
+    new_results = []
+    country = {}
+    for r in results:
+        years = []
+
+        year = {}
+
+        #        year[r['year']] = r['value']
+#        years.append(year)
+#        try:
+        try:
+            years = country[r['country_id']]['years']
+        except:
+            country[r['country_id']] = {'name' : r['country_name'], 'longitude' : r['longitude'], 'latitude' : r['latitude'], 'years' : []}
+
+
+
+        years = country[r['country_id']]['years']
+        year[r['year']] = r['value']
+
+        years.append(year)
+        country[r['country_id']]['years'] = years
+
+#        except:
+#            pass
+#            years = []
+#            if r['value']:
+#                year[r['year']] = r['value']
+#                years.append(year)
+#                country[r['country_id']] = {'name' : r['country_name'], 'longitude' : r['longitude'], 'latitude' : r['latitude'], 'years' : years}
+
+
+
+#        country[r['country_id']] = {'name' : r['country_name'], 'longitude' : r['longitude'], 'latitude' : r['latitude'], 'years' : years}
+    return HttpResponse(json.dumps(country), mimetype='application/json')
 
 
 
