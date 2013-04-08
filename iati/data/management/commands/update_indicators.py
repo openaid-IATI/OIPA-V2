@@ -19,5 +19,5 @@ class Command(BaseCommand):
                     pass
             unhabitat_indicators = UnHabitatIndicatorCountry.objects.filter(country=country)
             for i in unhabitat_indicators:
-                indicator, _ = Indicator.objects.get_or_create(name='urban_population')
+                indicator, _ = Indicator.objects.get_or_create(name='population')
                 id, _ =IndicatorData.objects.get_or_create(indicator=indicator, country=country, value=i.population, year=i.year)
