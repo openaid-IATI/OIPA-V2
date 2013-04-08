@@ -93,7 +93,7 @@ def test_json_response(request):
 
 
         years = country[r['country_id']]['years']
-        year[r['year']] = 'y' + r['value']
+        year['y' + str(r['year'])] = r['value']
 
         years.append(year)
         country[r['country_id']]['years'] = years
