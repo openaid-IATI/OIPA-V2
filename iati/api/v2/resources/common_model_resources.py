@@ -7,13 +7,14 @@ from tastypie.serializers import Serializer
 # Data specific
 from data.models.activity import IATIActivityTitle
 from data.models.activity import IATIActivityDescription
-from data.models.common import Country
+from data.models.common import Country, IndicatorData, Indicator
 from data.models.common import Language
 from data.models.common import Region
 from data.models.common import Sector
 from data.models.statistics import ActivityStatistics
 from data.models.statistics import CountryStatistics
 from data.models.statistics import OrganisationStatistics
+
 
 
 class CountryStatisticResource(ModelResource):
@@ -73,6 +74,27 @@ class CountryResource(ModelResource):
 
         return base_object_list.filter(**filters).distinct()
 
+class IndicatorResource(ModelResource):
+    class Meta:
+        queryset = Indicator.objects.all()
+        resource_name = 'indicator'
+        serializer = Serializer(formats=['xml', 'json'])
+
+class IndicatorsResource(ModelResource):
+#    country = fields.OneToOneField(CountryResource, 'country', full=True, null=True)
+#    indicator = fields.OneToOneField(IndicatorResource, 'indicator', full=True, null=True)
+
+    class Meta:
+        queryset = IndicatorData.objects.all()
+        resource_name = 'indicators'
+        serializer = Serializer(formats=['xml', 'json'])
+
+
+#    def dehydrate(self, bundle):
+##        bundle.data['country'] = bundle.obj.country.latitude
+##        return bundle
+#        qs = IndicatorData.objects.raw('SELECT * FROM data_indicatordata')
+#        return [row for row in qs]
 
 class RegionResource(ModelResource):
     """

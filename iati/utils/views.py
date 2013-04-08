@@ -1,9 +1,12 @@
 # Django specific
+import json
+from django.db import connection
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponse
 from django.utils import simplejson
 from django.views.generic import FormView
+from data.models.common import IndicatorData
 from utils.forms import UploadForm
 from django.core.urlresolvers import reverse
 
@@ -61,5 +64,17 @@ class UploadUnHabitatIndicatorCountryCSV(FormView):
     def form_valid(self, form):
         form.save()
         return super(UploadUnHabitatIndicatorCountryCSV, self).form_valid(form=form)
+
+def test_json_response(request):
+    cursor = connection.cursor()
+    cursor.execute('SELECT indicator_id, country_id, country_name, value, year, latitude, longitude FROM data_indicatordata id LEFT OUTER JOIN data_country C ON id.country_id=C.iso')
+    desc = cursor.description
+    results = [
+    dict(zip([col[0] for col in desc], row))
+    for row in cursor.fetchall()
+    ]
+    return HttpResponse(json.dumps(results), mimetype='application/json')
+
+
 
 

@@ -31,7 +31,8 @@ class Country(models.Model):
     dac_country_code = models.IntegerField(null=True, blank=True)
     iso2 = models.CharField(max_length=5, null=True, blank=True)
     iso3 = models.CharField(max_length=5, null=True, blank=True)
-
+    latitude = models.FloatField(max_length=20, null=True, blank=True)
+    longitude = models.FloatField(max_length=20, null=True, blank=True)
 
     def __unicode__(self):
         return "%s - %s" % (self.iso, self.get_iso_display())
@@ -50,6 +51,24 @@ class Country(models.Model):
         app_label = "data"
         verbose_name = _("country")
         verbose_name_plural = _("countries")
+
+class Indicator(models.Model):
+    name = models.CharField(max_length=50, primary_key=True)
+    description = models.CharField(max_length=255, null=True, blank=True)
+
+    class Meta:
+        app_label = "data"
+
+
+class IndicatorData(models.Model):
+    indicator = models.ForeignKey(Indicator)
+    country = models.ForeignKey(Country)
+    value = models.FloatField(null=True, blank=True)
+    year = models.IntegerField(max_length=5)
+
+    class Meta:
+        app_label = "data"
+
 
 class City(models.Model):
     name = models.CharField(max_length=100, blank=False, null=False)
