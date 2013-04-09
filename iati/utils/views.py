@@ -98,17 +98,43 @@ def test_json_response(request):
 
         country[r['country_id']]['years'].update(year)
 
-#        except:
-#            pass
-#            years = []
-#            if r['value']:
-#                year[r['year']] = r['value']
-#                years.append(year)
-#                country[r['country_id']] = {'name' : r['country_name'], 'longitude' : r['longitude'], 'latitude' : r['latitude'], 'years' : years}
+
+    return HttpResponse(json.dumps(country), mimetype='application/json')
+
+def test_json_city_response(request):
+    cursor = connection.cursor()
+    cursor.execute('SELECT indicator_id, city_id, name, country_name, value, year, longitude, latitude '
+                   'FROM data_indicatorcitydata icd LEFT OUTER JOIN data_city Ci ON icd.city_id=Ci.id, data_country dc where dc.iso = Ci.country_id and indicator_id= \"cpi_5_dimensions\"  ')
+#                   'WHERE indicator_id = \"population\"')
+    desc = cursor.description
+    results = [
+    dict(zip([col[0] for col in desc], row))
+    for row in cursor.fetchall()
+    ]
+    new_results = []
+    country = {}
+    for r in results:
+        years = {}
+
+        year = {}
+
+        #        year[r['year']] = r['value']
+        #        years.append(year)
+        #        try:
+        try:
+            years = country[r['city_id']]['years']
+        except:
+            country[r['city_id']] = {'name' : r['name'], 'longitude' : r['longitude'], 'latitude' : r['latitude'], 'years' : {}}
 
 
 
-#        country[r['country_id']] = {'name' : r['country_name'], 'longitude' : r['longitude'], 'latitude' : r['latitude'], 'years' : years}
+        years = country[r['city_id']]['years']
+        year['y' + str(r['year'])] = r['value']
+
+
+        country[r['city_id']]['years'].update(year)
+
+
     return HttpResponse(json.dumps(country), mimetype='application/json')
 
 

@@ -69,6 +69,15 @@ class IndicatorData(models.Model):
     class Meta:
         app_label = "data"
 
+class IndicatorCityData(models.Model):
+    indicator = models.ForeignKey(Indicator)
+    city = models.ForeignKey('City')
+    value = models.FloatField(null=True, blank=True)
+    year = models.IntegerField(max_length=5)
+
+    class Meta:
+        app_label = "data"
+
 
 class City(models.Model):
     name = models.CharField(max_length=100, blank=False, null=False)
