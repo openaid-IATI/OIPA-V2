@@ -7,7 +7,7 @@ from iati.search_sites import PeriodicalSearchView
 
 from api.v2.urls import api_v2_docs
 
-from utils.views import UploadUnHabitatIndicatorCountryCSV, test_json_response, test_json_city_response
+from utils.views import UploadUnHabitatIndicatorCountryCSV, test_json_response, test_json_city_response, json_cpi_filter_response
 
 admin.autodiscover()
 
@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^upload-data$', UploadUnHabitatIndicatorCountryCSV.as_view(), name="upload_data"),
     url(r'^json$', test_json_response , name="json_test"),
     url(r'^json-city$', test_json_city_response , name="json_city_test"),
+    url(r'^json-filter-cpi$', json_cpi_filter_response , name="json_filter_cpi"),
     (r'^api/', include('api.urls')),
     url(r'^search/$', PeriodicalSearchView(template='search/search.html'),
         name='haystack_search'),

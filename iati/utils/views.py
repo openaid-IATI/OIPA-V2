@@ -107,7 +107,7 @@ def test_json_response(request):
 
 def test_json_city_response(request):
     cursor = connection.cursor()
-    cursor.execute('SELECT indicator_id, city_id, name, country_name, value, year, longitude, latitude '
+    cursor.execute('SELECT indicator_id, city_id, name, country_name, iso, value, year, longitude, latitude, dac_region_code, dac_region_name '
                    'FROM data_indicatorcitydata icd LEFT OUTER JOIN data_city Ci ON icd.city_id=Ci.id, data_country dc where dc.iso = Ci.country_id and indicator_id= \"cpi_5_dimensions\" and year=2012 ')
 
     desc = cursor.description
@@ -115,32 +115,64 @@ def test_json_city_response(request):
     dict(zip([col[0] for col in desc], row))
     for row in cursor.fetchall()
     ]
-    new_results = []
+
     country = {}
+    regions = {}
+    countries = {}
+    cities = {}
     for r in results:
-        years = {}
-
         year = {}
-
-        #        year[r['year']] = r['value']
-        #        years.append(year)
-        #        try:
         try:
-            years = country[r['city_id']]['years']
+            country[r['city_id']]['years']
         except:
             country[r['city_id']] = {'name' : r['name'], 'longitude' : r['longitude'], 'latitude' : r['latitude'], 'years' : {}}
 
-
-
-        years = country[r['city_id']]['years']
+#        years = country[r['city_id']]['years']
         year['y' + str(r['year'])] = r['value']
-
 
         country[r['city_id']]['years'].update(year)
 
+        region = {}
+        if r['dac_region_code']:
+            region[r['dac_region_code']] = r['dac_region_name']
+            regions.update(region)
+
+        cntry = {}
+        if r['iso']:
+            cntry[r['iso']] = r['country_name']
+            countries.update(cntry)
+
+        cit = {}
+        if r['name']:
+            cit[r['name']] = r['name']
+            cities.update(cit)
+
+
+
+    country['regions'] = regions
+    country['countries'] = countries
+    country['cities'] = cities
 
     return HttpResponse(json.dumps(country), mimetype='application/json')
 
+def json_cpi_filter_response(request):
+    cursor = connection.cursor()
+    cursor.execute('SELECT * FROM data_country')
+    desc = cursor.description
+    results = [
+    dict(zip([col[0] for col in desc], row))
+    for row in cursor.fetchall()
+    ]
+    result = {}
+    regions = {}
+    for r in results:
+        region = {}
+        if r['dac_region_code']:
+            region[r['dac_region_code']] = r['dac_region_name']
+            regions.update(region)
 
+    result['regions'] = regions
+
+    return HttpResponse(json.dumps(result), mimetype='application/json')
 
 
