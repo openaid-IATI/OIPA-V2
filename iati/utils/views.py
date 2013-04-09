@@ -68,7 +68,7 @@ class UploadUnHabitatIndicatorCountryCSV(FormView):
 def test_json_response(request):
     cursor = connection.cursor()
 
-    cursor.execute('SELECT indicator_id, country_id, country_name, value, year, latitude, longitude '
+    cursor.execute('SELECT indicator_id, country_id, country_name, dac_region_code, dac_region_name, value, year, latitude, longitude '
                    'FROM data_indicatordata id LEFT OUTER JOIN data_country C ON id.country_id=C.iso '
                    'WHERE indicator_id = \"population\"')
     cursor_max = connection.cursor()
@@ -81,6 +81,9 @@ def test_json_response(request):
     ]
     new_results = []
     country = {}
+    regions = {}
+    countries = {}
+    cities = {}
     for r in results:
         years = {}
 
@@ -102,13 +105,73 @@ def test_json_response(request):
 
         country[r['country_id']]['years'].update(year)
 
+        region = {}
+        if r['dac_region_code']:
+            region[r['dac_region_code']] = r['dac_region_name']
+            regions.update(region)
+
+        cntry = {}
+        if r['country_id']:
+            cntry[r['country_id']] = r['country_name']
+            countries.update(cntry)
+
+    country['regions'] = regions
+    country['countries'] = countries
+
+#        cit = {}
+#        if r['name']:
+#            cit[r['name']] = r['name']
+#            cities.update(cit)
+
 
     return HttpResponse(json.dumps(country), mimetype='application/json')
 
+def make_where_query(values, name):
+    query = ''
+    if not values[0]:
+        return None
+
+    for v in values:
+        query += '  ' + name + ' = "' + v +'" OR'
+    query = query[:-2]
+    return query
 def test_json_city_response(request):
+    city_filters = request.GET.get('city', None)
+    if city_filters:
+        city_q = make_where_query(values=city_filters.split(','), name='name')
+        city_q += ') AND ('
+    else:
+        city_q = ''
+
+    country_filters = request.GET.get('countries', None)
+    if country_filters:
+        country_q = make_where_query(values=country_filters.split(','), name='iso')
+        country_q += ') AND ('
+    else:
+        country_q = ''
+
+    region_filters = request.GET.get('regions', None)
+    if region_filters:
+        region_q = make_where_query(values=region_filters.split(','), name='dac_region_code')
+        region_q += ') AND ('
+    else:
+        region_q = ''
+
+    indicator_filters = request.GET.get('indicator', None)
+    if indicator_filters:
+        indicator_q = make_where_query(values=indicator_filters.split(','), name='indicator_id')
+        indicator_q += ') AND ('
+    else:
+        indicator_q = ''
+
+    if not indicator_q:
+        indicator_q = ' indicator_id = "cpi_5_dimensions"'
+    filter_string = ' AND (' + city_q + country_q + region_q + indicator_q + ')'
+    if 'AND ()' in filter_string:
+        filter_string = filter_string[:-6]
     cursor = connection.cursor()
     cursor.execute('SELECT indicator_id, city_id, name, country_name, iso, value, year, longitude, latitude, dac_region_code, dac_region_name '
-                   'FROM data_indicatorcitydata icd LEFT OUTER JOIN data_city Ci ON icd.city_id=Ci.id, data_country dc where dc.iso = Ci.country_id and indicator_id= \"cpi_5_dimensions\" and year=2012 ')
+                   'FROM data_indicatorcitydata icd LEFT OUTER JOIN data_city Ci ON icd.city_id=Ci.id, data_country dc where dc.iso = Ci.country_id and year=2012 %s' % (filter_string))
 
     desc = cursor.description
     results = [
