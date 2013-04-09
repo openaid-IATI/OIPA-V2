@@ -108,8 +108,8 @@ def test_json_response(request):
 def test_json_city_response(request):
     cursor = connection.cursor()
     cursor.execute('SELECT indicator_id, city_id, name, country_name, value, year, longitude, latitude '
-                   'FROM data_indicatorcitydata icd LEFT OUTER JOIN data_city Ci ON icd.city_id=Ci.id, data_country dc where dc.iso = Ci.country_id and indicator_id= \"cpi_5_dimensions\"  ')
-#                   'WHERE indicator_id = \"population\"')
+                   'FROM data_indicatorcitydata icd LEFT OUTER JOIN data_city Ci ON icd.city_id=Ci.id, data_country dc where dc.iso = Ci.country_id and indicator_id= \"cpi_5_dimensions\" and year=2012 ')
+
     desc = cursor.description
     results = [
     dict(zip([col[0] for col in desc], row))

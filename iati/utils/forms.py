@@ -2,6 +2,7 @@
 from django import forms
 
 # App specific
+from django.core.exceptions import MultipleObjectsReturned
 from utils.models import IATIXMLSource, UnhabitatRecordLog, ConversationCityNames
 from utils.models import UnHabitatParserLog
 from data.models.common import Country, City, UnHabitatIndicatorCity, TypeDeprivationCountry
@@ -452,17 +453,22 @@ class SaveCsvData(object):
         if self.type_upload == 31:
             try:
                 city, _ = City.objects.get_or_create(name=self.check_unusual_name(input_city_name=line['City']), country=country)
-                pop, _ = UnHabitatIndicatorCity.objects.get_or_create(city=city, year=line['Year'])
-                pop.cpi_5_dimensions =self.return_value_else_none(line['five'], type="float")
-                pop.cpi_4_dimensions =self.return_value_else_none(line['four'], type="float")
-                pop.cpi_productivity_index =self.return_value_else_none(line['Productivity Index'], type="float")
-                pop.cpi_quality_of_live_index =self.return_value_else_none(line['Quality of life Index'], type="float")
-                pop.cpi_infrastructure_index =self.return_value_else_none(line['Infrastructure Index'], type="float")
-                pop.cpi_environment_index = self.return_value_else_none(line['Enivronment Index'], type="float")
-                pop.cpi_equity_index = self.return_value_else_none(line['Equity Index'], type="float")
-                pop.save()
-            except ValueError:
-                pass
+            except MultipleObjectsReturned:
+                city = City.objects.filter(name=self.check_unusual_name(input_city_name=line['City']), country=country)[0]
+            try:
+                pop = UnHabitatIndicatorCity.objects.get(city=city, year=line['Year'])
+            except UnHabitatIndicatorCity.DoesNotExist:
+                pop = UnHabitatIndicatorCity()
+#            pop, _ = UnHabitatIndicatorCity.objects.get_or_create(city=city, year=line['Year'])
+            pop.cpi_5_dimensions =self.return_value_else_none(line['five'], type="float")
+            pop.cpi_4_dimensions =self.return_value_else_none(line['four'], type="float")
+            pop.cpi_productivity_index =self.return_value_else_none(line['Productivity Index'], type="float")
+            pop.cpi_quality_of_live_index =self.return_value_else_none(line['Quality of life Index'], type="float")
+            pop.cpi_infrastructure_index =self.return_value_else_none(line['Infrastructure Index'], type="float")
+            pop.cpi_environment_index = self.return_value_else_none(line['Enivronment Index'], type="float")
+            pop.cpi_equity_index = self.return_value_else_none(line['Equity Index'], type="float")
+            pop.save()
+
     def check_unusual_name(self, input_city_name):
         try:
             city_name = input_city_name
