@@ -67,9 +67,13 @@ class UploadUnHabitatIndicatorCountryCSV(FormView):
 
 def test_json_response(request):
     cursor = connection.cursor()
+
     cursor.execute('SELECT indicator_id, country_id, country_name, value, year, latitude, longitude '
                    'FROM data_indicatordata id LEFT OUTER JOIN data_country C ON id.country_id=C.iso '
                    'WHERE indicator_id = \"population\"')
+    cursor_max = connection.cursor()
+    cursor_max.execute('SELECT max(value) as max_value FROM data_indicatordata')
+    result_max = cursor_max.fetchone()
     desc = cursor.description
     results = [
     dict(zip([col[0] for col in desc], row))
@@ -88,7 +92,7 @@ def test_json_response(request):
         try:
             years = country[r['country_id']]['years']
         except:
-            country[r['country_id']] = {'name' : r['country_name'], 'longitude' : r['longitude'], 'latitude' : r['latitude'], 'years' : {}}
+            country[r['country_id']] = {'name' : r['country_name'], 'longitude' : r['longitude'], 'latitude' : r['latitude'], 'max_value' : result_max[0], 'years' : {}}
 
 
 
