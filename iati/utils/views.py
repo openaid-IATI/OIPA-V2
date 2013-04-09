@@ -78,7 +78,7 @@ def test_json_response(request):
     new_results = []
     country = {}
     for r in results:
-        years = []
+        years = {}
 
         year = {}
 
@@ -88,15 +88,15 @@ def test_json_response(request):
         try:
             years = country[r['country_id']]['years']
         except:
-            country[r['country_id']] = {'name' : r['country_name'], 'longitude' : r['longitude'], 'latitude' : r['latitude'], 'years' : []}
+            country[r['country_id']] = {'name' : r['country_name'], 'longitude' : r['longitude'], 'latitude' : r['latitude'], 'years' : {}}
 
 
 
         years = country[r['country_id']]['years']
         year['y' + str(r['year'])] = r['value']
 
-        years.append(year)
-        country[r['country_id']]['years'] = years
+
+        country[r['country_id']]['years'].update(year)
 
 #        except:
 #            pass
