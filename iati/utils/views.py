@@ -153,6 +153,7 @@ def test_json_city_response(request):
     country['countries'] = countries
     country['cities'] = cities
 
+
     return HttpResponse(json.dumps(country), mimetype='application/json')
 
 def json_cpi_filter_response(request):
