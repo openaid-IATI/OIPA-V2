@@ -177,8 +177,8 @@ def test_json_response(request):
 #            cities.update(cit)
     #getting all the cpi indicators
     cursor = connection.cursor()
-    cursor.execute('SELECT DISTINCT indicator_id'
-                   ' FROM data_indicatordata ')
+    cursor.execute('SELECT DISTINCT indicator_id, friendly_label'
+                   ' FROM data_indicatordata did, data_indicator di WHERE did.indicator_id = di.name ')
 
     desc = cursor.description
     results = [
@@ -188,7 +188,7 @@ def test_json_response(request):
     indicators = {}
     for r in results:
         indicator = {}
-        indicator[r['indicator_id']] = r['indicator_id']
+        indicator[r['indicator_id']] = r['friendly_label']
         indicators.update(indicator)
 
     country['indicators'] = indicators
