@@ -67,7 +67,7 @@ class Command(BaseCommand):
                                                     'rainwater' : {'name' : 'Access to rainwater','type_data' : 'p' },
                                                     'slum_proportion_living_urban' : {'name' : 'Slum proportion living in urban area\'s','type_data' : 'p' },
                                                     'sufficient_living' : {'name' : 'Access to sufficient living','type_data' : 'p' },
-                                                    'under_five_mortality_rate' : {'name' : 'Under five mortality rate','type_data' : 'p' },
+                                                    'under_five_mortality_rate' : {'name' : 'Under five mortality rate','type_data' : '1000' },
                                                     'urban_population' : {'name' : 'Urban population','type_data' : '1000' },
                                                     'urban_slum_population' : {'name' : 'Urban population','type_data' : '1000'},
                                                     'cpi_5_dimensions' : {'name' :'5 dimensions','type_data' : 'p'},
