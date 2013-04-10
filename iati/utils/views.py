@@ -92,7 +92,7 @@ def test_json_response(request):
 
     indicator_filters = request.GET.get('indicator', None)
     if indicator_filters:
-        indicator_q = make_where_query(values=indicator_filters.split(','), name='indicator_id')
+        indicator_q = make_where_query(values=indicator_filters.split(',')[0], name='indicator_id')
         indicator_q += ') AND ('
     else:
         indicator_q = ''
@@ -147,7 +147,7 @@ def test_json_response(request):
             try:
                 years = country[r['country_id']]['years']
             except:
-                country[r['country_id']] = {'name' : r['country_name'], 'longitude' : r['longitude'], 'latitude' : r['latitude'], 'max_value' : result_max[0], 'years' : {}}
+                country[r['country_id']] = {'name' : r['country_name'], 'indicator' : r['indicator_id'], 'longitude' : r['longitude'], 'latitude' : r['latitude'], 'max_value' : result_max[0], 'years' : {}}
 
 
 
@@ -221,7 +221,7 @@ def test_json_city_response(request):
 
     indicator_filters = request.GET.get('indicator', None)
     if indicator_filters:
-        indicator_q = make_where_query(values=indicator_filters.split(','), name='indicator_id')
+        indicator_q = make_where_query(values=indicator_filters.split(',')[0], name='indicator_id')
         indicator_q += ') AND ('
     else:
         indicator_q = ''
@@ -264,7 +264,7 @@ def test_json_city_response(request):
         try:
             country[r['city_id']]['years']
         except:
-            country[r['city_id']] = {'name' : r['name'], 'longitude' : r['longitude'], 'latitude' : r['latitude'], 'max_value' : result_max[0], 'years' : {}}
+            country[r['city_id']] = {'name' : r['name'], 'indicator' : r['indicator_id'], 'longitude' : r['longitude'], 'latitude' : r['latitude'], 'max_value' : result_max[0], 'years' : {}}
 
 #        years = country[r['city_id']]['years']
         year['y' + str(r['year'])] = r['value']
