@@ -92,7 +92,7 @@ def test_json_response(request):
 
     indicator_filters = request.GET.get('indicator', None)
     if indicator_filters:
-        indicator_q = make_where_query(values=indicator_filters.split(',')[0], name='indicator_id')
+        indicator_q = make_where_query(values=indicator_filters.split(','), name='indicator_id')
         indicator_q += ') AND ('
     else:
         indicator_q = ''
@@ -221,7 +221,7 @@ def test_json_city_response(request):
 
     indicator_filters = request.GET.get('indicator', None)
     if indicator_filters:
-        indicator_q = make_where_query(values=indicator_filters.split(',')[0], name='indicator_id')
+        indicator_q = make_where_query(values=indicator_filters.split(','), name='indicator_id')
         indicator_q += ') AND ('
     else:
         indicator_q = ''
