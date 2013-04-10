@@ -107,9 +107,9 @@ def test_json_response(request):
 
     cursor = connection.cursor()
 
-    cursor.execute('SELECT indicator_id, id.country_id,  country_name, dac_region_code, dac_region_name, value, year, latitude, longitude, C.iso '
-                   'FROM data_indicatordata id LEFT OUTER JOIN data_country C ON id.country_id=C.iso  '
-                   'WHERE %s' % (filter_string))
+    cursor.execute('SELECT indicator_id, da.friendly_label, da.type_data, id.country_id, country_name, dac_region_code, dac_region_name, value, year, latitude, longitude, C.iso '
+                   'FROM data_indicatordata id LEFT OUTER JOIN data_country C ON id.country_id=C.iso, data_indicator da '
+                   'WHERE da.name = indicator_id AND %s' % (filter_string))
     #LEFT OUTER JOIN data_city City ON C.iso = City.country_id
     cursor_max = connection.cursor()
 
@@ -147,7 +147,7 @@ def test_json_response(request):
             try:
                 years = country[r['country_id']]['years']
             except:
-                country[r['country_id']] = {'name' : r['country_name'], 'indicator' : r['indicator_id'], 'longitude' : r['longitude'], 'latitude' : r['latitude'], 'max_value' : result_max[0], 'years' : {}}
+                country[r['country_id']] = {'name' : r['country_name'], 'indicator_friendly' : r['friendly_label'], 'type_data' : r['type_data'] , 'indicator' : r['indicator_id'], 'longitude' : r['longitude'], 'latitude' : r['latitude'], 'max_value' : result_max[0], 'years' : {}}
 
 
 

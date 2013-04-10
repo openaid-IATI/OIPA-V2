@@ -55,6 +55,8 @@ class Country(models.Model):
 class Indicator(models.Model):
     name = models.CharField(max_length=50, primary_key=True)
     description = models.CharField(max_length=255, null=True, blank=True)
+    friendly_label = models.CharField(max_length=255, null=True, blank=True)
+    type_data = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
         app_label = "data"
