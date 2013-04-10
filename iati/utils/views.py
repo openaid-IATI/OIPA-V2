@@ -122,6 +122,23 @@ def test_json_response(request):
 #        if r['name']:
 #            cit[r['name']] = r['name']
 #            cities.update(cit)
+    #getting all the cpi indicators
+    cursor = connection.cursor()
+    cursor.execute('SELECT DISTINCT indicator_id'
+                   ' FROM data_indicatordata ')
+
+    desc = cursor.description
+    results = [
+    dict(zip([col[0] for col in desc], row))
+    for row in cursor.fetchall()
+    ]
+    indicators = {}
+    for r in results:
+        indicator = {}
+        indicator[r['indicator_id']] = r['indicator_id']
+        indicators.update(indicator)
+
+    country['indicators'] = indicators
 
 
     return HttpResponse(json.dumps(country), mimetype='application/json')
