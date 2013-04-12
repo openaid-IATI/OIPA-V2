@@ -3,6 +3,7 @@ from django.contrib import admin
 
 # App specific
 from data.models.activity import IATIActivity, IATIActivityBudget, IATIActivityTitle
+from data.models.common import Country, City
 from data.models.organisation import Organisation
 from utils.models import ConversationCityNames
 
@@ -19,3 +20,5 @@ admin.site.register(IATIActivityBudget)
 admin.site.register(IATIActivityTitle)
 admin.site.register(IATIActivity, IATIActivityAdmin)
 admin.site.register(Organisation, OrganistaionAdmin)
+admin.site.register(Country)
+admin.site.register(City)
