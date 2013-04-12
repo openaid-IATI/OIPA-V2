@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from tastypie.models import ApiKey
-from data.models.common import  UnHabitatIndicatorCountry, UnHabitatIndicatorCity, City, TypeDeprivationCity, TypeDeprivationCountry
+from data.models.common import  UnHabitatIndicatorCountry, UnHabitatIndicatorCity, City, TypeDeprivationCity, TypeDeprivationCountry,Country, City
 from utils.models import IATIXMLSource, Publisher, ParseSchedule, UnHabitatParserLog, UnhabitatRecordLog
 
 
@@ -98,3 +98,5 @@ admin.site.register(City)
 #admin.site.register(ApiKey)
 admin.site.register(UnHabitatParserLog)
 admin.site.register(UnhabitatRecordLog, UnhabitatRecordLogAdmin)
+admin.site.register(Country)
+admin.site.register(City)
