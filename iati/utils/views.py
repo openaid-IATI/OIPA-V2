@@ -66,12 +66,13 @@ class UploadUnHabitatIndicatorCountryCSV(FormView):
         return super(UploadUnHabitatIndicatorCountryCSV, self).form_valid(form=form)
 def make_where_query(values, name):
     query = ''
-    if not values[0]:
-        return None
+    if values:
+        if not values[0]:
+            return None
 
-    for v in values:
-        query += '  ' + name + ' = "' + v +'" OR'
-    query = query[:-2]
+        for v in values:
+            query += '  ' + name + ' = "' + v +'" OR'
+        query = query[:-2]
     return query
 
 def test_json_response(request):
@@ -357,16 +358,51 @@ def find_coordinates(iso2):
                 return k['geometry']['coordinates']
         except KeyError:
             pass
+
+def get_filter_query(filters):
+    q= ''
+    for f in filters:
+        if f[f.keys()[0]]:
+            values = f[f.keys()[0]].split(',')
+        else:
+            values = None
+        q += make_where_query(values=values, name=f.keys()[0]) + ') and ('
+
+    q = q.replace(' and ()', '')
+    q = q[:-5]
+    q = " AND (" + q
+    try:
+        q[8]
+        return q
+    except IndexError:
+        return ''
+
+
 def json_activities_response(request):
+    q_countries = { 'country_id' :request.GET.get('countries', None)}
+    q_sectors = {'sector_id' : request.GET.get('sectors', None)}
+    q_regions = {'region_id' :request.GET.get('regions', None)}
+    q_budget = {'budget' : request.GET.get('budget', None)}
+
+    filters = []
+    filters.append(q_countries)
+    filters.append(q_sectors)
+    filters.append(q_regions)
+    filters.append(q_budget)
+    query_string = get_filter_query(filters=filters)
+
+    print query_string
+
+
     cursor = connection.cursor()
-    cursor.execute('SELECT c.country_id, a.iati_identifier as iati_activity, count(a.iati_identifier) as total_projects, cd.country_name '
+    cursor.execute('SELECT c.country_id, a.iati_identifier as iati_activity, count(a.iati_identifier) as total_projects, cd.country_name, r.region_id, s.sector_id '
                    'FROM data_iatiactivity a,'
                    'data_iatiactivitycountry c, '
-                   'data_country cd '
+                   'data_country cd, data_iatiactivityregion r, data_iatiactivitysector s '
                    'WHERE reporting_organisation_id = 41120 and '
-                   'a.iati_identifier = c.iati_activity_id and '
-                   'c.country_id = cd.iso '
-                   'Group by c.country_id')
+                   'a.iati_identifier = c.iati_activity_id and a.iati_identifier = s.iati_activity_id and  '
+                   'c.country_id = cd.iso and r.iati_activity_id = a.iati_identifier %s '
+                   'Group by c.country_id' % query_string)
     activity_result = {}
     activity_result = {'type' : 'FeatureCollection', 'features' : []}
 
