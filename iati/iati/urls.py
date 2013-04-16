@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     url(r'^json-activities$', json_activities_response, name='json_activities'),
     url(r'^json-project-filters', json_filter_projects, name='json_project_filters'),
 
+
     (r'^api/', include('api.urls')),
     url(r'^search/$', PeriodicalSearchView(template='search/search.html'),
         name='haystack_search'),
