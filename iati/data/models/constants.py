@@ -203,7 +203,7 @@ COUNTRY_LOCATION = {
     "FK": { "longitude":"-51.45", "latitude":"-59.00"},
     "FM": { "longitude":"6.55", "latitude":"158.15"},
     "FO": { "longitude":"62.00", "latitude":"-7.00"},
-    "FR": { "longitude":"10.17", "latitude":"-109.13"},
+    "FR": { "longitude":"47.06", "latitude":"2.17"},
     "GA": { "longitude":"-1.00", "latitude":"11.45"},
     "GB": { "longitude":"54.00", "latitude":"-2.00"},
     "GD": { "longitude":"12.07", "latitude":"-61.40"},
