@@ -311,14 +311,64 @@ def test_json_city_response(request):
     country['indicators'] = indicators
     return HttpResponse(json.dumps(country), mimetype='application/json')
 
-def json_cpi_filter_response(request):
-    cursor = connection.cursor()
-    cursor.execute('SELECT * FROM data_country')
+def get_fields(cursor):
     desc = cursor.description
     results = [
     dict(zip([col[0] for col in desc], row))
     for row in cursor.fetchall()
     ]
+    return results
+
+def json_filter_projects(request):
+    cursor = connection.cursor()
+    cursor.execute('SELECT sd.name, c.country_id, a.iati_identifier, s.sector_id, r.region_id, cd.country_name '
+                   'FROM data_iatiactivity a,'
+                   'data_iatiactivitycountry c,'
+                   'data_iatiactivitysector s,'
+                   'data_iatiactivityregion r,'
+                   'data_country cd, '
+                   'data_sector sd '
+                   'WHERE a.reporting_organisation_id = 41120 and '
+                   'a.iati_identifier = c.iati_activity_id and '
+                   'a.iati_identifier = s.iati_activity_id and '
+                   'a.iati_identifier = r.iati_activity_id and '
+                   'c.country_id = cd.iso and '
+                   's.sector_id = sd.code')
+    results = get_fields(cursor=cursor)
+    countries = {}
+    countries['countries'] = {}
+    countries['regions'] = {}
+    countries['sectors'] = {}
+    for r in results:
+        country = {}
+#        country[r['country_id']] = r['country_name']
+#        countries['countries'].update(country)
+        countries['countries'][r['country_id']] = r['country_name']
+        countries['sectors'][r['sector_id']] = r['name']
+        countries['regions'][r['region_id']] = r['region_id']
+
+    return HttpResponse(json.dumps(countries), mimetype='application/json')
+
+
+def json_activities_response(request):
+    cursor = connection.cursor()
+    cursor.execute('SELECT * FROM data_iatiactivity, data_iatiactivitycountry WHERE reporting_organisation_id = 41120')
+    activities = {}
+    results = get_fields(cursor=cursor)
+    for r in results:
+        activity = {}
+        activity[r['iati_identifier']] = r['iati_identifier']
+        activities.update(activity)
+
+    result = {}
+
+    result['activities'] = activities
+    return HttpResponse(json.dumps(result), mimetype='application/json')
+
+def json_cpi_filter_response(request):
+    cursor = connection.cursor()
+    cursor.execute('SELECT * FROM data_country')
+    results = get_fields(cursor=cursor)
     result = {}
     regions = {}
     for r in results:
