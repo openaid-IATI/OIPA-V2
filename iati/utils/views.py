@@ -353,20 +353,30 @@ def json_filter_projects(request):
 
 
 def find_coordinates(iso2):
-        for k in countryData['features']:
-            try:
-                if k['properties']['iso2'] == iso2:
-                    return k['geometry']['coordinates']
-            except KeyError:
-                return []
-
-def find_type_polygon(iso2):
+    coordinates = None
     for k in countryData['features']:
         try:
             if k['properties']['iso2'] == iso2:
-                return k['geometry']['type']
+                coordinates =  k['geometry']['coordinates']
         except KeyError:
-            return 'Polygon'
+            pass
+    if coordinates:
+        return coordinates
+    else:
+        return []
+
+def find_type_polygon(iso2):
+    polygon = None
+    for k in countryData['features']:
+        try:
+            if k['properties']['iso2'] == iso2:
+                polygon = k['geometry']['type']
+        except KeyError:
+            pass
+    if polygon:
+        return polygon
+    else:
+        return 'Polygon'
 
 def get_filter_query(filters):
     q= ''
