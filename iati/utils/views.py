@@ -422,7 +422,7 @@ def json_activities_response(request):
         country['type'] = 'Feature'
         country['id'] = r['country_id']
         country['properties'] = {'name' : r['country_name'], 'project_amount' : r['total_projects'], 'total_budget' : str(r['total_budget'])}
-        country['geometry'] = {'type' : 'Polygon', 'coordinates' : find_coordinates(iso2=r['country_id'])}
+        country['geometry'] = {'type' : 'MultiPolygon', 'coordinates' : find_coordinates(iso2=r['country_id'])}
 
         activities.append(country)
 
