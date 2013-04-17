@@ -358,7 +358,7 @@ def find_coordinates(iso2):
             if k['properties']['iso2'] == iso2:
                 return k['geometry']['coordinates']
         except KeyError:
-            pass
+            return []
 
 def get_filter_query(filters):
     q= ''
