@@ -361,6 +361,7 @@ def find_coordinates(iso2):
 
 def get_filter_query(filters):
     q= ''
+
     for f in filters:
         if f[f.keys()[0]]:
             values = f[f.keys()[0]].split(',')
@@ -382,27 +383,31 @@ def json_activities_response(request):
     q_countries = { 'country_id' :request.GET.get('countries', None)}
     q_sectors = {'sector_id' : request.GET.get('sectors', None)}
     q_regions = {'region_id' :request.GET.get('regions', None)}
-    q_budget = {'budget' : request.GET.get('budget', None)}
+    q_budget = {'total_budget' : request.GET.get('budget', None)}
 
     filters = []
     filters.append(q_countries)
     filters.append(q_sectors)
     filters.append(q_regions)
-    filters.append(q_budget)
+
+    if q_budget['total_budget']:
+        query_having = 'having total_budget ' + q_budget['total_budget'].split(',')[0]
+    else:
+        query_having = ''
     query_string = get_filter_query(filters=filters)
 
     print query_string
 
 
     cursor = connection.cursor()
-    cursor.execute('SELECT c.country_id, a.iati_identifier as iati_activity, count(a.iati_identifier) as total_projects, cd.country_name, r.region_id, s.sector_id '
+    cursor.execute('SELECT c.country_id, a.iati_identifier as iati_activity, count(a.iati_identifier) as total_projects, cd.country_name, r.region_id, s.sector_id,sum(bd.value) as total_budget '
                    'FROM data_iatiactivity a,'
                    'data_iatiactivitycountry c, '
-                   'data_country cd, data_iatiactivityregion r, data_iatiactivitysector s '
+                   'data_country cd, data_iatiactivityregion r, data_iatiactivitysector s, data_iatiactivitybudget b, data_budget bd '
                    'WHERE reporting_organisation_id = 41120 and '
                    'a.iati_identifier = c.iati_activity_id and a.iati_identifier = s.iati_activity_id and  '
-                   'c.country_id = cd.iso and r.iati_activity_id = a.iati_identifier %s '
-                   'Group by c.country_id' % query_string)
+                   'c.country_id = cd.iso and r.iati_activity_id = a.iati_identifier and a.iati_identifier = b.iati_activity_id and b.budget_ptr_id = bd.id %s '
+                   'Group by c.country_id %s' % (query_string, query_having))
     activity_result = {}
     activity_result = {'type' : 'FeatureCollection', 'features' : []}
 
@@ -415,7 +420,7 @@ def json_activities_response(request):
         country = {}
         country['type'] = 'Feature'
         country['id'] = r['country_id']
-        country['properties'] = {'name' : r['country_name'], 'project_amount' : r['total_projects']}
+        country['properties'] = {'name' : r['country_name'], 'project_amount' : r['total_projects'], 'total_budget' : str(r['total_budget'])}
         country['geometry'] = {'type' : 'Polygon', 'coordinates' : find_coordinates(iso2=r['country_id'])}
 
         activities.append(country)
