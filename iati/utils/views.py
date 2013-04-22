@@ -406,8 +406,22 @@ def json_activities_response(request):
 
     filters = []
     filters.append(q_countries)
-    filters.append(q_sectors)
-    filters.append(q_regions)
+#    filters.append(q_sectors)
+#    filters.append(q_regions)
+
+    filter_region = []
+    filter_region.append(q_regions)
+    filter_sector = []
+    filter_sector.append(q_sectors)
+
+    if request.GET.get('sectors', None):
+        where_sector = ' WHERE ' + str(get_filter_query(filters=filter_sector)[4:])
+    else:
+        where_sector = ''
+    if request.GET.get('regions', None):
+        where_region = ' WHERE ' + str(get_filter_query(filters=filter_region)[4:])
+    else:
+        where_region = ""
 
     if q_budget['total_budget']:
         query_having = 'having total_budget ' + q_budget['total_budget'].split(',')[0]
@@ -419,14 +433,17 @@ def json_activities_response(request):
 
 
     cursor = connection.cursor()
-    cursor.execute('SELECT c.country_id, a.iati_identifier as iati_activity, count(a.iati_identifier) as total_projects, cd.country_name, r.region_id, s.sector_id,sum(bd.value) as total_budget '
+    cursor.execute('SELECT c.country_id, a.iati_identifier as iati_activity, count(a.iati_identifier) as total_projects, cd.country_name, sum(bd.value) as total_budget '
                    'FROM data_iatiactivity a,'
                    'data_iatiactivitycountry c, '
-                   'data_country cd, data_iatiactivityregion r, data_iatiactivitysector s, data_iatiactivitybudget b, data_budget bd '
+                   'data_country cd, data_iatiactivitybudget b, data_budget bd '
                    'WHERE reporting_organisation_id = 41120 and '
-                   'a.iati_identifier = c.iati_activity_id and a.iati_identifier = s.iati_activity_id and  '
-                   'c.country_id = cd.iso and r.iati_activity_id = a.iati_identifier and a.iati_identifier = b.iati_activity_id and b.budget_ptr_id = bd.id %s '
-                   'Group by c.country_id %s' % (query_string, query_having))
+                   'a.iati_identifier = c.iati_activity_id  and  '
+                   'c.country_id = cd.iso and a.iati_identifier = b.iati_activity_id and b.budget_ptr_id = bd.id %s '
+                   ' and a.iati_identifier in (select iati_activity_id from data_iatiactivityregion r %s)  '
+                   ' and a.iati_identifier in (select iati_activity_id from data_iatiactivitysector s %s)  '
+
+                   'Group by c.country_id %s' % (query_string, where_region, where_sector, query_having))
     activity_result = {}
     activity_result = {'type' : 'FeatureCollection', 'features' : []}
 
