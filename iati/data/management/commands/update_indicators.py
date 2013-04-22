@@ -16,15 +16,15 @@ class Command(BaseCommand):
         except IndexError:
             get_indicator_data = False
         for country in Country.objects.all():
-            if not country.latitude or not country.iso2 == country.iso:
-                try:
-                    country.latitude = COUNTRY_LOCATION[country.iso]['latitude']
-                    country.longitude = COUNTRY_LOCATION[country.iso]['longitude']
-                    country.iso2 = country.iso
-                    country.save()
-                    print "Country %s has been updated" % country.iso
-                except KeyError:
-                    pass
+
+            try:
+                country.latitude = COUNTRY_LOCATION[country.iso]['latitude']
+                country.longitude = COUNTRY_LOCATION[country.iso]['longitude']
+                country.iso2 = country.iso
+                country.save()
+                print "Country %s has been updated" % country.iso
+            except KeyError:
+                pass
             if get_indicator_data:
                 unhabitat_indicators = UnHabitatIndicatorCountry.objects.filter(country=country)
                 for i in unhabitat_indicators:
