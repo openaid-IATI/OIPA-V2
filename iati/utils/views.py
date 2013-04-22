@@ -442,8 +442,8 @@ def json_activities_response(request):
                    'c.country_id = cd.iso and a.iati_identifier = b.iati_activity_id and b.budget_ptr_id = bd.id %s '
                    ' and a.iati_identifier in (select iati_activity_id from data_iatiactivityregion r %s)  '
                    ' and a.iati_identifier in (select iati_activity_id from data_iatiactivitysector s %s)  '
-
                    'Group by c.country_id %s' % (query_string, where_region, where_sector, query_having))
+
     activity_result = {}
     activity_result = {'type' : 'FeatureCollection', 'features' : []}
 
