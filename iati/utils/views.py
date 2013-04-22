@@ -234,7 +234,7 @@ def test_json_city_response(request):
     if 'AND ()' in filter_string:
         filter_string = filter_string[:-6]
     cursor = connection.cursor()
-    cursor.execute('SELECT indicator_id, city_id, name, country_name, iso, value, year, longitude, latitude, dac_region_code, dac_region_name '
+    cursor.execute('SELECT indicator_id, city_id, name, country_name, iso, value, year, Ci.longitude, Ci.latitude, dac_region_code, dac_region_name '
                    'FROM data_indicatorcitydata icd LEFT OUTER JOIN data_city Ci ON icd.city_id=Ci.id, data_country dc where dc.iso = Ci.country_id and year=2012 %s' % (filter_string))
 
     desc = cursor.description
