@@ -23,13 +23,13 @@ class IATIActivityIndex(SearchIndex):
              title = title[0]['title']
              return title
         except IndexError:
-            return {'N/A'}
+            return 'N/A'
 
     def prepare_country(self, obj):
         try:
             return obj.iatiactivitycountry_set.all()[0].country.get_iso_display()
         except :
-            return {'N/A'}
+            return 'N/A'
 
     def prepare_text(self, obj):
 
@@ -39,7 +39,7 @@ class IATIActivityIndex(SearchIndex):
 
             return description
         except IndexError:
-            return {'N/A'}
+            return 'N/A'
 
 site.register(IATIActivity, IATIActivityIndex)
 

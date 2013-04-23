@@ -22,7 +22,7 @@ class Command(BaseCommand):
                 country.longitude = COUNTRY_LOCATION[country.iso]['longitude']
                 country.iso2 = country.iso
                 country.save()
-                print "Country %s has been updated" % country.iso
+                print "Country %s has been updated " % country.iso
             except KeyError:
                 pass
             if get_indicator_data:
