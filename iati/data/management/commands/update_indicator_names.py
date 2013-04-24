@@ -38,7 +38,7 @@ class Command(BaseCommand):
 #Under five mortality rate
 #Urban population [is this repeated?]
 #Slum population [is this repeated?]
-    mapping_names = {'avg_annual_rate_change_percentage_urban' : {'name' : 'Urban population %' , 'type_data' : 'p'},
+    mapping_names = {'avg_annual_rate_change_percentage_urban' : {'name' : 'Annual urban population change %' , 'type_data' : 'p'},
                                                    'avg_annual_rate_change_total_population' : {'name' :'Annual population change %','type_data' : 'p'},
 
                                                     'bottle_water' : {'name' :'Access to bottled water','type_data' : 'p'},
@@ -67,9 +67,9 @@ class Command(BaseCommand):
                                                     'rainwater' : {'name' : 'Access to rainwater','type_data' : 'p' },
                                                     'slum_proportion_living_urban' : {'name' : 'Slum proportion living in urban area\'s','type_data' : 'p' },
                                                     'sufficient_living' : {'name' : 'Access to sufficient living','type_data' : 'p' },
-                                                    'under_five_mortality_rate' : {'name' : 'Under five mortality rate','type_data' : '1000' },
+                                                    'under_five_mortality_rate' : {'name' : 'Under five mortality rate','type_data' : 'p' },
                                                     'urban_population' : {'name' : 'Urban population','type_data' : '1000' },
-                                                    'urban_slum_population' : {'name' : 'Urban population','type_data' : '1000'},
+                                                    'urban_slum_population' : {'name' : 'Urban slum population','type_data' : '1000'},
                                                     'cpi_5_dimensions' : {'name' :'5 dimensions','type_data' : 'p'},
                                                     'cpi_4_dimensions' : {'name' :'cpi_4_dimensions','type_data' : 'p'},
                                                     'cpi_productivity_index' : {'name' :'cpi_productivity_index','type_data' : 'p' },
