@@ -58,6 +58,11 @@ class Indicator(models.Model):
     friendly_label = models.CharField(max_length=255, null=True, blank=True)
     type_data = models.CharField(max_length=255, null=True, blank=True)
 
+    #selection type is used for i.e. table 14 type of fuel
+    selection_type = models.CharField(max_length=255, null=True, blank=True)
+    #deprivation type is used for i.e. table 14 urban, non slum household, one sheltar deprivation
+    deprivation_type = models.CharField(max_length=255, null=True, blank=True)
+
     class Meta:
         app_label = "data"
 

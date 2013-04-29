@@ -1,7 +1,7 @@
 # Django specific
 from django.core.management.base import BaseCommand
 from data.models import Country
-from data.models.common import UnHabitatIndicatorCountry, IndicatorData, Indicator
+from data.models.common import UnHabitatIndicatorCountry, IndicatorData, Indicator, TypeDeprivationCountry
 from data.models.constants import COUNTRY_LOCATION
 
 
@@ -12,20 +12,28 @@ class Command(BaseCommand):
         get_indicator_data = False
         try:
             if args[0]:
+
                 get_indicator_data = True
         except IndexError:
             get_indicator_data = False
         for country in Country.objects.all():
 
             try:
-                country.latitude = COUNTRY_LOCATION[country.iso]['latitude']
-                country.longitude = COUNTRY_LOCATION[country.iso]['longitude']
-                country.iso2 = country.iso
-                country.save()
-                print "Country %s has been updated " % country.iso
+                if not country.latitude == COUNTRY_LOCATION[country.iso]['latitude'] or not country.iso2 == country.iso:
+                    country.latitude = COUNTRY_LOCATION[country.iso]['latitude']
+                    country.longitude = COUNTRY_LOCATION[country.iso]['longitude']
+                    country.iso2 = country.iso
+                    country.save()
+                    print "Country %s has been updated " % country.iso
             except KeyError:
                 pass
-            if get_indicator_data:
+
+            if args[0] == 'multiple':
+                multiple_indicators = TypeDeprivationCountry.objects.filter(is_matrix=True)
+                for m in multiple_indicators:
+                    print m
+
+            if args[0] == 'single':
                 unhabitat_indicators = UnHabitatIndicatorCountry.objects.filter(country=country)
                 for i in unhabitat_indicators:
                     indicator, _ = Indicator.objects.get_or_create(name='population')
