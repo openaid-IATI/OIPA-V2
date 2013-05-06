@@ -71,12 +71,12 @@ class Command(BaseCommand):
                                                     'urban_population' : {'name' : 'Urban population','type_data' : '1000' },
                                                     'urban_slum_population' : {'name' : 'Urban slum population','type_data' : '1000'},
                                                     'cpi_5_dimensions' : {'name' :'5 dimensions','type_data' : 'p'},
-                                                    'cpi_4_dimensions' : {'name' :'cpi_4_dimensions','type_data' : 'p'},
-                                                    'cpi_productivity_index' : {'name' :'cpi_productivity_index','type_data' : 'p' },
-                                                    'cpi_quality_of_live_index' : {'name' :'cpi_quality_of_live_index','type_data' : 'p'},
-                                                    'cpi_infrastructure_index' : {'name' :'cpi_infrastructure_index','type_data' : 'p'},
-                                                    'cpi_environment_index' : {'name' :'cpi_environment_index','type_data' : 'p'},
-                                                    'cpi_equity_index' : {'name' :'cpi_equity_index','type_data' : 'p'}
+                                                    'cpi_4_dimensions' : {'name' :'4 dimensions','type_data' : 'p'},
+                                                    'cpi_productivity_index' : {'name' :'Productivity index','type_data' : 'p' },
+                                                    'cpi_quality_of_live_index' : {'name' :'Quality of life index','type_data' : 'p'},
+                                                    'cpi_infrastructure_index' : {'name' :'Infrastructure Development index','type_data' : 'p'},
+                                                    'cpi_environment_index' : {'name' :'Environmental Sustainability index','type_data' : 'p'},
+                                                    'cpi_equity_index' : {'name' :'Equity Index','type_data' : 'p'}
     }
 
     def handle(self, *args, **options):
