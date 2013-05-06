@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django.utils import simplejson
 from django.views.generic import FormView
 from data.models.common import IndicatorData
-from data.models.constants import countryData
+from data.models.constants import countryData, REGION_CHOICES, REGION_CHOICES_DICT
 from utils.forms import UploadForm
 from django.core.urlresolvers import reverse
 
@@ -347,7 +347,7 @@ def json_filter_projects(request):
 #        countries['countries'].update(country)
         countries['countries'][r['country_id']] = r['country_name']
         countries['sectors'][r['sector_id']] = r['name']
-        countries['regions'][r['region_id']] = r['region_id']
+        countries['regions'][r['region_id']] = REGION_CHOICES_DICT[r['region_id']]
 
     return HttpResponse(json.dumps(countries), mimetype='application/json')
 

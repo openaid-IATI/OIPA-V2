@@ -114,6 +114,25 @@ REGION_CHOICES = (
     (998, _(u"Bilateral, unspecified")),
     )
 
+REGION_CHOICES_DICT = {
+    89:"Europe, regional",
+    189:"North of Sahara, regional",
+    289:"South of Sahara, regional",
+    298:"Africa, regional",
+    380:"West Indies, regional",
+    389:"North and Central America, regional",
+    489:"South America, regional",
+    498:"America, regional",
+    589:"Middle East, regional",
+    619:"Central Asia, regional",
+    679:"South Asia, regional",
+    689:"South and Central Asia, regional",
+    789:"Far East Asia, regional",
+    798:"Asia, regional",
+    889:"Oceania, regional",
+    998:"Bilateral, unspecified",
+    }
+
 COUNTRY_ISO_MAP = {u'WW': _(u'Worldwide'), u'WF': _(u'Wallis and Futuna Islands'), u'JP': _(u'Japan'),
                    u'JM': _(u'Jamaica'), u'JO': _(u'Jordan'), u'WS': _(u'Samoa'), u'JE': _(u'Jersey'),
                    u'GW': u'Guinea-Bissau', u'GU': _(u'Guam'), u'GT': _(u'Guatemala'),
