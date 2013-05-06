@@ -89,6 +89,8 @@ class IndicatorCityData(models.Model):
 class City(models.Model):
     name = models.CharField(max_length=100, blank=False, null=False)
     country = models.ForeignKey(Country)
+    latitude = models.FloatField(max_length=20, null=True, blank=True)
+    longitude = models.FloatField(max_length=20, null=True, blank=True)
 
 
     def __unicode__(self):
