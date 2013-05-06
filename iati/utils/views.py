@@ -324,10 +324,10 @@ def get_fields(cursor):
 def json_filter_projects(request):
     cursor = connection.cursor()
     cursor.execute('SELECT sd.name, c.country_id, a.iati_identifier, s.sector_id, r.region_id, cd.country_name, cd.dac_region_name '
-                   'FROM data_iatiactivity a,'
+                   'FROM data_iatiactivity a '
+                   'LEFT JOIN data_iatiactivityregion r ON a.iati_identifier = r.iati_activity_id,'
                    'data_iatiactivitycountry c,'
                    'data_iatiactivitysector s,'
-                   'data_iatiactivityregion r,'
                    'data_country cd, '
                    'data_sector sd '
                    'WHERE a.reporting_organisation_id = 41120 and '
