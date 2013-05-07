@@ -336,7 +336,7 @@ def json_filter_projects(request):
                    'data_iatiactivitysector s,'
                    'data_country cd, '
                    'data_sector sd '
-                   'WHERE a.reporting_organisation_id = 41120 and '
+                   'WHERE '
                    'a.iati_identifier = c.iati_activity_id and '
                    'a.iati_identifier = s.iati_activity_id and '
                    'a.iati_identifier = r.iati_activity_id and '
