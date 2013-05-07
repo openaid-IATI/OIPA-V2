@@ -323,6 +323,12 @@ def get_fields(cursor):
 
 def json_filter_projects(request):
     cursor = connection.cursor()
+    q_organisations = {'reporting_organisation_id' : request.GET.get('organisations', None)}
+
+    filters = []
+
+    filters.append(q_organisations)
+    query_string = get_filter_query(filters=filters)
     cursor.execute('SELECT sd.name, c.country_id, a.iati_identifier, s.sector_id, r.region_id, cd.country_name, cd.dac_region_name '
                    'FROM data_iatiactivity a '
                    'LEFT JOIN data_iatiactivityregion r ON a.iati_identifier = r.iati_activity_id,'
@@ -335,7 +341,7 @@ def json_filter_projects(request):
                    'a.iati_identifier = s.iati_activity_id and '
                    'a.iati_identifier = r.iati_activity_id and '
                    'c.country_id = cd.iso and '
-                   's.sector_id = sd.code')
+                   's.sector_id = sd.code %s' % query_string)
     results = get_fields(cursor=cursor)
     countries = {}
     countries['countries'] = {}
@@ -403,8 +409,11 @@ def json_activities_response(request):
     q_sectors = {'sector_id' : request.GET.get('sectors', None)}
     q_regions = {'region_id' :request.GET.get('regions', None)}
     q_budget = {'total_budget' : request.GET.get('budget', None)}
+    q_organisations = {'reporting_organisation_id' : request.GET.get('organisations', None)}
 
     filters = []
+
+    filters.append(q_organisations)
     filters.append(q_countries)
 #    filters.append(q_sectors)
 #    filters.append(q_regions)
@@ -427,6 +436,9 @@ def json_activities_response(request):
         query_having = 'having total_budget ' + q_budget['total_budget'].split(',')[0]
     else:
         query_having = ''
+
+
+
     query_string = get_filter_query(filters=filters)
 
     print query_string
@@ -437,7 +449,7 @@ def json_activities_response(request):
                    'FROM data_iatiactivity a,'
                    'data_iatiactivitycountry c, '
                    'data_country cd, data_iatiactivitybudget b, data_budget bd '
-                   'WHERE reporting_organisation_id = 41120 and '
+                   'WHERE  '
                    'a.iati_identifier = c.iati_activity_id  and  '
                    'c.country_id = cd.iso and a.iati_identifier = b.iati_activity_id and b.budget_ptr_id = bd.id %s '
                    ' and a.iati_identifier in (select iati_activity_id from data_iatiactivityregion r %s)  '
