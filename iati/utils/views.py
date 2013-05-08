@@ -425,8 +425,19 @@ def json_activities_response(request):
 
     filters.append(q_organisations)
     filters.append(q_countries)
-    filters.append(q_sectors)
+#    filters.append(q_sectors)
     filters.append(q_regions)
+
+    filter_region = []
+    filter_region.append(q_regions)
+    filter_sector = []
+    filter_sector.append(q_sectors)
+
+    if request.GET.get('sectors', None):
+        where_sector =  ' Where ' + str(get_filter_query(filters=filter_sector)[4:])
+        where_sector = ' and a.iati_identifier in (select iati_activity_id from data_iatiactivitysector s %s)  ' % where_sector
+    else:
+        where_sector = ''
 
     if q_budget['total_budget']:
         query_having = 'having total_budget ' + q_budget['total_budget'].split(',')[0]
@@ -440,17 +451,15 @@ def json_activities_response(request):
 
     cursor = connection.cursor()
 
-    query = 'SELECT c.country_id, a.iati_identifier as iati_activity, count(a.iati_identifier) as total_projects, cd.country_name, sum(bd.value) as total_budget, cd.dac_region_code, s.name'\
+    query = 'SELECT c.country_id, a.iati_identifier as iati_activity, count(a.iati_identifier) as total_projects, cd.country_name, sum(bd.value) as total_budget, cd.dac_region_code '\
             ' FROM data_iatiactivity a '\
             'LEFT JOIN data_iatiactivitybudget b ON a.iati_identifier = b.iati_activity_id '\
             'LEFT JOIN data_budget bd ON b.budget_ptr_id = bd.id '\
             'LEFT JOIN data_iatiactivitycountry c ON a.iati_identifier = c.iati_activity_id '\
             'LEFT JOIN data_country cd ON c.country_id = cd.iso '\
-            'LEFT JOIN data_iatiactivitysector ds ON a.iati_identifier = ds.iati_activity_id '\
-            'LEFT JOIN data_sector s ON s.code = ds.sector_id '\
-            ' %s '\
-            'Group by c.country_id %s' % (query_string, query_having)
-#    print query
+            ' %s %s '\
+            'Group by c.country_id %s' % (query_string, where_sector,query_having)
+    print query
     cursor.execute(query)
 
     activity_result = {}
