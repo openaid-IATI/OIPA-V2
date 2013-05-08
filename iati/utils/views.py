@@ -320,7 +320,17 @@ def get_fields(cursor):
     for row in cursor.fetchall()
     ]
     return results
-
+#    SELECT sd.name, reporting_organisation_id, a.iati_identifier, s.sector_id, r.region_id
+#FROM
+#data_iatiactivity a LEFT JOIN data_iatiactivityregion r ON a.iati_identifier = r.iati_activity_id
+#LEFT JOIN
+#data_iatiactivitycountry ic ON a.iati_identifier = ic.iati_activity_id
+#LEFT JOIN
+#data_iatiactivitysector s ON a.iati_identifier = s.iati_activity_id,
+#data_sector sd
+#WHERE
+#s.sector_id = sd.code
+#and reporting_organisation_id = 'NL-1'
 def json_filter_projects(request):
     cursor = connection.cursor()
     q_organisations = {'reporting_organisation_id' : request.GET.get('organisations', None)}
@@ -329,19 +339,16 @@ def json_filter_projects(request):
 
     filters.append(q_organisations)
     query_string = get_filter_query(filters=filters)
-    cursor.execute('SELECT sd.name, c.country_id, a.iati_identifier, s.sector_id, r.region_id, cd.country_name, cd.dac_region_name '
-                   'FROM data_iatiactivity a '
-                   'LEFT JOIN data_iatiactivityregion r ON a.iati_identifier = r.iati_activity_id,'
-                   'data_iatiactivitycountry c,'
-                   'data_iatiactivitysector s,'
-                   'data_country cd, '
-                   'data_sector sd '
-                   'WHERE '
-                   'a.iati_identifier = c.iati_activity_id and '
-                   'a.iati_identifier = s.iati_activity_id and '
-                   'a.iati_identifier = r.iati_activity_id and '
-                   'c.country_id = cd.iso and '
-                   's.sector_id = sd.code %s' % query_string)
+    query = 'SELECT sd.name, ic.country_id, a.iati_identifier, s.sector_id, r.region_id, c.country_name, c.dac_region_name '\
+                   'FROM data_iatiactivity a '\
+                   'LEFT JOIN data_iatiactivityregion r ON a.iati_identifier = r.iati_activity_id '\
+                   'LEFT JOIN data_iatiactivitycountry ic ON a.iati_identifier = ic.iati_activity_id '\
+                   'LEFT JOIN data_country c ON ic.country_id = c.iso '\
+                   'LEFT JOIN data_iatiactivitysector s ON a.iati_identifier = s.iati_activity_id,'\
+                   'data_sector sd '\
+                   'WHERE '\
+                   's.sector_id = sd.code %s' % query_string
+    cursor.execute(query)
     results = get_fields(cursor=cursor)
     countries = {}
     countries['countries'] = {}
@@ -351,9 +358,12 @@ def json_filter_projects(request):
         country = {}
 #        country[r['country_id']] = r['country_name']
 #        countries['countries'].update(country)
-        countries['countries'][r['country_id']] = r['country_name']
-        countries['sectors'][r['sector_id']] = r['name']
-        countries['regions'][r['region_id']] = REGION_CHOICES_DICT[r['region_id']]
+        if r['country_name']:
+            countries['countries'][r['country_id']] = r['country_name']
+        if r['name']:
+            countries['sectors'][r['sector_id']] = r['name']
+        if r['region_id']:
+            countries['regions'][r['region_id']] = REGION_CHOICES_DICT.get(r['region_id'], None)
 
     return HttpResponse(json.dumps(countries), mimetype='application/json')
 
@@ -407,7 +417,7 @@ def get_filter_query(filters):
 def json_activities_response(request):
     q_countries = { 'country_id' :request.GET.get('countries', None)}
     q_sectors = {'sector_id' : request.GET.get('sectors', None)}
-    q_regions = {'region_id' :request.GET.get('regions', None)}
+    q_regions = {'dac_region_code' :request.GET.get('regions', None)}
     q_budget = {'total_budget' : request.GET.get('budget', None)}
     q_organisations = {'reporting_organisation_id' : request.GET.get('organisations', None)}
 
@@ -415,46 +425,33 @@ def json_activities_response(request):
 
     filters.append(q_organisations)
     filters.append(q_countries)
-#    filters.append(q_sectors)
-#    filters.append(q_regions)
-
-    filter_region = []
-    filter_region.append(q_regions)
-    filter_sector = []
-    filter_sector.append(q_sectors)
-
-    if request.GET.get('sectors', None):
-        where_sector = ' WHERE ' + str(get_filter_query(filters=filter_sector)[4:])
-    else:
-        where_sector = ''
-    if request.GET.get('regions', None):
-        where_region = ' WHERE ' + str(get_filter_query(filters=filter_region)[4:])
-    else:
-        where_region = ""
+    filters.append(q_sectors)
+    filters.append(q_regions)
 
     if q_budget['total_budget']:
         query_having = 'having total_budget ' + q_budget['total_budget'].split(',')[0]
     else:
         query_having = ''
 
-
-
     query_string = get_filter_query(filters=filters)
-
-    print query_string
-
+    query_string = query_string.replace('AND () and' , ' (')
+    if query_string:
+        query_string = ' WHERE ' + query_string[5:]
 
     cursor = connection.cursor()
-    cursor.execute('SELECT c.country_id, a.iati_identifier as iati_activity, count(a.iati_identifier) as total_projects, cd.country_name, sum(bd.value) as total_budget '
-                   'FROM data_iatiactivity a,'
-                   'data_iatiactivitycountry c, '
-                   'data_country cd, data_iatiactivitybudget b, data_budget bd '
-                   'WHERE  '
-                   'a.iati_identifier = c.iati_activity_id  and  '
-                   'c.country_id = cd.iso and a.iati_identifier = b.iati_activity_id and b.budget_ptr_id = bd.id %s '
-                   ' and a.iati_identifier in (select iati_activity_id from data_iatiactivityregion r %s)  '
-                   ' and a.iati_identifier in (select iati_activity_id from data_iatiactivitysector s %s)  '
-                   'Group by c.country_id %s' % (query_string, where_region, where_sector, query_having))
+
+    query = 'SELECT c.country_id, a.iati_identifier as iati_activity, count(a.iati_identifier) as total_projects, cd.country_name, sum(bd.value) as total_budget, cd.dac_region_code, s.name'\
+            ' FROM data_iatiactivity a '\
+            'LEFT JOIN data_iatiactivitybudget b ON a.iati_identifier = b.iati_activity_id '\
+            'LEFT JOIN data_budget bd ON b.budget_ptr_id = bd.id '\
+            'LEFT JOIN data_iatiactivitycountry c ON a.iati_identifier = c.iati_activity_id '\
+            'LEFT JOIN data_country cd ON c.country_id = cd.iso '\
+            'LEFT JOIN data_iatiactivitysector ds ON a.iati_identifier = ds.iati_activity_id '\
+            'LEFT JOIN data_sector s ON s.code = ds.sector_id '\
+            ' %s '\
+            'Group by c.country_id %s' % (query_string, query_having)
+#    print query
+    cursor.execute(query)
 
     activity_result = {}
     activity_result = {'type' : 'FeatureCollection', 'features' : []}
