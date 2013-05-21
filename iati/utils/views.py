@@ -449,8 +449,12 @@ def json_activities_response(request):
     if query_string:
         query_string = ' WHERE ' + query_string[5:]
 
-    if '" ) ' in query_string:
-        query_string = query_string[:-3]
+    if not 'WHERE (' in query_string:
+        query_string = query_string[6:]
+        query_string = ' WHERE ( ' + query_string
+
+    # if '" ) ' in query_string:
+    #     query_string = query_string[:-3]
 
     cursor = connection.cursor()
 
