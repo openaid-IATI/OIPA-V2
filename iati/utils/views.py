@@ -449,6 +449,9 @@ def json_activities_response(request):
     if query_string:
         query_string = ' WHERE ' + query_string[5:]
 
+    if '" ) ' in query_string:
+        query_string = query_string[:-3]
+
     cursor = connection.cursor()
 
     query = 'SELECT c.country_id, a.iati_identifier as iati_activity, count(a.iati_identifier) as total_projects, cd.country_name, sum(bd.value) as total_budget, cd.dac_region_code '\
