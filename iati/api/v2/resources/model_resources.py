@@ -212,7 +212,7 @@ class ActivityResource(ModelResource):
             countries = countries.replace('|', ',').replace('-', ',').split(',')
             filters.update(dict(iatiactivitycountry__country__iso__in=countries))
         if organisations:
-            organisations = organisations.replace('|', ',').replace('-', ',').split(',')
+            organisations = organisations.replace('|', ',').split(',')
             filters.update(dict(reporting_organisation__ref__in=organisations))
         if query:
             query_words = query.split(' ')
