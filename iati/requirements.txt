@@ -10,3 +10,4 @@ pysolr
 BeautifulSoup
 raven
 ipython
+simplejson

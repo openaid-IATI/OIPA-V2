@@ -15,7 +15,7 @@ from django.utils.translation import ugettext_lazy as _
 # App specific
 from data.management.commands.import_iati_xml import ActivityParser
 from data.management.commands.import_iati_xml import OrganisationParser
-
+from utils.dataset_syncer import DatasetSyncer
 from django.contrib.auth.models import User
 from tastypie.models import create_api_key
 
@@ -147,6 +147,45 @@ class ParseSchedule(models.Model):
         elif self.interval == u'DAILY' and (self.iati_xml_source.date_updated+datetime.timedelta(1) <= datetime.datetime.today()):
             self.iati_xml_source.process(verbosity)
 
+class DatasetSync(models.Model):
+    TYPE_CHOICES = (
+        (1, _(u"Activity Files")),
+        (2, _(u"Organisation Files")),
+        )
+
+    interval = models.CharField(verbose_name=_(u"Interval"), max_length=55, choices=INTERVAL_CHOICES)
+    date_updated = models.DateTimeField(auto_now=True, editable=False)
+    type = models.IntegerField(choices=TYPE_CHOICES, default=1)
+
+    def __unicode__(self):
+        return self.interval
+
+    class Meta:
+        app_label = "utils"
+
+    def sync_now(self):
+        return mark_safe("<img class='loading' src='/static/img/loading.gif' alt='loading' style='display:none;' /><a data-sync='sync_%i' class='sync    '><img src='/static/img/utils.parse.png' style='cursor:pointer;' /></a>") % self.id
+    sync_now.allow_tags = True
+    sync_now.short_description = _(u"Sync now?")
+
+    def _add_month(self, d,months=1):
+        year, month, day = d.timetuple()[:3]
+        new_month = month + months
+        return datetime.date(year + ((new_month-1) / 12), (new_month-1) % 12 +1, day)
+
+    def process(self):
+        if self.interval == u'YEARLY' and (self._add_month(self.date_updated, 12) <= datetime.datetime.now().date()):
+            self.sync_dataset_with_iati_api()
+        elif self.interval == u'MONTHLY' and (self._add_month(self.date_updated) <= datetime.datetime.now().date()):
+            self.sync_dataset_with_iati_api()
+        elif self.interval == u'WEEKLY' and (self.date_updated+datetime.timedelta(7) <= datetime.datetime.today()):
+            self.sync_dataset_with_iati_api()
+        elif self.interval == u'DAILY' and (self.date_updated+datetime.timedelta(1) <= datetime.datetime.today()):
+            self.sync_dataset_with_iati_api()
+
+    def sync_dataset_with_iati_api(self):
+        syncer = DatasetSyncer()
+        syncer.synchronize_with_iati_api(self.type)
 
 def update_publisher_records(sender, instance, created, **kwargs):
     if not created:
