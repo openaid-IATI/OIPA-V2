@@ -2,6 +2,7 @@ import simplejson
 import models
 import httplib
 import urllib2
+import sys
 
 class DatasetSyncer():
 
@@ -28,31 +29,36 @@ class DatasetSyncer():
     #            For each json object
                 for object in json_objects["results"]:
 
-    #                If download url is not already in OIPA
-                    if not (models.IATIXMLSource.objects.filter(source_url=object["download_url"]).count() > 0):
+                    try:
 
-                        print object["download_url"]
+        #               If download url is not already in OIPA
+                        if not (models.IATIXMLSource.objects.filter(source_url=object["download_url"]).count() > 0):
 
-                        publisher_iati_id = None
-                        if "publisher_iati_id" in object["extras"]:
-                            publisher_iati_id = object["extras"]["publisher_iati_id"]
+                            publisher_iati_id = None
+                            if "publisher_iati_id" in object["extras"]:
+                                publisher_iati_id = object["extras"]["publisher_iati_id"]
 
-                        print publisher_iati_id
-                        #                   If publisher_iati_id is given
-                        if not (publisher_iati_id is None) or (publisher_iati_id == ""):
-    #                        and is already in the database, get the publisher_id, else add the publisher
-                            if(models.Publisher.objects.filter(org_abbreviate=publisher_iati_id).count() > 0):
-                                current_publisher = models.Publisher.objects.get(org_abbreviate=publisher_iati_id)
+                            print publisher_iati_id
+                            #                   If publisher_iati_id is given
+                            if not (publisher_iati_id is None) or not (publisher_iati_id == ""):
+        #                        and is already in the database, get the publisher_id, else add the publisher
+                                if(models.Publisher.objects.filter(org_abbreviate=publisher_iati_id).count() > 0):
+                                    current_publisher = models.Publisher.objects.get(org_abbreviate=publisher_iati_id)
+                                else:
+                                    current_publisher = self.add_publisher_to_db(publisher_iati_id,publisher_iati_id)
                             else:
-                                current_publisher = self.add_publisher_to_db(publisher_iati_id,publisher_iati_id)
-                        else:
-    #                        publisher unknown
-                            current_publisher = models.Publisher.objects.get(org_abbreviate="Unknown")
+                                if(models.Publisher.objects.filter(org_abbreviate=publisher_iati_id).count() > 0):
+                                    current_publisher = models.Publisher.objects.get(org_abbreviate="Unknown")
+                                else:
+                                    current_publisher = self.add_publisher_to_db("Unknown","Unknown")
+        #                        publisher unknown
 
 
-                        current_source = self.add_iati_xml_source_to_db(object, current_publisher, cur_type)
-                        self.add_source_to_parse_schedule(object, current_source)
+                            current_source = self.add_iati_xml_source_to_db(object, current_publisher, cur_type)
+                            self.add_source_to_parse_schedule(object, current_source)
 
+                    except:
+                        print "Unexpected error:", sys.exc_info()[0]
 
 
         except urllib2.HTTPError, e:
@@ -69,6 +75,7 @@ class DatasetSyncer():
             print 'HTTP exception'
             if try_number < 6:
                 self.synchronize_with_iati_api_by_page(cur_url, cur_type,try_number + 1)
+
 
     def add_publisher_to_db(self, org_name_value, org_abbrevriate_value):
         new_publisher = models.Publisher(org_name=org_name_value, org_abbreviate=org_abbrevriate_value, default_interval='MONTHLY')
