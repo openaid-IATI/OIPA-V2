@@ -1,4 +1,4 @@
-Django==1.4.1
+Django==1.11.29
 south
 django-tastypie
 johnny-cache
